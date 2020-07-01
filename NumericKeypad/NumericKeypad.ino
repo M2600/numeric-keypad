@@ -1,9 +1,23 @@
+#include "keyboard.h"
+
+const int row = 5;
+const int col = 4;
+
+const int rowPin[row] = {  };
+const int colPin[col] = {  };
+const byte keyTable[row][col] = {
+  
+};
+
+
+
+
 void setup() {
-  // put your setup code here, to run once:
+  
   
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
+    
   
 }
