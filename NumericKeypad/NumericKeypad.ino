@@ -1,7 +1,6 @@
 #include "Keyboard.h"
 
 
-
 // Numeric keypad
 //
 #define KEY_KEYPAD_0 0xEA
@@ -35,15 +34,16 @@ const byte keyMap[sizeof(row)/2][sizeof(col)/2]={
   {  KEY_KEYPAD_0,        NONE,               KEY_KEYPAD_DECIMAL,   NONE               }
 };
 
-
 //
-int led=17;
+int led=17 ;
 
 bool currentState[sizeof(row)/2][sizeof(col)/2];
 bool beforeState[sizeof(row)/2][sizeof(col)/2];
 
+
 void setup()
 {
+  
 
   
   pinMode(led,OUTPUT);
@@ -66,6 +66,8 @@ void setup()
   digitalWrite(led,HIGH);
   delay(500);
 
+  pinMode(13,OUTPUT);
+  
   Serial.println(sizeof(row)/2);
   for(int i=0;i<sizeof(row)/2;i++)
   {
@@ -101,10 +103,26 @@ void setup()
   digitalWrite(led,LOW);
   Serial.begin(9600);
   delay(1000);
+
+  if(!Keyboard.getLedStatus(LED_NUM_LOCK))
+  { 
+    Keyboard.press(KEY_KEYPAD_NUMLOCK);
+    Keyboard.release(KEY_KEYPAD_NUMLOCK);
+  }
 }
+
+
+
 void loop()
 {
-
+  if(Keyboard.getLedStatus(LED_NUM_LOCK))
+  {
+   digitalWrite(13,HIGH); 
+  }
+  else
+  {
+   digitalWrite(13,LOW); 
+  }
   
 
   
