@@ -3,6 +3,8 @@
 //===================================
 //  Keyboard
 
+  //KeycodeDeclare
+
   #define NONE     0x00
   #define ____     0x00
   #define KEY_FN   0xff
@@ -126,13 +128,14 @@
   #define KEY_KEYPAD_8 0xE8
   #define KEY_KEYPAD_9 0xE9
   
-  #define KEY_KEYPAD_DECIMAL  0xEB   // dot
-  #define KEY_KEYPAD_ENTER    0xE0     // keypadEnter
-  #define KEY_KEYPAD_PLUS     0xDF      // +
-  #define KEY_KEYPAD_MINUS    0xDE     // -
+  #define KEY_KEYPAD_DECIMAL  0xEB  // dot
+  #define KEY_KEYPAD_ENTER    0xE0  // keypadEnter
+  #define KEY_KEYPAD_PLUS     0xDF  // +
+  #define KEY_KEYPAD_MINUS    0xDE  // -
   #define KEY_KEYPAD_MULTIPLY 0xDD  // *
-  #define KEY_KEYPAD_DIVIDE   0xDC    // /
+  #define KEY_KEYPAD_DIVIDE   0xDC  // /
   #define KEY_KEYPAD_NUMLOCK  0xDB
+  
 
 //======================================
 
@@ -294,7 +297,7 @@ void setup() {
 //============================loop==================================
 void loop() {
   
-  int delayTime = 500;
+  int delayTime = 1;
   delay(delayTime);
   
   for (int ii = 0; ii < sizeof(row) / 2; ii++)
