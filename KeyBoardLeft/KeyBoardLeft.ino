@@ -1,9 +1,30 @@
 #include "Keyboard.h"
-//**********************************LeftSide*********************************
 //===================================
-//  Keyboard
+//Keyboard
 
-  //KeycodeDeclare
+
+/*##########################################################################
+  ###                                                                    ###
+  ###    Before writing the program, make the left and right settings.   ###
+  ###                                                                    ###
+  ##########################################################################*/
+
+                      //#//
+                      //#//
+                      //#//
+                      //#//
+                      //#//
+                  //////#//////
+                   /////#/////
+                    ////#////
+                     ///#///
+                      //#//
+                       ///  
+                     
+const bool leftSide = true;
+
+
+//KeycodeDeclare
 
   #define NONE     0x00
   #define ____     0x00
@@ -309,6 +330,10 @@ void loop() {
       if (currentState[ii][jj] != beforeState[ii][jj])
       {
         int option = 0;
+        if(!leftSide)
+        {
+          option += 28;
+        }
         if(fnKeyPushed)
         {
           option += 7;
