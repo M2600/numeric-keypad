@@ -401,7 +401,11 @@ void readSerial()
     row = receiveData & 0b00111000 >> 3;
     col = receiveData & 0b00000111;
 
-    int option1 = 28;
+    int option1 = 0;
+    if(leftSide)
+    {
+      option = 28;
+    }
     if(fnKeyPushed)
     {
       option1 += 7;
