@@ -318,7 +318,7 @@ void setup() {
 //============================loop==================================
 void loop() {
   
-  int delayTime = 1;
+  int delayTime = 3;
   delay(delayTime);
   
   for (int ii = 0; ii < sizeof(row) / 2; ii++)

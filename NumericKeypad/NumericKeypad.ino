@@ -20,6 +20,7 @@
 #define KEY_KEYPAD_NUMLOCK 0xDB
 #define NONE 0x00
 
+
 // KEY_F2 // 編集モード
 // KEY_F4 // 1つ前のコマンドを実行
 // KEY_F8 // 半角/全角変換
@@ -137,6 +138,10 @@ void setup() {
 
 
 void loop() {
+
+  int delayTime = 3;
+  delay(delayTime);
+  
   //NUmLockの状態確認
   int flag_NL;
   if (Keyboard.getLedStatus(LED_NUM_LOCK)) flag_NL = 0;
@@ -144,7 +149,7 @@ void loop() {
   digitalWrite(13, 1 - flag_NL ); //NumLock状態表示LEDに反映
 
   for (int ii = 0; ii < sizeof(row) / 2; ii++) {
-    digitalWrite(row[i], LOW);
+    digitalWrite(row[ii], LOW);
     for (int jj = 0; jj < sizeof(col) / 2; jj++)  {
       currentState[ii][jj] = digitalRead(col[jj]);
       if (currentState[ii][jj] != beforeState[ii][jj]) {
@@ -166,9 +171,9 @@ void loop() {
 //        /*
           Serial.print("pressed");//以下デバッグ用
           Serial.print("keyMap");
-          Serial.print(i);
+          Serial.print(ii);
           Serial.print(" ");
-          Serial.println(j);
+          Serial.println(jj);
 //        */
         }
         else {
@@ -176,9 +181,9 @@ void loop() {
 //        /*
           Serial.print("released"); //以下デバッグ用
           Serial.print("keyMap");
-          Serial.print(i);
+          Serial.print(ii);
           Serial.print(" ");
-          Serial.println(j);
+          Serial.println(jj);
 //        */
         }
         beforeState[ii][jj] = currentState[ii][jj];
