@@ -29,6 +29,7 @@ const bool leftSide = true;
   #define NONE     0x00
   #define ____     0x00
   #define KEY_FN   0xff
+  
   #define KEY_ENT  0xB0 //Enter
   #define KEY_ESC  0xB1 //Escape 
   #define KEY_BSPC 0xB2 //Backspace
