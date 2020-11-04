@@ -1,4 +1,5 @@
 #include "Keyboard.h"
+#include "Adafruit_NeoPixel.h"
 //===================================
 //Keyboard
 
@@ -168,6 +169,22 @@ const int capslockLedNum = 12;
 byte sendData,receiveData;
 int pressed;
 
+//LEDTapeSettings
+#ifdef __AVR__
+  #include <avr/power.h>
+#endif
+int pin = 11;
+int pin1 = 10;
+int numpixels = 10;
+int numpixels1 = 10;
+
+
+Adafruit_NeoPixel pixels(numpixels, pin, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel pixels1(numpixels1, pin1, NEO_GRB + NEO_KHZ800);
+
+
+
+
 // keyMap ～ as you like!! ～ 
 const byte keyMap[sizeof(row)/2*8][sizeof(col)/2] = {
   //left
@@ -272,7 +289,7 @@ void setup() {
   FlashLED( led, 4 );   //flashStatusLED
 
   pinMode( 13, OUTPUT); //NumlockStatusLED
-  pinMode( capsLockLedNum, OUTPUT);//capslockStatusLED
+  pinMode( capslockLedNum, OUTPUT);//capslockStatusLED
   
 
   //キースイッチのマトリックスなんやら用の設定
@@ -304,11 +321,20 @@ void setup() {
     }
   }
 
+  //LEDTapeSettings
+  #if defined(__AVR_ATtiny85__) && (F_CPU == 16000000)
+  clock_prescale_set(clock_div_1);
+  #endif
+  
+  
+
   //launchKeyboard
   Keyboard.begin();
   FlashLED( led, 4);
   Serial.begin(9600);
   Serial1.begin(9600);
+  pixels.begin();
+  pixels1.begin();
   delay(200);
 
   //起動時にNumLock On
@@ -421,7 +447,7 @@ void readSerial()
     int option1 = 0;
     if(leftSide)
     {
-      option = 28;
+      option1 = 28;
     }
     if(fnKeyPushed)
     {
@@ -455,5 +481,15 @@ void readSerial()
           }
     }
   }
+}
+
+void LEDTape()
+{
+  pixels.clear();
+  pixels1.clear();
+  pixels.setPixelColor(1, pixels.Color(0, 150, 0));
+  pixels1.setPixelColor(1, pixels1.Color(0, 150, 0));
+  pixels.show();
+  pixels1.show();
 }
   
