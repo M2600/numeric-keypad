@@ -163,6 +163,7 @@ const bool leftSide = true;
 
 const int row[] = {13,14,15,16,17,18,19};
 const int col[] = {2,3,4,5,6,7,8,9};
+const int capslockLedNum = 12;
 
 byte sendData,receiveData;
 int pressed;
@@ -271,6 +272,8 @@ void setup() {
   FlashLED( led, 4 );   //flashStatusLED
 
   pinMode( 13, OUTPUT); //NumlockStatusLED
+  pinMode( capsLockLedNum, OUTPUT);//capslockStatusLED
+  
 
   //キースイッチのマトリックスなんやら用の設定
   Serial.println(sizeof(row) / 2);
@@ -314,6 +317,7 @@ void setup() {
     Keyboard.press(KEY_KEYPAD_NUMLOCK);
     Keyboard.release(KEY_KEYPAD_NUMLOCK);
   }
+  digitalWrite(capslockLedNum,LOW);
 }
 
 //============================loop==================================
@@ -321,6 +325,18 @@ void loop() {
   //AntiChattering
   int delayTime = 2;
   delay(delayTime);
+  
+  if(Keyboard.getLedStatus(LED_CAPS_LOCK))
+  {
+    digitalWrite(capslockLedNum,HIGH);
+  }
+  else
+  {
+    digitalWrite(capslockLedNum,LOW);
+  }
+  
+  
+  
   
   for (int ii = 0; ii < sizeof(row) / 2; ii++)
   {
