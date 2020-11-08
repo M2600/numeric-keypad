@@ -1,5 +1,6 @@
 #include "Keyboard.h"
 #include "Adafruit_NeoPixel.h"
+#include "EEPROM.h"
 //===================================
 //Keyboard
 
@@ -30,6 +31,7 @@ const bool leftSide = true;
   #define NONE     0x00
   #define ____     0x00
   #define KEY_FN   0xff
+  #define KEY_CPFL 0xfe
   
   #define KEY_ENT  0xB0 //Enter
   #define KEY_ESC  0xB1 //Escape 
@@ -269,8 +271,10 @@ int led = 17 ;
 bool currentState[sizeof(row)/2][sizeof(col)/2];
 bool beforeState[sizeof(row)/2][sizeof(col)/2];
 //FNkeyStatus
-bool fnKeyPushed = false;
-bool gameModeEnabled = false;
+bool fnKeyPushed = 0;
+bool gameModeEnabled = 1;
+
+int LEDProfile = 0;
 
 //LEDFlashSubroutine
 void FlashLED( int pin, int num )
@@ -351,7 +355,8 @@ void loop() {
   //AntiChattering
   int delayTime = 2;
   delay(delayTime);
-  
+
+  //capslockSetting
   if(Keyboard.getLedStatus(LED_CAPS_LOCK))
   {
     digitalWrite(capslockLedNum,HIGH);
@@ -361,6 +366,7 @@ void loop() {
     digitalWrite(capslockLedNum,LOW);
   }
   
+  //profile
   
   
   
@@ -393,6 +399,11 @@ void loop() {
             fnKeyPushed = true;
             pressed = 1;
           }
+          if(keyMap[ii + option][jj] == KEY_CPFL)
+          {
+            changeProfile();
+            pressed = 1;
+          }
           else
           {
             Keyboard.press( keyMap[ii + option][jj]);
@@ -404,6 +415,11 @@ void loop() {
           if(keyMap[ii + option][jj] == KEY_FN)
           {
             fnKeyPushed = false;
+            Keyboard.releaseAll();
+            pressed = 0;
+          }
+          if(keyMap[ii + option][jj] == KEY_CPFL)
+          {
             Keyboard.releaseAll();
             pressed = 0;
           }
@@ -492,4 +508,16 @@ void LEDTape()
   pixels.show();
   pixels1.show();
 }
+void changeProfile()
+{
+  if(LEDProfile = 10)
+  {
+    LEDProfile = 0;
+  }
+  else 
+  {
+    LEDProfile++;
+  }
+}
+
   
