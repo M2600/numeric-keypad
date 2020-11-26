@@ -3,8 +3,6 @@
 #include "EEPROM.h"
 //===================================
 //Keyboard
-
-
   /*########################################################################
   ###                                                                    ###
   ###    Before writing the program, make the left and right settings.   ###
@@ -23,7 +21,7 @@
                       //#//
                        ///  
                      
-const bool leftSide = true;
+const bool leftSide = false;
 
 
 //KeycodeDeclare
@@ -164,7 +162,7 @@ const bool leftSide = true;
 
 //======================================
 
-const int row[] = {13,14,15,16,17,18,19};
+const int row[] = {13,18,19,20,21,22,23};
 const int col[] = {2,3,4,5,6,7,8,9};
 const int capslockLedNum = 12;
 
@@ -173,7 +171,7 @@ int pressed;
 
 //LEDTapeSettings
 #ifdef __AVR__
-  #include <avr/power.h>
+#include <avr/power.h>
 #endif
 int pin = 11;
 int pin1 = 10;
@@ -265,14 +263,14 @@ const byte keyMap[sizeof(row)/2*8][sizeof(col)/2] = {
 
 
 //checkLED
-int led = 17 ;
+int led = 13 ;
 
 //eachKeysStatus
 bool currentState[sizeof(row)/2][sizeof(col)/2];
 bool beforeState[sizeof(row)/2][sizeof(col)/2];
 //FNkeyStatus
 bool fnKeyPushed = 0;
-bool gameModeEnabled = 1;
+bool gameModeEnabled = 0;
 
 int LEDProfile = 0;
 
@@ -336,6 +334,7 @@ void setup() {
   Keyboard.begin();
   FlashLED( led, 4);
   Serial.begin(9600);
+  Serial.print("serial begined");
   Serial1.begin(9600);
   pixels.begin();
   pixels1.begin();
@@ -385,7 +384,7 @@ void loop() {
         }
         if(fnKeyPushed)
         {
-          option += 7;
+           option += 7;
         }
         if(gameModeEnabled)
         {
