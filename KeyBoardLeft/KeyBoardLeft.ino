@@ -21,7 +21,7 @@
                       //#//
                        ///  
                      
-const bool leftSide = false;
+const bool leftSide = true;
 
 
 //KeycodeDeclare
@@ -173,14 +173,14 @@ int pressed;
 #ifdef __AVR__
 #include <avr/power.h>
 #endif
-int pin = 11;
-int pin1 = 10;
+int backLEDPin = 11;
+int statusLEDPin = 10;
 int numpixels = 10;
-int numpixels1 = 10;
+int numpixels1 = 4;
 
 
-Adafruit_NeoPixel pixels(numpixels, pin, NEO_GRB + NEO_KHZ800);
-Adafruit_NeoPixel pixels1(numpixels1, pin1, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel backLED(numpixels, backLEDPin, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel statusLED(numpixels1, statusLEDPin, NEO_GRB + NEO_KHZ800);
 
 
 
@@ -284,7 +284,12 @@ void FlashLED( int pin, int num )
     delay(100);
     sta = !sta;
   }
+
+  
 }
+
+
+
 //=========================setup========================
 void setup() {
   pinMode(led, OUTPUT); //setLEDPin
@@ -334,11 +339,13 @@ void setup() {
   Keyboard.begin();
   FlashLED( led, 4);
   Serial.begin(9600);
-  Serial.print("serial begined");
   Serial1.begin(9600);
-  pixels.begin();
-  pixels1.begin();
+  backLED.begin();
+  statusLED.begin();
   delay(200);
+
+
+  
 
   //起動時にNumLock On
   if (!Keyboard.getLedStatus(LED_NUM_LOCK))
@@ -354,6 +361,8 @@ void loop() {
   //AntiChattering
   int delayTime = 2;
   delay(delayTime);
+
+  LEDTape();
 
   //capslockSetting
   if(Keyboard.getLedStatus(LED_CAPS_LOCK))
@@ -497,16 +506,17 @@ void readSerial()
     }
   }
 }
-
 void LEDTape()
 {
-  pixels.clear();
-  pixels1.clear();
-  pixels.setPixelColor(1, pixels.Color(0, 150, 0));
-  pixels1.setPixelColor(1, pixels1.Color(0, 150, 0));
-  pixels.show();
-  pixels1.show();
+  backLED.clear();
+  statusLED.clear();
+  backLED.setPixelColor(1, backLED.Color(0, 150, 0));
+  statusLED.setPixelColor(2, statusLED.Color(0, 150, 0));
+  backLED.show();
+  statusLED.show();
 }
+
+
 void changeProfile()
 {
   if(LEDProfile = 10)
