@@ -136,9 +136,9 @@ const bool leftSide = true;
 
   // missing sound control keys
   //
-  #define KEY_MUTE        0x7F
-  #define KEY_VOLUMEUP    0x80
-  #define KEY_VOLUMEDOWN  0x81
+  #define KEY_MUTE        0xFD
+  #define KEY_VOLUMEUP    0xFC
+  #define KEY_VOLUMEDOWN  0xFB
 
   //keyPad
   #define KEY_KEYPAD_0 0xEA
@@ -198,7 +198,7 @@ const byte keyMap[sizeof(row)/2*8][sizeof(col)/2] = {
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
   //leftFn
-  {KEY_ESC,  KEY_F1,   KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,   KEY_VOLUMEUP, NONE     },
+  {KEY_ESC,  KEY_F1,   KEY_F2,   KEY_F3,   KEY_MUTE, KEY_VOLUMEDOWN,   KEY_VOLUMEUP, NONE     },
   {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,        NONE     },
   {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_LPRN,     NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_LCBR,     NONE     },
@@ -388,7 +388,7 @@ void loop() {
   
 
   //capslockSetting
-  if(Keyboard.getLedStatus(LED_CAPS_LOCK))
+  /*if(Keyboard.getLedStatus(LED_CAPS_LOCK))
   {
     statusLED.clear();
     statusLED.setPixelColor(2, statusLED.Color(0, 5, 0));
@@ -399,7 +399,7 @@ void loop() {
     statusLED.clear();
     statusLED.setPixelColor(2, statusLED.Color(0, 0, 0));
     statusLED.show();
-  }
+  }*/
   
   //profile
   
@@ -441,6 +441,21 @@ void loop() {
             changeProfile();
             pressed = 1;
           }
+          if(keyMap[ii + option][jj] == KEY_MUTE)
+          {
+            ConsumerControl.press(VOLUME_MUTE);
+            pressed = 1;
+          }
+          if(keyMap[ii + option][jj] == KEY_VOLUMEUP)
+          {
+            ConsumerControl.press(VOLUME_UP);
+            pressed = 1;
+          }
+          if(keyMap[ii + option][jj] == KEY_VOLUMEDOWN)
+          {
+            ConsumerControl.press(VOLUME_DOWN);
+            pressed = 1;
+          }
           else
           {
             Keyboard.press( keyMap[ii + option][jj]);
@@ -460,6 +475,21 @@ void loop() {
           if(keyMap[ii + option][jj] == KEY_CPFL)
           {
             Keyboard.releaseAll();
+            pressed = 0;
+          }
+          if(keyMap[ii + option][jj] == KEY_MUTE)
+          {
+            ConsumerControl.release();
+            pressed = 0;
+          }
+          if(keyMap[ii + option][jj] == KEY_VOLUMEUP)
+          {
+            ConsumerControl.release();
+            pressed = 0;
+          }
+          if(keyMap[ii + option][jj] == KEY_VOLUMEDOWN)
+          {
+            ConsumerControl.release();
             pressed = 0;
           }
           else
