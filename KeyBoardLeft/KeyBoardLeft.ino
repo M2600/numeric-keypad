@@ -340,7 +340,7 @@ void setup() {
   Keyboard.begin();
   FlashLED( led, 4);
   Serial.begin(9600);
-  Serial1.begin(9600);
+  Serial1.begin(14400);
   backLED.begin();
   statusLED.begin();
   delay(200);
@@ -502,6 +502,17 @@ void loop() {
         beforeState[ii][jj] = currentState[ii][jj];
         sendData = pressed << 6 | ii  << 3 | jj;
         Serial1.write(sendData);
+        Serial.flush();
+        
+        Serial.print("senddate");
+        Serial.print(" ");
+        Serial.print(sendData);
+        Serial.print(" ");
+        Serial.print(pressed);
+        Serial.print(" ");
+        Serial.print(ii);
+        Serial.print(" ");
+        Serial.println(jj);
       }
     }
     digitalWrite(row[ii], HIGH);
@@ -519,6 +530,7 @@ void readSerial()
   int row,col;
 
   receiveData=Serial1.read();
+  Serial.println(receiveData);
   if(receiveData & 0b10000000)
   {
     
@@ -526,8 +538,18 @@ void readSerial()
   else
   {
     int pressed1 = receiveData >> 6;
-    row = receiveData & 0b00111000 >> 3;
-    col = receiveData & 0b00000111;
+    int row1 = receiveData  >> 3 & 0b00000111;
+    int col1 = receiveData & 0b00000111;
+
+    Serial.print("readdate");
+    Serial.print(" ");
+    Serial.print(receiveData);
+    Serial.print(" ");
+    Serial.print(pressed1);
+    Serial.print(" ");
+    Serial.print(row1);
+    Serial.print(" ");
+    Serial.println(col1);
 
     int option1 = 0;
     if(leftSide)
@@ -544,25 +566,56 @@ void readSerial()
     }
     if(pressed1)
     {
-      if(keyMap[row + option1][col] == KEY_FN)
+      if(keyMap[row1 + option1][col1] == KEY_FN)
           {
             fnKeyPushed = true;
           }
+          if(keyMap[row1 + option1][col1] == KEY_MUTE)
+          {
+            ConsumerControl.press(VOLUME_MUTE);
+            pressed = 1;
+          }
+          if(keyMap[row1 + option1][col1] == KEY_VOLUMEUP)
+          {
+            ConsumerControl.press(VOLUME_UP);
+            pressed = 1;
+          }
+          if(keyMap[row1 + option1][col1] == KEY_VOLUMEDOWN)
+          {
+            ConsumerControl.press(VOLUME_DOWN);
+            pressed = 1;
+          }
           else
           {
-            Keyboard.press( keyMap[row + option1][col]);
+            Keyboard.press( keyMap[row1 + option1][col1]);
+            Serial.println(keyMap[row1 + option1][col1]);
           }
     }
     else
     {
-       if(keyMap[row + option1][col] == KEY_FN)
+       if(keyMap[row1 + option1][col1] == KEY_FN)
           {
             fnKeyPushed = false;
             Keyboard.releaseAll();
           }
+          if(keyMap[row1 + option1][col1] == KEY_MUTE)
+          {
+            ConsumerControl.release();
+            pressed = 0;
+          }
+          if(keyMap[row1 + option1][col1] == KEY_VOLUMEUP)
+          {
+            ConsumerControl.release();
+            pressed = 0;
+          }
+          if(keyMap[row1 + option1][col1] == KEY_VOLUMEDOWN)
+          {
+            ConsumerControl.release();
+            pressed = 0;
+          }
           else
           {
-            Keyboard.release( keyMap[row + option1][col]);
+            Keyboard.release( keyMap[row1 + option1][col1]);
           }
     }
   }
