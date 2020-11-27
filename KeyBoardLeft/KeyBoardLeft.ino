@@ -22,7 +22,7 @@
                       //#//
                        ///  
                      
-const bool leftSide = true;
+const bool leftSide = false;
 
 
 //KeycodeDeclare
@@ -390,12 +390,12 @@ void loop() {
   
 
   //capslockSetting
-  if(Keyboard.getLedStatus(LED_CAPS_LOCK))
+  if(Keyboard.getLedStatus(LED_CAPS_LOCK) && !capsLocked)
   {
     capsLockLedOn();
     capsLocked = true;
   }
-  else if(!Keyboard.getLedStatus(LED_CAPS_LOCK))      
+  else if(!Keyboard.getLedStatus(LED_CAPS_LOCK) && capsLocked)      
   {
     capsLockLedOff();
     capsLocked = false;
