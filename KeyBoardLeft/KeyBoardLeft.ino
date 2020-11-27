@@ -1,6 +1,7 @@
 #include "Keyboard.h"
 #include "Adafruit_NeoPixel.h"
 #include "EEPROM.h"
+#include "ConsumerControl.h"
 //===================================
 //Keyboard
   /*########################################################################
@@ -197,13 +198,13 @@ const byte keyMap[sizeof(row)/2*8][sizeof(col)/2] = {
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
   //leftFn
-  {KEY_ESC,  KEY_F1,   KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,   KEY_MUTE, NONE     },
-  {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,    NONE     },
-  {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_LPRN, NONE     },
-  {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_LCBR, NONE     },
-  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_LEFT, NONE     },
-  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   ____ ,    KEY_RSFT, KEY_DEL,  ____     },
-  {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
+  {KEY_ESC,  KEY_F1,   KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,   KEY_VOLUMEUP, NONE     },
+  {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,        NONE     },
+  {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_LPRN,     NONE     },
+  {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_LCBR,     NONE     },
+  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_LEFT,     NONE     },
+  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   ____ ,    KEY_RSFT, KEY_DEL,      ____     },
+  {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,      NONE     },
 
   //leftGame
   {KEY_ESC,  KEY_F1,   KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,   KEY_F6,   NONE     },
@@ -345,6 +346,27 @@ void setup() {
   delay(200);
 
 
+
+  for(int i=0;i<5;i++)
+  {
+    statusLED.clear();
+    for(int i=0;i<numpixels;i++)
+    {
+     statusLED.setPixelColor(i, statusLED.Color(5, 0, 0));
+    }
+    statusLED.show();
+    delay(200);
+    statusLED.clear();
+    for(int i=0;i<numpixels;i++)
+    {
+     statusLED.setPixelColor(i, statusLED.Color(0, 0, 0));
+    }
+    statusLED.show();
+    delay(200);
+  }
+
+  
+  
   
 
   //起動時にNumLock On
@@ -362,16 +384,21 @@ void loop() {
   int delayTime = 2;
   delay(delayTime);
 
-  LEDTape();
+  
+  
 
   //capslockSetting
   if(Keyboard.getLedStatus(LED_CAPS_LOCK))
   {
-    digitalWrite(capslockLedNum,HIGH);
+    statusLED.clear();
+    statusLED.setPixelColor(2, statusLED.Color(0, 5, 0));
+    statusLED.show();
   }
-  else
+  else      
   {
-    digitalWrite(capslockLedNum,LOW);
+    statusLED.clear();
+    statusLED.setPixelColor(2, statusLED.Color(0, 0, 0));
+    statusLED.show();
   }
   
   //profile
@@ -394,6 +421,7 @@ void loop() {
         if(fnKeyPushed)
         {
            option += 7;
+           Serial.println("FNKey+Keypushed");
         }
         if(gameModeEnabled)
         {
@@ -406,6 +434,7 @@ void loop() {
           {
             fnKeyPushed = true;
             pressed = 1;
+            Serial.println("FNKeyPushed!");
           }
           if(keyMap[ii + option][jj] == KEY_CPFL)
           {
@@ -416,6 +445,7 @@ void loop() {
           {
             Keyboard.press( keyMap[ii + option][jj]);
             pressed = 1;
+            Serial.println(keyMap[ii + option][jj]);
           }
         }
         else
@@ -425,6 +455,7 @@ void loop() {
             fnKeyPushed = false;
             Keyboard.releaseAll();
             pressed = 0;
+            Serial.println("FNKeyreleased!");
           }
           if(keyMap[ii + option][jj] == KEY_CPFL)
           {
@@ -464,7 +495,7 @@ void readSerial()
   }
   else
   {
-    pressed = receiveData >> 6;
+    int pressed1 = receiveData >> 6;
     row = receiveData & 0b00111000 >> 3;
     col = receiveData & 0b00000111;
 
@@ -481,7 +512,7 @@ void readSerial()
     {
       option1 += 14;
     }
-    if(pressed)
+    if(pressed1)
     {
       if(keyMap[row + option1][col] == KEY_FN)
           {
@@ -510,12 +541,24 @@ void LEDTape()
 {
   backLED.clear();
   statusLED.clear();
+  for(int i=0;i<numpixels;i++)
+  {
+    statusLED.setPixelColor(i, statusLED.Color(5, 0, 0));
+  }
   backLED.setPixelColor(1, backLED.Color(0, 150, 0));
-  statusLED.setPixelColor(2, statusLED.Color(0, 150, 0));
   backLED.show();
   statusLED.show();
 }
 
+void offLEDTape()
+{
+  statusLED.clear();
+  for(int i=0;i<numpixels;i++)
+  {
+    statusLED.setPixelColor(i, statusLED.Color(0, 0, 0));
+  }
+  statusLED.show();
+}
 
 void changeProfile()
 {
