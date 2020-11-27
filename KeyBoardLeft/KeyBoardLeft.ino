@@ -378,6 +378,8 @@ void setup() {
   digitalWrite(capslockLedNum,LOW);
 }
 
+bool capsLocked = false;
+
 //============================loop==================================
 void loop() {
   //AntiChattering
@@ -388,18 +390,16 @@ void loop() {
   
 
   //capslockSetting
-  /*if(Keyboard.getLedStatus(LED_CAPS_LOCK))
+  if(Keyboard.getLedStatus(LED_CAPS_LOCK))
   {
-    statusLED.clear();
-    statusLED.setPixelColor(2, statusLED.Color(0, 5, 0));
-    statusLED.show();
+    capsLockLedOn();
+    capsLocked = true;
   }
-  else      
+  else if(!Keyboard.getLedStatus(LED_CAPS_LOCK))      
   {
-    statusLED.clear();
-    statusLED.setPixelColor(2, statusLED.Color(0, 0, 0));
-    statusLED.show();
-  }*/
+    capsLockLedOff();
+    capsLocked = false;
+  }
   
   //profile
   
@@ -641,6 +641,19 @@ void offLEDTape()
     statusLED.setPixelColor(i, statusLED.Color(0, 0, 0));
   }
   statusLED.show();
+}
+
+void capsLockLedOn()
+{
+  statusLED.clear();
+    statusLED.setPixelColor(2, statusLED.Color(0, 5, 0));
+    statusLED.show();
+}
+void capsLockLedOff()
+{
+  statusLED.clear();
+    statusLED.setPixelColor(2, statusLED.Color(0, 0, 0));
+    statusLED.show();
 }
 
 void changeProfile()
