@@ -22,7 +22,7 @@
                       //#//
                        ///  
                      
-const bool leftSide = false ;
+const bool leftSide = true ;
 
 
 //KeycodeDeclare
@@ -444,6 +444,7 @@ void loop() {
         {
           if(keyMap[ii + option][jj] == KEY_FN)
           {
+            Keyboard.releaseAll();
             fnKeyPushed = true;
             pressed = 1;
             Serial.println("FNKeyPushed!");
@@ -595,6 +596,7 @@ void readSerial()
     {
       if(keyMap[row1 + option1][col1] == KEY_FN)
           {
+            Keyboard.releaseAll();
             fnKeyPushed = true;
           }
           if(keyMap[row1 + option1][col1] == KEY_MUTE)
