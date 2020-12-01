@@ -22,7 +22,7 @@
                       //#//
                        ///  
                      
-const bool leftSide = false;
+const bool leftSide = false ;
 
 
 //KeycodeDeclare
@@ -393,11 +393,23 @@ void loop() {
   if(Keyboard.getLedStatus(LED_CAPS_LOCK) && !capsLocked)
   {
     capsLockLedOn();
+    sendData = 0b10000001;
+    Serial1.write(sendData);
+    Serial.flush();
+    Serial.print("senddate");
+    Serial.print(" ");
+    Serial.println(sendData);
     capsLocked = true;
   }
   else if(!Keyboard.getLedStatus(LED_CAPS_LOCK) && capsLocked)      
   {
     capsLockLedOff();
+    sendData = 0b10000010;
+    Serial1.write(sendData);
+    Serial.print("senddate");
+    Serial.print(" ");
+    Serial.println(sendData);
+    Serial.flush();
     capsLocked = false;
   }
   
@@ -531,10 +543,25 @@ void readSerial()
 
   receiveData=Serial1.read();
   Serial.println(receiveData);
-  if(receiveData & 0b10000000)
+  if (receiveData == 0b10000001)
+  {
+    capsLockLedOn();
+    Serial.print("readdate");
+    Serial.print(" ");
+    Serial.println(receiveData);
+  }
+  else if (receiveData == 0b10000010)
+  {
+    capsLockLedOff();
+    Serial.print("readdate");
+    Serial.print(" ");
+    Serial.println(receiveData);
+  }
+  else if(receiveData & 0b10000000)
   {
     
   }
+  
   else
   {
     int pressed1 = receiveData >> 6;
