@@ -22,8 +22,7 @@
                        //#//
                         ///
 
-const bool leftSide = false ;
-
+const bool leftSide = true ;
 
 //KeycodeDeclare
 
@@ -167,6 +166,7 @@ const int row[] = {13, 18, 19, 20, 21, 22, 23};
 const int col[] = {2, 3, 4, 5, 6, 7, 8, 9};
 const int capslockLedNum = 12;
 
+
 byte sendData, receiveData;
 int pressed;
 
@@ -227,7 +227,7 @@ const byte keyMap[sizeof(row) / 2 * 8][sizeof(col) / 2] = {
   //right
   {KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  KEY_F11,  KEY_F12,  NONE,     KEY_CPFL },
   {KEY_BSLS, KEY_7,    KEY_8,    KEY_9,    KEY_0,    KEY_MINS, KEY_EQL,  KEY_BSPC },
-  {KEY_RPRN, KEY_Y,    KEY_U,    KEY_I,    KEY_O,    KEY_P,    KEY_LCBR, KEY_RCBR },
+  {KEY_RPRN, KEY_Y,    KEY_U,    KEY_I,    KEY_O,    KEY_P,    KEY_LBRC, KEY_RBRC },
   {KEY_RCBR, KEY_H,    KEY_J,    KEY_K,    KEY_L,    KEY_SCLN, KEY_QUOT, KEY_ENT  },
   {KEY_RGHT, KEY_N,    KEY_M,    KEY_COMM, KEY_DOT,  KEY_SLSH, KEY_UP,   KEY_RSFT },
   {KEY_BSPC, KEY_LSFT, ____,     KEY_FN,   KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
@@ -245,7 +245,7 @@ const byte keyMap[sizeof(row) / 2 * 8][sizeof(col) / 2] = {
   //rightGame
   {KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  KEY_F11,  KEY_F12,  NONE,     KEY_CPFL },
   {KEY_BSLS, KEY_7,    KEY_8,    KEY_9,    KEY_0,    KEY_MINS, KEY_EQL,  KEY_BSPC },
-  {KEY_F19,  KEY_Y,    KEY_U,    KEY_I,    KEY_O,    KEY_P,    KEY_LCBR, KEY_RCBR },
+  {KEY_F19,  KEY_Y,    KEY_U,    KEY_I,    KEY_O,    KEY_P,    KEY_LBRC, KEY_RBRC },
   {KEY_F20,  KEY_H,    KEY_J,    KEY_K,    KEY_L,    KEY_SCLN, KEY_QUOT, KEY_ENT  },
   {KEY_F21,  KEY_N,    KEY_M,    KEY_COMM, KEY_DOT,  KEY_SLSH, KEY_UP,   KEY_RSFT },
   {KEY_F23,  KEY_F22,  ____,     KEY_FN,   KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
@@ -261,7 +261,18 @@ const byte keyMap[sizeof(row) / 2 * 8][sizeof(col) / 2] = {
   {KEY_F24,  NONE,     NONE,         NONE,           NONE,     NONE,     NONE,     NONE,    }
 };
 
+//backLed============================================================
 
+int backLightLEDNormal[][3]={
+  //red
+  {5,0,0},
+  //green
+  {0,5,0},
+  //blue
+  {0,0,5},
+  //
+  {}
+  };
 
 //checkLED
 int led = 13 ;
@@ -340,7 +351,7 @@ void setup() {
   Keyboard.begin();
   FlashLED( led, 4);
   Serial.begin(9600);
-  Serial1.begin(14400);
+  Serial1.begin(9600);
   backLED.begin();
   statusLED.begin();
   delay(200);
@@ -481,29 +492,30 @@ void loop() {
           if (keyMap[ii + option][jj] == KEY_FN)
           {
             fnKeyPushed = false;
-            Keyboard.releaseAll();
             pressed = 0;
+            Keyboard.releaseAll();
+            ConsumerControl.release();
             Serial.println("FNKeyreleased!");
           }
           if (keyMap[ii + option][jj] == KEY_CPFL)
           {
-            Keyboard.releaseAll();
             pressed = 0;
+            Keyboard.releaseAll();
           }
           if (keyMap[ii + option][jj] == KEY_MUTE)
           {
-            ConsumerControl.release();
             pressed = 0;
+            ConsumerControl.release();
           }
           if (keyMap[ii + option][jj] == KEY_VOLUMEUP)
           {
-            ConsumerControl.release();
             pressed = 0;
+            ConsumerControl.release();
           }
           if (keyMap[ii + option][jj] == KEY_VOLUMEDOWN)
           {
-            ConsumerControl.release();
             pressed = 0;
+            ConsumerControl.release();
           }
           else
           {
@@ -631,26 +643,27 @@ void readSerial()
       {
         fnKeyPushed = false;
         Keyboard.releaseAll();
+        ConsumerControl.release();
       }
       if (keyMap[row1 + option1][col1] == KEY_CPFL)
       {
-        Keyboard.releaseAll();
         pressed = 0;
+        Keyboard.releaseAll();
       }
       if (keyMap[row1 + option1][col1] == KEY_MUTE)
       {
-        ConsumerControl.release();
         pressed = 0;
+        ConsumerControl.release();
       }
       if (keyMap[row1 + option1][col1] == KEY_VOLUMEUP)
       {
-        ConsumerControl.release();
         pressed = 0;
+        ConsumerControl.release();
       }
       if (keyMap[row1 + option1][col1] == KEY_VOLUMEDOWN)
       {
-        ConsumerControl.release();
         pressed = 0;
+        ConsumerControl.release();
       }
       else
       {
