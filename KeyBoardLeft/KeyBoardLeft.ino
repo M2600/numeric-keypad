@@ -266,12 +266,18 @@ const byte keyMap[sizeof(row) / 2 * 8][sizeof(col) / 2] = {
 int backLightLEDNormal[][3]={
   //red
   {5,0,0},
-  //green
-  {0,5,0},
+  //purple
+  {5,0,5},
   //blue
   {0,0,5},
-  //
-  {}
+  //white
+  {5,5,5}, 
+  //lightblue
+  {0,5,5},
+  //green
+  {0,5,0},
+  //yellow
+  {5,5,0}
   };
 
 //checkLED
