@@ -362,6 +362,11 @@ bool fnKeyPushed = 0;
 bool raisKeyPushed = 0;
 bool loweKeyPushed = 0;
 bool gameModeEnabled = 0;
+bool leftShiftPushed = 0;
+bool rightShiftPushed = 0;
+bool leftControlPushed = 0;
+bool rightControlPushed = 0;
+
 
 int LEDProfile = 0;
 
@@ -514,6 +519,24 @@ void loop() {
 
 
 
+  if(leftShiftPushed)
+  {
+    Keyboard.press(KEY_LSFT);
+  }
+  if(rightShiftPushed)
+  {
+    Keyboard.press(KEY_RSFT);
+  }
+  if(leftControlPushed)
+  {
+    Keyboard.press(KEY_LCTL);
+  }
+  if(rightControlPushed)
+  {
+    Keyboard.press(KEY_RCTL);
+  }
+
+
   for (int ii = 0; ii < sizeof(row) / 2; ii++)
   {
     digitalWrite(row[ii], LOW);
@@ -547,6 +570,32 @@ void loop() {
 
         if ( !currentState[ii][jj] )
         {
+          
+          if(keyMap[ii + option][jj] == KEY_LSFT)
+          {
+            leftShiftPushed = true;
+            Keyboard.press( keyMap[ii + option][jj]);
+            pressed = 1;
+          }
+          if(keyMap[ii + option][jj] == KEY_RSFT)
+          {
+            rightShiftPushed = true;
+            Keyboard.press( keyMap[ii + option][jj]);
+            pressed = 1;
+          }
+          if(keyMap[ii + option][jj] == KEY_LCTL)
+          {
+            leftControlPushed = true;
+            Keyboard.press( keyMap[ii + option][jj]);
+            pressed = 1;
+          }
+          if(keyMap[ii + option][jj] == KEY_RCTL)
+          {
+            rightControlPushed = true;
+            Keyboard.press( keyMap[ii + option][jj]);
+            pressed = 1;
+          }
+          
           if (keyMap[ii + option][jj] == KEY_FN)
           {
             Keyboard.releaseAll();
@@ -595,6 +644,32 @@ void loop() {
         }
         else
         {
+
+          if(keyMap[ii + option][jj] == KEY_LSFT)
+          {
+            leftShiftPushed = false;
+            Keyboard.release( keyMap[ii + option][jj]);
+            pressed = 0;
+          }
+          if(keyMap[ii + option][jj] == KEY_RSFT)
+          {
+            rightShiftPushed = false;
+            Keyboard.release( keyMap[ii + option][jj]);
+            pressed = 0;
+          }
+          if(keyMap[ii + option][jj] == KEY_LCTL)
+          {
+            leftControlPushed = false;
+            Keyboard.release( keyMap[ii + option][jj]);
+            pressed = 0;
+          }
+          if(keyMap[ii + option][jj] == KEY_RCTL)
+          {
+            rightControlPushed = false;
+            Keyboard.release( keyMap[ii + option][jj]);
+            pressed = 0;
+          }
+          
           if (keyMap[ii + option][jj] == KEY_FN)
           {
             fnKeyPushed = false;
@@ -732,6 +807,34 @@ void readSerial()
     }
     if (pressed1)
     {
+      
+
+      if(keyMap[row1 + option1][col1] == KEY_LSFT)
+      {
+        leftShiftPushed = true;
+        Keyboard.press( keyMap[row1 + option1][col1]);
+        pressed = 1;
+      }
+      if(keyMap[row1 + option1][col1] == KEY_RSFT)
+      {
+        rightShiftPushed = true;
+        Keyboard.press( keyMap[row1 + option1][col1]);
+        pressed = 1;
+      }
+      if(keyMap[row1 + option1][col1] == KEY_LCTL)
+      {
+        leftControlPushed = true;
+        Keyboard.press( keyMap[row1 + option1][col1]);
+        pressed = 1;
+      }
+      if(keyMap[row1 + option1][col1] == KEY_RCTL)
+      {
+        rightControlPushed = true;
+        Keyboard.press( keyMap[row1 + option1][col1]);
+        pressed = 1;
+      }
+      
+      
       if (keyMap[row1 + option1][col1] == KEY_FN)
       {
         Keyboard.releaseAll();
@@ -781,6 +884,33 @@ void readSerial()
         Keyboard.releaseAll();
         ConsumerControl.release();
       }
+
+      if(keyMap[row1 + option1][col1] == KEY_LSFT)
+      {
+        leftShiftPushed = false;
+        Keyboard.press( keyMap[row1 + option1][col1]);
+        pressed = 0;
+      }
+      if(keyMap[row1 + option1][col1] == KEY_RSFT)
+      {
+        rightShiftPushed = false;
+        Keyboard.press( keyMap[row1 + option1][col1]);
+        pressed = 0;
+      }
+      if(keyMap[row1 + option1][col1] == KEY_LCTL)
+      {
+        leftControlPushed = false;
+        Keyboard.press( keyMap[row1 + option1][col1]);
+        pressed = 0;
+      }
+      if(keyMap[row1 + option1][col1] == KEY_RCTL)
+      {
+        rightControlPushed = false;
+        Keyboard.press( keyMap[row1 + option1][col1]);
+        pressed = 0;
+      }
+
+      
       if (keyMap[row1 + option1][col1] == KEY_RAIS)
       {
         Keyboard.releaseAll();
