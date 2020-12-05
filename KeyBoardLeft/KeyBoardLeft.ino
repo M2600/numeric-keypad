@@ -22,7 +22,7 @@
                        //#//
                         ///
 
-const bool leftSide = true ;
+const bool leftSide = false ;
 
 //KeycodeDeclare
 
@@ -30,6 +30,8 @@ const bool leftSide = true ;
 #define ____     0x00
 #define KEY_FN   0xff
 #define KEY_CPFL 0xfe
+#define KEY_RAIS 0xfd
+#define KEY_LOWE 0xfc
 
 #define KEY_ENT  0xB0 //Enter
 #define KEY_ESC  0xB1 //Escape 
@@ -135,9 +137,9 @@ const bool leftSide = true ;
 
 // missing sound control keys
 //
-#define KEY_MUTE        0xFD
-#define KEY_VOLUMEUP    0xFC
-#define KEY_VOLUMEDOWN  0xFB
+#define KEY_MUTE        0xFb
+#define KEY_VOLUMEUP    0xFa
+#define KEY_VOLUMEDOWN  0xf9
 
 //keyPad
 #define KEY_KEYPAD_0 0xEA
@@ -187,14 +189,14 @@ Adafruit_NeoPixel statusLED(numpixels1, statusLEDPin, NEO_GRB + NEO_KHZ800);
 
 
 // keyMap ～ as you like!! ～
-const byte keyMap[sizeof(row) / 2 * 8][sizeof(col) / 2] = {
+const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   //left
   {KEY_ESC,  KEY_F1,   KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,   KEY_F6,   NONE     },
   {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,    NONE     },
   {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_LPRN, NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_LCBR, NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_LEFT, NONE     },
-  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   ____ ,    KEY_RSFT, KEY_DEL,  ____     },
+  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT, KEY_DEL,  ____     },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
   //leftFn
@@ -203,8 +205,28 @@ const byte keyMap[sizeof(row) / 2 * 8][sizeof(col) / 2] = {
   {KEY_CPFL, KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_LPRN,     NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_LCBR,     NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_LEFT,     NONE     },
-  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   ____ ,    KEY_RSFT, KEY_DEL,      ____     },
+  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT, KEY_DEL,      ____     },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,      NONE     },
+
+  //leftRais
+  {KEY_ESC,  KEY_F1,   KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,   KEY_F6,   NONE     },
+  {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,    NONE     },
+  {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_LPRN, NONE     },
+  {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_LCBR, NONE     },
+  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_LEFT, NONE     },
+  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT, KEY_DEL,  ____     },
+  {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
+
+  //leftLower
+  {KEY_ESC,  KEY_F1,   KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,   KEY_F6,   NONE     },
+  {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,    NONE     },
+  {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_LPRN, NONE     },
+  {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_LCBR, NONE     },
+  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_LEFT, NONE     },
+  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT, KEY_DEL,  ____     },
+  {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
+
+
 
   //leftGame
   {KEY_ESC,  KEY_F1,   KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,   KEY_F6,   NONE     },
@@ -212,7 +234,7 @@ const byte keyMap[sizeof(row) / 2 * 8][sizeof(col) / 2] = {
   {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_F13,  NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_F14,  NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F15,  NONE     },
-  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   ____,     KEY_F16,  KEY_F17,  KEY_F18  },
+  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_F16,  KEY_F17,  KEY_F18  },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
   //leftGameFn
@@ -221,8 +243,27 @@ const byte keyMap[sizeof(row) / 2 * 8][sizeof(col) / 2] = {
   {KEY_CPFL, KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_F13,  NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_F14,  NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F15,  NONE     },
-  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   ____,     KEY_F16,  KEY_F17,  KEY_F18  },
+  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_F16,  KEY_F17,  KEY_F18  },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
+
+  //leftGameRAIS
+  {KEY_ESC,  KEY_F1,   KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,   KEY_F6,   NONE     },
+  {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,    NONE     },
+  {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_F13,  NONE     },
+  {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_F14,  NONE     },
+  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F15,  NONE     },
+  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_F16,  KEY_F17,  KEY_F18  },
+  {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
+
+  //leftGameLower
+  {KEY_ESC,  KEY_F1,   KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,   KEY_F6,   NONE     },
+  {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,    NONE     },
+  {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_F13,  NONE     },
+  {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_F14,  NONE     },
+  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F15,  NONE     },
+  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_F16,  KEY_F17,  KEY_F18  },
+  {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
+
 
   //right
   {KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  KEY_F11,  KEY_F12,  NONE,     KEY_CPFL },
@@ -242,6 +283,24 @@ const byte keyMap[sizeof(row) / 2 * 8][sizeof(col) / 2] = {
   {KEY_BSPC, KEY_LSFT, ____,         KEY_FN,         KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
   {KEY_KEYPAD_ENTER, NONE, NONE,     NONE,           NONE,     NONE,     NONE,     NONE,    },
 
+  //rightRais
+  {KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  KEY_F11,  KEY_F12,  NONE,     KEY_CPFL },
+  {KEY_BSLS, KEY_7,    KEY_8,    KEY_9,    KEY_0,    KEY_MINS, KEY_EQL,  KEY_BSPC },
+  {KEY_RPRN, KEY_Y,    KEY_U,    KEY_UP,    KEY_O,   KEY_P,    KEY_LBRC, KEY_RBRC },
+  {KEY_RCBR, KEY_H,    KEY_LEFT, KEY_DOWN, KEY_RGHT, KEY_SCLN, KEY_QUOT, KEY_ENT  },
+  {KEY_RGHT, KEY_N,    KEY_M,    KEY_COMM, KEY_DOT,  KEY_SLSH, KEY_UP,   KEY_RSFT },
+  {KEY_BSPC, KEY_LSFT, ____,     KEY_FN,   KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
+  {KEY_KEYPAD_ENTER, NONE, NONE, NONE,     NONE,     NONE,     NONE,     NONE,    },
+
+  //rightLower
+  {KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  KEY_F11,  KEY_F12,  NONE,     KEY_CPFL },
+  {KEY_BSLS, KEY_7,    KEY_8,    KEY_9,    KEY_0,    KEY_MINS, KEY_EQL,  KEY_BSPC },
+  {KEY_RPRN, KEY_Y,    KEY_U,    KEY_I,    KEY_O,    KEY_P,    KEY_LBRC, KEY_RBRC },
+  {KEY_RCBR, KEY_H,    KEY_J,    KEY_K,    KEY_L,    KEY_SCLN, KEY_QUOT, KEY_ENT  },
+  {KEY_RGHT, KEY_N,    KEY_M,    KEY_COMM, KEY_DOT,  KEY_SLSH, KEY_UP,   KEY_RSFT },
+  {KEY_BSPC, KEY_LSFT, ____,     KEY_FN,   KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
+  {KEY_KEYPAD_ENTER, NONE, NONE, NONE,     NONE,     NONE,     NONE,     NONE,    },
+
   //rightGame
   {KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  KEY_F11,  KEY_F12,  NONE,     KEY_CPFL },
   {KEY_BSLS, KEY_7,    KEY_8,    KEY_9,    KEY_0,    KEY_MINS, KEY_EQL,  KEY_BSPC },
@@ -258,7 +317,25 @@ const byte keyMap[sizeof(row) / 2 * 8][sizeof(col) / 2] = {
   {KEY_F20,  KEY_H,    KEY_J,        KEY_K,          KEY_L,    KEY_SCLN, KEY_QUOT, KEY_ENT  },
   {KEY_F21,  KEY_N,    KEY_M,        KEY_COMM,       KEY_DOT,  KEY_SLSH, KEY_UP,   KEY_RSFT },
   {KEY_F23,  KEY_F22,  ____,         KEY_FN,         KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
-  {KEY_F24,  NONE,     NONE,         NONE,           NONE,     NONE,     NONE,     NONE,    }
+  {KEY_F24,  NONE,     NONE,         NONE,           NONE,     NONE,     NONE,     NONE,    },
+
+  //rightGameRais
+  {KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  KEY_F11,  KEY_F12,  NONE,     KEY_CPFL },
+  {KEY_BSLS, KEY_7,    KEY_8,    KEY_9,    KEY_0,    KEY_MINS, KEY_EQL,  KEY_BSPC },
+  {KEY_F19,  KEY_Y,    KEY_U,    KEY_I,    KEY_O,    KEY_P,    KEY_LBRC, KEY_RBRC },
+  {KEY_F20,  KEY_H,    KEY_J,    KEY_K,    KEY_L,    KEY_SCLN, KEY_QUOT, KEY_ENT  },
+  {KEY_F21,  KEY_N,    KEY_M,    KEY_COMM, KEY_DOT,  KEY_SLSH, KEY_UP,   KEY_RSFT },
+  {KEY_F23,  KEY_F22,  ____,     KEY_FN,   KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
+  {KEY_F24,  NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     NONE,    },
+
+  //rightGameLower
+  {KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  KEY_F11,  KEY_F12,  NONE,     KEY_CPFL },
+  {KEY_BSLS, KEY_7,    KEY_8,    KEY_9,    KEY_0,    KEY_MINS, KEY_EQL,  KEY_BSPC },
+  {KEY_F19,  KEY_Y,    KEY_U,    KEY_I,    KEY_O,    KEY_P,    KEY_LBRC, KEY_RBRC },
+  {KEY_F20,  KEY_H,    KEY_J,    KEY_K,    KEY_L,    KEY_SCLN, KEY_QUOT, KEY_ENT  },
+  {KEY_F21,  KEY_N,    KEY_M,    KEY_COMM, KEY_DOT,  KEY_SLSH, KEY_UP,   KEY_RSFT },
+  {KEY_F23,  KEY_F22,  ____,     KEY_FN,   KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
+  {KEY_F24,  NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     NONE,    }
 };
 
 //backLed============================================================
@@ -266,18 +343,12 @@ const byte keyMap[sizeof(row) / 2 * 8][sizeof(col) / 2] = {
 int backLightLEDNormal[][3]={
   //red
   {5,0,0},
-  //purple
-  {5,0,5},
-  //blue
-  {0,0,5},
-  //white
-  {5,5,5}, 
-  //lightblue
-  {0,5,5},
   //green
   {0,5,0},
-  //yellow
-  {5,5,0}
+  //blue
+  {0,0,5},
+  //
+  {}
   };
 
 //checkLED
@@ -288,6 +359,8 @@ bool currentState[sizeof(row) / 2][sizeof(col) / 2];
 bool beforeState[sizeof(row) / 2][sizeof(col) / 2];
 //FNkeyStatus
 bool fnKeyPushed = 0;
+bool raisKeyPushed = 0;
+bool loweKeyPushed = 0;
 bool gameModeEnabled = 0;
 
 int LEDProfile = 0;
@@ -445,16 +518,24 @@ void loop() {
         int option = 0;
         if (!leftSide)
         {
-          option += 28;
+          option += 56;
         }
-        if (fnKeyPushed)
+        if (fnKeyPushed && !raisKeyPushed && !loweKeyPushed)
         {
           option += 7;
           Serial.println("FNKey+Keypushed");
         }
-        if (gameModeEnabled)
+        if (raisKeyPushed && !fnKeyPushed && !loweKeyPushed)
         {
           option += 14;
+        }
+        if (loweKeyPushed && !fnKeyPushed && !raisKeyPushed)
+        {
+          option += 21;
+        }
+        if (gameModeEnabled)
+        {
+          option += 28;
         }
 
         if ( !currentState[ii][jj] )
@@ -465,6 +546,18 @@ void loop() {
             fnKeyPushed = true;
             pressed = 1;
             Serial.println("FNKeyPushed!");
+          }
+          if (keyMap[ii + option][jj] == KEY_RAIS)
+          {
+            Keyboard.releaseAll();
+            raisKeyPushed = true;
+            pressed = 1;
+          }
+          if (keyMap[ii + option][jj] == KEY_LOWE)
+          {
+            Keyboard.releaseAll();
+            loweKeyPushed = true;
+            pressed = 1;
           }
           if (keyMap[ii + option][jj] == KEY_CPFL)
           {
@@ -502,6 +595,18 @@ void loop() {
             Keyboard.releaseAll();
             ConsumerControl.release();
             Serial.println("FNKeyreleased!");
+          }
+          if (keyMap[ii + option][jj] == KEY_RAIS)
+          {
+            raisKeyPushed = false;
+            pressed = 0;
+            Keyboard.releaseAll();
+          }
+          if (keyMap[ii + option][jj] == KEY_LOWE)
+          {
+            loweKeyPushed = false;
+            pressed = 0;
+            Keyboard.releaseAll();
           }
           if (keyMap[ii + option][jj] == KEY_CPFL)
           {
@@ -600,15 +705,23 @@ void readSerial()
     int option1 = 0;
     if (leftSide)
     {
-      option1 = 28;
+      option1 = 56;
     }
-    if (fnKeyPushed)
+    if (fnKeyPushed && !raisKeyPushed && !loweKeyPushed)
     {
       option1 += 7;
     }
-    if (gameModeEnabled)
+    if (raisKeyPushed && !fnKeyPushed && !loweKeyPushed)
     {
       option1 += 14;
+    }
+    if (loweKeyPushed && !fnKeyPushed && !raisKeyPushed)
+    {
+      option1 += 21;
+    }
+    if (gameModeEnabled)
+    {
+      option1 += 28;
     }
     if (pressed1)
     {
@@ -616,6 +729,16 @@ void readSerial()
       {
         Keyboard.releaseAll();
         fnKeyPushed = true;
+      }
+      if (keyMap[row1 + option1][col1] == KEY_RAIS)
+      {
+        Keyboard.releaseAll();
+        raisKeyPushed = true;
+      }
+      if (keyMap[row1 + option1][col1] == KEY_LOWE)
+      {
+        Keyboard.releaseAll();
+        loweKeyPushed = true;
       }
       if (keyMap[row1 + option1][col1] == KEY_CPFL)
       {
@@ -650,6 +773,16 @@ void readSerial()
         fnKeyPushed = false;
         Keyboard.releaseAll();
         ConsumerControl.release();
+      }
+      if (keyMap[row1 + option1][col1] == KEY_RAIS)
+      {
+        Keyboard.releaseAll();
+        raisKeyPushed = false;
+      }
+      if (keyMap[row1 + option1][col1] == KEY_LOWE)
+      {
+        Keyboard.releaseAll();
+        loweKeyPushed = false;
       }
       if (keyMap[row1 + option1][col1] == KEY_CPFL)
       {
