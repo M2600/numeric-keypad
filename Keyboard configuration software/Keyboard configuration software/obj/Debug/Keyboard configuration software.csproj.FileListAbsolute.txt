@@ -1,0 +1,10 @@
+C:\Users\M260.DESKTOP-M1QO63P\source\repos\Keyboard configuration software\Keyboard configuration software\bin\Debug\Keyboard configuration software.exe.config
+C:\Users\M260.DESKTOP-M1QO63P\source\repos\Keyboard configuration software\Keyboard configuration software\bin\Debug\Keyboard configuration software.exe
+C:\Users\M260.DESKTOP-M1QO63P\source\repos\Keyboard configuration software\Keyboard configuration software\bin\Debug\Keyboard configuration software.pdb
+C:\Users\M260.DESKTOP-M1QO63P\source\repos\Keyboard configuration software\Keyboard configuration software\obj\Debug\Keyboard configuration software.csprojAssemblyReference.cache
+C:\Users\M260.DESKTOP-M1QO63P\source\repos\Keyboard configuration software\Keyboard configuration software\obj\Debug\Keyboard_configuration_software.Form1.resources
+C:\Users\M260.DESKTOP-M1QO63P\source\repos\Keyboard configuration software\Keyboard configuration software\obj\Debug\Keyboard_configuration_software.Properties.Resources.resources
+C:\Users\M260.DESKTOP-M1QO63P\source\repos\Keyboard configuration software\Keyboard configuration software\obj\Debug\Keyboard configuration software.csproj.GenerateResource.cache
+C:\Users\M260.DESKTOP-M1QO63P\source\repos\Keyboard configuration software\Keyboard configuration software\obj\Debug\Keyboard configuration software.csproj.CoreCompileInputs.cache
+C:\Users\M260.DESKTOP-M1QO63P\source\repos\Keyboard configuration software\Keyboard configuration software\obj\Debug\Keyboard configuration software.exe
+C:\Users\M260.DESKTOP-M1QO63P\source\repos\Keyboard configuration software\Keyboard configuration software\obj\Debug\Keyboard configuration software.pdb
