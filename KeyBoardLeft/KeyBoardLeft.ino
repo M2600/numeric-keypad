@@ -595,7 +595,6 @@ void loop() {
             Keyboard.press( keyMap[ii + option][jj]);
             pressed = 1;
           }
-          
           if (keyMap[ii + option][jj] == KEY_FN)
           {
             Keyboard.releaseAll();
@@ -635,6 +634,32 @@ void loop() {
             ConsumerControl.press(VOLUME_DOWN);
             pressed = 1;
           }
+
+
+          
+          if(keyMap[ii + option][jj] == KEY_SPC && leftControlPushed)
+          {
+            Keyboard.release( KEY_LCTL );
+            Keyboard.press( KEY_LALT );
+            Keyboard.press( KEY_GRV );
+            Keyboard.release( KEY_GRV );
+            Keyboard.release( KEY_LALT );
+            Keyboard.press( KEY_LCTL );
+            pressed = 1;
+          }
+          else if(keyMap[ii + option][jj] == KEY_SPC && rightControlPushed)
+          {
+            Keyboard.release( KEY_RCTL );
+            Keyboard.press( KEY_LALT );
+            Keyboard.press( KEY_GRV );
+            Keyboard.release( KEY_GRV );
+            Keyboard.release( KEY_LALT );
+            Keyboard.press( KEY_RCTL );
+            pressed = 1;
+          }
+
+
+          
           else
           {
             Keyboard.press( keyMap[ii + option][jj]);
@@ -833,8 +858,6 @@ void readSerial()
         Keyboard.press( keyMap[row1 + option1][col1]);
         pressed = 1;
       }
-      
-      
       if (keyMap[row1 + option1][col1] == KEY_FN)
       {
         Keyboard.releaseAll();
@@ -870,6 +893,29 @@ void readSerial()
         ConsumerControl.press(VOLUME_DOWN);
         pressed = 1;
       }
+
+      if(keyMap[row1 + option1][col1] == KEY_SPC && leftControlPushed)
+      {
+        Keyboard.release( KEY_LCTL );
+        Keyboard.press( KEY_LALT );
+        Keyboard.press( KEY_GRV );
+        Keyboard.release( KEY_GRV );
+        Keyboard.release( KEY_LALT );
+        Keyboard.press( KEY_LCTL );
+        pressed = 1;
+      }
+      else if(keyMap[row1 + option1][col1] == KEY_SPC && rightControlPushed)
+      {
+        Keyboard.release( KEY_RCTL );
+        Keyboard.press( KEY_LALT );
+        Keyboard.press( KEY_GRV );
+        Keyboard.release( KEY_GRV );
+        Keyboard.release( KEY_LALT );
+        Keyboard.press( KEY_RCTL );
+        pressed = 1;
+      }
+
+      
       else
       {
         Keyboard.press( keyMap[row1 + option1][col1]);
