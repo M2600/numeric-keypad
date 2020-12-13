@@ -22,7 +22,7 @@
                        //#//
                         ///
 
-const bool leftSide = true ;
+const bool leftSide = false ;
 
 //KeycodeDeclare
 
@@ -604,15 +604,38 @@ void loop() {
           }
           if (keyMap[ii + option][jj] == KEY_RAIS)
           {
-            Keyboard.releaseAll();
-            raisKeyPushed = true;
-            pressed = 1;
+            if(loweKeyPushed)
+            {
+              Keyboard.press( KEY_LALT );
+              Keyboard.press( KEY_GRV );
+              Keyboard.release( KEY_GRV );
+              Keyboard.release( KEY_LALT );
+              pressed = 1;
+            }
+            else
+            {
+              Keyboard.releaseAll();
+              raisKeyPushed = true;
+              pressed = 1;
+            }
+            
           }
           if (keyMap[ii + option][jj] == KEY_LOWE)
           {
-            Keyboard.releaseAll();
-            loweKeyPushed = true;
-            pressed = 1;
+            if(raisKeyPushed)
+            {
+              Keyboard.press( KEY_LALT );
+              Keyboard.press( KEY_GRV );
+              Keyboard.release( KEY_GRV );
+              Keyboard.release( KEY_LALT );
+              pressed = 1;
+            }
+            else
+            {
+              Keyboard.releaseAll();
+              loweKeyPushed = true;
+              pressed = 1;
+            }
           }
           if (keyMap[ii + option][jj] == KEY_CPFL)
           {
@@ -637,7 +660,7 @@ void loop() {
 
 
           
-          if(keyMap[ii + option][jj] == KEY_SPC && leftControlPushed)
+          /*if(keyMap[ii + option][jj] == KEY_SPC && leftControlPushed)
           {
             Keyboard.release( KEY_LCTL );
             Keyboard.press( KEY_LALT );
@@ -656,7 +679,7 @@ void loop() {
             Keyboard.release( KEY_LALT );
             Keyboard.press( KEY_RCTL );
             pressed = 1;
-          }
+          }*/
 
 
           
@@ -865,13 +888,35 @@ void readSerial()
       }
       if (keyMap[row1 + option1][col1] == KEY_RAIS)
       {
-        Keyboard.releaseAll();
-        raisKeyPushed = true;
+        if(loweKeyPushed)
+          {
+            Keyboard.press( KEY_LALT );
+            Keyboard.press( KEY_GRV );
+            Keyboard.release( KEY_GRV );
+            Keyboard.release( KEY_LALT );
+            pressed = 1;
+          }
+          else
+          {
+            Keyboard.releaseAll();
+            raisKeyPushed = true;
+          }
       }
       if (keyMap[row1 + option1][col1] == KEY_LOWE)
       {
-        Keyboard.releaseAll();
-        loweKeyPushed = true;
+        if(raisKeyPushed)
+        {
+          Keyboard.press( KEY_LALT );
+          Keyboard.press( KEY_GRV );
+          Keyboard.release( KEY_GRV );
+          Keyboard.release( KEY_LALT );
+          pressed = 1;
+        }
+        else
+        {
+          Keyboard.releaseAll();
+          loweKeyPushed = true;
+        }
       }
       if (keyMap[row1 + option1][col1] == KEY_CPFL)
       {
@@ -894,7 +939,7 @@ void readSerial()
         pressed = 1;
       }
 
-      if(keyMap[row1 + option1][col1] == KEY_SPC && leftControlPushed)
+      /*if(keyMap[row1 + option1][col1] == KEY_SPC && leftControlPushed)
       {
         Keyboard.release( KEY_LCTL );
         Keyboard.press( KEY_LALT );
@@ -913,7 +958,7 @@ void readSerial()
         Keyboard.release( KEY_LALT );
         Keyboard.press( KEY_RCTL );
         pressed = 1;
-      }
+      }*/
 
       
       else
