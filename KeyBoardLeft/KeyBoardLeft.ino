@@ -22,7 +22,7 @@
                        //#//
                         ///
 
-const bool leftSide = false ;
+const bool leftSide = true ;
 
 //KeycodeDeclare
 
@@ -32,6 +32,14 @@ const bool leftSide = false ;
 #define KEY_CPFL 0xfe
 #define KEY_RAIS 0xfd
 #define KEY_LOWE 0xfc
+
+// missing sound control keys
+//
+#define KEY_MUTE        0xFb
+#define KEY_VOLUMEUP    0xFa
+#define KEY_VOLUMEDOWN  0xf9
+
+#define KEY_FOR  0xf8
 
 #define KEY_ENT  0xB0 //Enter
 #define KEY_ESC  0xB1 //Escape 
@@ -135,11 +143,7 @@ const bool leftSide = false ;
 #define KEY_F24       0x73
 #define KEY_F24       0x73
 
-// missing sound control keys
-//
-#define KEY_MUTE        0xFb
-#define KEY_VOLUMEUP    0xFa
-#define KEY_VOLUMEDOWN  0xf9
+
 
 //keyPad
 #define KEY_KEYPAD_0 0xEA
@@ -366,6 +370,7 @@ bool leftShiftPushed = 0;
 bool rightShiftPushed = 0;
 bool leftControlPushed = 0;
 bool rightControlPushed = 0;
+bool forKeyPushed = 0;
 
 
 int LEDProfile = 0;
@@ -445,11 +450,15 @@ void setup() {
   for (int i = 0; i < 5; i++)
   {
     statusLED.clear();
+    backLED.clear();
     for (int i = 0; i < numpixels; i++)
     {
       statusLED.setPixelColor(i, statusLED.Color(5, 0, 0));
+      backLED.setPixelColor(i, backLED.Color(255, 0, 0));
     }
+  
     statusLED.show();
+    backLED.show();
     delay(200);
     statusLED.clear();
     for (int i = 0; i < numpixels; i++)
@@ -1046,8 +1055,8 @@ void LEDTape()
   for (int i = 0; i < numpixels; i++)
   {
     statusLED.setPixelColor(i, statusLED.Color(5, 0, 0));
+    backLED.setPixelColor(i, backLED.Color(10, 0, 0));
   }
-  backLED.setPixelColor(1, backLED.Color(0, 150, 0));
   backLED.show();
   statusLED.show();
 }
