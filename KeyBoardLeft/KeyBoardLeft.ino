@@ -346,11 +346,11 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
 
 int backLightLEDNormal[][3]={
   //red
-  {5,0,0},
+  {150,0,0},
   //green
-  {0,5,0},
+  {0,150,0},
   //blue
-  {0,0,5},
+  {0,0,150},
   //
   {}
   };
@@ -454,7 +454,7 @@ void setup() {
     for (int i = 0; i < numpixels; i++)
     {
       statusLED.setPixelColor(i, statusLED.Color(5, 0, 0));
-      backLED.setPixelColor(i, backLED.Color(255, 0, 0));
+      backLED.setPixelColor(i, backLED.Color(150, 0, 0));
     }
   
     statusLED.show();
