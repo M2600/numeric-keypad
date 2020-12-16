@@ -371,6 +371,7 @@ bool rightShiftPushed = 0;
 bool leftControlPushed = 0;
 bool rightControlPushed = 0;
 bool forKeyPushed = 0;
+bool backLEDOn = 0;
 
 
 int LEDProfile = 0;
@@ -458,6 +459,7 @@ void setup() {
     }
   
     statusLED.show();
+    backLEDOn=true;
     backLED.show();
     delay(200);
     statusLED.clear();
@@ -690,7 +692,19 @@ void loop() {
             pressed = 1;
           }*/
 
-
+          if(keyMap[ii + option][jj] == KEY_ESC && fnKeyPushed)
+          {
+            if(backLEDOn)
+            {
+              offBackLED();
+              backLEDOn=false;
+            }
+            else
+            {
+              onBackLED();
+              backLEDOn=true;
+            }
+          }
           
           else
           {
@@ -969,6 +983,19 @@ void readSerial()
         pressed = 1;
       }*/
 
+      if(keyMap[row1 + option1][col1] == KEY_ESC && fnKeyPushed)
+      {
+        if(backLEDOn)
+        {
+          offBackLED();
+          backLEDOn=false;
+        }
+        else
+        {
+          onBackLED();
+          backLEDOn=true;
+        }
+      }
       
       else
       {
@@ -1069,6 +1096,25 @@ void offLEDTape()
     statusLED.setPixelColor(i, statusLED.Color(0, 0, 0));
   }
   statusLED.show();
+}
+
+void offBackLED()
+{
+  backLED.clear();
+  for (int i = 0; i < numpixels; i++)
+  {
+    backLED.setPixelColor(i, backLED.Color(0, 0, 0));
+  }
+  backLED.show();
+}
+void onBackLED()
+{
+  backLED.clear();
+  for (int i = 0; i < numpixels; i++)
+  {
+    backLED.setPixelColor(i, backLED.Color(150, 0, 0));
+  }
+  backLED.show();
 }
 
 void capsLockLedOn()
