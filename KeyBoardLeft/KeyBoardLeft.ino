@@ -704,6 +704,7 @@ void loop() {
               onBackLED();
               backLEDOn=true;
             }
+            pressed = 1;
           }
           
           else
@@ -995,6 +996,7 @@ void readSerial()
           onBackLED();
           backLEDOn=true;
         }
+        pressed = 1;
       }
       
       else
