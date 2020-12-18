@@ -22,7 +22,7 @@
                        //#//
                         ///
 
-bool leftSide = true ;
+bool leftSide;
 
 //KeycodeDeclare
 
