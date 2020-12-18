@@ -406,6 +406,7 @@ void setup() {
   {
     leftSide=false;
   }
+  digitalWrite(12,LOW);
 
   
   pinMode(led, OUTPUT); //setLEDPin
