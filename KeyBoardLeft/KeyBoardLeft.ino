@@ -297,13 +297,13 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_KEYPAD_ENTER, NONE, NONE, NONE,     NONE,     NONE,     NONE,     NONE,    },
 
   //rightLower
-  {KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  KEY_F11,  KEY_F12,  NONE,     KEY_CPFL },
-  {KEY_BSLS, KEY_7,    KEY_8,    KEY_9,    KEY_0,    KEY_MINS, KEY_EQL,  KEY_BSPC },
-  {KEY_RPRN, KEY_Y,    KEY_U,    KEY_I,    KEY_O,    KEY_P,    KEY_LBRC, KEY_RBRC },
-  {KEY_RCBR, KEY_H,    KEY_J,    KEY_K,    KEY_L,    KEY_SCLN, KEY_QUOT, KEY_ENT  },
-  {KEY_RGHT, KEY_N,    KEY_M,    KEY_COMM, KEY_DOT,  KEY_SLSH, KEY_UP,   KEY_RSFT },
-  {KEY_BSPC, KEY_LSFT, KEY_LOWE, KEY_FN,   KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
-  {KEY_KEYPAD_ENTER, NONE, NONE, NONE,     NONE,     NONE,     NONE,     NONE,    },
+  {KEY_F7,   KEY_F8,       KEY_F9,       KEY_F10,      KEY_F11,      KEY_F12,  NONE,     KEY_CPFL },
+  {KEY_BSLS, KEY_7,        KEY_8,        KEY_9,        KEY_0,        KEY_MINS, KEY_EQL,  KEY_BSPC },
+  {KEY_RPRN, KEY_Y,        KEY_KEYPAD_7, KEY_KEYPAD_8, KEY_KEYPAD_9, KEY_P,    KEY_LBRC, KEY_RBRC },
+  {KEY_RCBR, KEY_H,        KEY_KEYPAD_4, KEY_KEYPAD_5, KEY_KEYPAD_6, KEY_SCLN, KEY_QUOT, KEY_ENT  },
+  {KEY_RGHT, KEY_KEYPAD_0, KEY_KEYPAD_1, KEY_KEYPAD_2, KEY_KEYPAD_3, KEY_SLSH, KEY_UP,   KEY_RSFT },
+  {KEY_BSPC, KEY_LSFT,     KEY_LOWE,     KEY_FN,       KEY_RALT,     KEY_LEFT, KEY_DOWN, KEY_RGHT },
+  {KEY_KEYPAD_ENTER, NONE, NONE,         NONE,         NONE,         NONE,     NONE,     NONE,    },
 
   //rightGame
   {KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  KEY_F11,  KEY_F12,  NONE,     KEY_CPFL },
