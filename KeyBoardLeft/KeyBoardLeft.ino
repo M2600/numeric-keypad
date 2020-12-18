@@ -22,7 +22,7 @@
                        //#//
                         ///
 
-const bool leftSide = true ;
+bool leftSide = true ;
 
 //KeycodeDeclare
 
@@ -394,6 +394,20 @@ void FlashLED( int pin, int num )
 
 //=========================setup========================
 void setup() {
+
+  //check left or right
+  pinMode(12,OUTPUT);
+  digitalWrite(12,HIGH);
+  if(!digitalRead(12))
+  {
+    leftSide=true;
+  }
+  else
+  {
+    leftSide=false;
+  }
+
+  
   pinMode(led, OUTPUT); //setLEDPin
   FlashLED( led, 4 );   //flashStatusLED
 
