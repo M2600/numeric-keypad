@@ -29,20 +29,20 @@ bool leftSide;
 
 #define NONE     0x00
 #define ____     0x00
-#define KEY_FN   0xff
-#define KEY_CPFL 0xfe
-#define KEY_RAIS 0xfd
-#define KEY_LOWE 0xfc
+#define KEY_FN   0x01
+#define KEY_CPFL 0x02
+#define KEY_RAIS 0x03
+#define KEY_LOWE 0x04
 
 
 // missing sound control keys
 //
-#define KEY_MUTE        0xFb
-#define KEY_VOLUMEUP    0xFa
-#define KEY_VOLUMEDOWN  0xf9
+#define KEY_MUTE        0x05
+#define KEY_VOLUMEUP    0x06
+#define KEY_VOLUMEDOWN  0x07
 
-#define KEY_FOR  0xf8
-#define KEY_CLPF 0xf7
+#define KEY_FOR  0x08
+#define KEY_CLPF 0x09           
 
 #define KEY_ENT  0xB0 //Enter
 #define KEY_ESC  0xB1 //Escape 
@@ -132,19 +132,19 @@ bool leftSide;
 #define KEY_Y 0x79
 #define KEY_Z 0x7A
 
-#define KEY_F13       0x68
-#define KEY_F14       0x69
-#define KEY_F15       0x6A
-#define KEY_F16       0x6B
-#define KEY_F17       0x6C
-#define KEY_F18       0x6D
-#define KEY_F19       0x6E
-#define KEY_F20       0x6F
-#define KEY_F21       0x70
-#define KEY_F22       0x71
-#define KEY_F23       0x72
-#define KEY_F24       0x73
-#define KEY_F24       0x73
+#define KEY_F13       0xF0
+#define KEY_F14       0xF1
+#define KEY_F15       0xF2
+#define KEY_F16       0xF3
+#define KEY_F17       0xF4
+#define KEY_F18       0xF5
+#define KEY_F19       0xF6
+#define KEY_F20       0xF7
+#define KEY_F21       0xF8
+#define KEY_F22       0xF9
+#define KEY_F23       0xFA
+#define KEY_F24       0xFB
+#define KEY_F24       0xFC
 
 
 
@@ -314,8 +314,8 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_F19,  KEY_Y,    KEY_U,    KEY_I,    KEY_O,    KEY_P,    KEY_LBRC, KEY_RBRC },
   {KEY_F20,  KEY_H,    KEY_J,    KEY_K,    KEY_L,    KEY_SCLN, KEY_QUOT, KEY_ENT  },
   {KEY_F21,  KEY_N,    KEY_M,    KEY_COMM, KEY_DOT,  KEY_SLSH, KEY_UP,   KEY_RSFT },
-  {KEY_F23,  KEY_F22,  KEY_LOWE, KEY_FN,   KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
-  {KEY_F24,  NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     NONE,    },
+  {KEY_BSPC,  KEY_F22,  KEY_LOWE, KEY_FN,   KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
+  {KEY_KEYPAD_ENTER,  NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     NONE,    },
 
   //rightGameFn
   {KEY_F7,   KEY_F8,   KEY_F9,       KEY_MUTE,       KEY_VOLUMEDOWN, KEY_VOLUMEUP,  NONE,     KEY_CPFL },
@@ -323,8 +323,8 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_F19,  KEY_Y,    KEY_U,        KEY_I,          KEY_O,          KEY_P,         KEY_LCBR, KEY_PGUP },
   {KEY_F20,  KEY_H,    KEY_J,        KEY_K,          KEY_L,          KEY_SCLN,      KEY_QUOT, KEY_PGDN },
   {KEY_F21,  KEY_N,    KEY_M,        KEY_COMM,       KEY_DOT,        KEY_SLSH,      KEY_UP,   KEY_END  },
-  {KEY_F23,  KEY_F22,  KEY_LOWE,     KEY_FN,         KEY_RALT,       KEY_LEFT,      KEY_DOWN, KEY_RGHT },
-  {KEY_F24,  NONE,     NONE,         NONE,           NONE,           NONE,          NONE,     NONE,    },
+  {KEY_BSPC,  KEY_F22,  KEY_LOWE,     KEY_FN,         KEY_RALT,       KEY_LEFT,      KEY_DOWN, KEY_RGHT },
+  {KEY_KEYPAD_ENTER,  NONE,     NONE,         NONE,           NONE,           NONE,          NONE,     NONE,    },
 
   //rightGameRais
   {KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  KEY_F11,  KEY_F12,  NONE,     KEY_CPFL },
@@ -332,8 +332,8 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_F19,  KEY_Y,    KEY_U,    KEY_I,    KEY_O,    KEY_P,    KEY_LBRC, KEY_RBRC },
   {KEY_F20,  KEY_H,    KEY_J,    KEY_K,    KEY_L,    KEY_SCLN, KEY_QUOT, KEY_ENT  },
   {KEY_F21,  KEY_N,    KEY_M,    KEY_COMM, KEY_DOT,  KEY_SLSH, KEY_UP,   KEY_RSFT },
-  {KEY_F23,  KEY_F22,  KEY_LOWE, KEY_FN,   KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
-  {KEY_F24,  NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     NONE,    },
+  {KEY_BSPC,  KEY_F22,  KEY_LOWE, KEY_FN,   KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
+  {KEY_KEYPAD_ENTER,  NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     NONE,    },
 
   //rightGameLower
   {KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  KEY_F11,  KEY_F12,  NONE,     KEY_CPFL },
@@ -341,8 +341,8 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_F19,  KEY_Y,    KEY_U,    KEY_I,    KEY_O,    KEY_P,    KEY_LBRC, KEY_RBRC },
   {KEY_F20,  KEY_H,    KEY_J,    KEY_K,    KEY_L,    KEY_SCLN, KEY_QUOT, KEY_ENT  },
   {KEY_F21,  KEY_N,    KEY_M,    KEY_COMM, KEY_DOT,  KEY_SLSH, KEY_UP,   KEY_RSFT },
-  {KEY_F23,  KEY_F22,  KEY_LOWE, KEY_FN,   KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
-  {KEY_F24,  NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     NONE,    }
+  {KEY_BSPC,  KEY_F22,  KEY_LOWE, KEY_FN,   KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
+  {KEY_KEYPAD_ENTER,  NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     NONE,    }
 };
 
 //backLed============================================================
@@ -593,15 +593,17 @@ void loop() {
         if (fnKeyPushed && !raisKeyPushed && !loweKeyPushed)
         {
           option += 7;
-          Serial.println("FNKey+Keypushed");
+          Serial.println("FNKeylayer");
         }
         if (raisKeyPushed && !fnKeyPushed && !loweKeyPushed)
         {
           option += 14;
+          Serial.println("reisKeylayer");
         }
         if (loweKeyPushed && !fnKeyPushed && !raisKeyPushed)
         {
           option += 21;
+          Serial.println("lowerKeylayer");
         }
         if (gameModeEnabled)
         {
@@ -617,32 +619,32 @@ void loop() {
             Keyboard.press( keyMap[ii + option][jj]);
             pressed = 1;
           }
-          if(keyMap[ii + option][jj] == KEY_RSFT)
+          else if(keyMap[ii + option][jj] == KEY_RSFT)
           {
             rightShiftPushed = true;
             Keyboard.press( keyMap[ii + option][jj]);
             pressed = 1;
           }
-          if(keyMap[ii + option][jj] == KEY_LCTL)
+          else if(keyMap[ii + option][jj] == KEY_LCTL)
           {
             leftControlPushed = true;
             Keyboard.press( keyMap[ii + option][jj]);
             pressed = 1;
           }
-          if(keyMap[ii + option][jj] == KEY_RCTL)
+          else if(keyMap[ii + option][jj] == KEY_RCTL)
           {
             rightControlPushed = true;
             Keyboard.press( keyMap[ii + option][jj]);
             pressed = 1;
           }
-          if (keyMap[ii + option][jj] == KEY_FN)
+          else if (keyMap[ii + option][jj] == KEY_FN)
           {
-            Keyboard.releaseAll();
+            //Keyboard.releaseAll();
             fnKeyPushed = true;
             pressed = 1;
             Serial.println("FNKeyPushed!");
           }
-          if (keyMap[ii + option][jj] == KEY_RAIS)
+          else if (keyMap[ii + option][jj] == KEY_RAIS)
           {
             if(loweKeyPushed)
             {
@@ -660,7 +662,7 @@ void loop() {
             }
             
           }
-          if (keyMap[ii + option][jj] == KEY_LOWE)
+          else if (keyMap[ii + option][jj] == KEY_LOWE)
           {
             if(raisKeyPushed)
             {
@@ -677,27 +679,27 @@ void loop() {
               pressed = 1;
             }
           }
-          if (keyMap[ii + option][jj] == KEY_CPFL)
+          else if (keyMap[ii + option][jj] == KEY_CPFL)
           {
             changeProfile();
             pressed = 1;
           }
-          if (keyMap[ii + option][jj] == KEY_CLPF)
+          else if (keyMap[ii + option][jj] == KEY_CLPF)
           {
             changeLightProfile();
             pressed = 1;
           }
-          if (keyMap[ii + option][jj] == KEY_MUTE)
+          else if (keyMap[ii + option][jj] == KEY_MUTE)
           {
             ConsumerControl.press(VOLUME_MUTE);
             pressed = 1;
           }
-          if (keyMap[ii + option][jj] == KEY_VOLUMEUP)
+          else if (keyMap[ii + option][jj] == KEY_VOLUMEUP)
           {
             ConsumerControl.press(VOLUME_UP);
             pressed = 1;
           }
-          if (keyMap[ii + option][jj] == KEY_VOLUMEDOWN)
+          else if (keyMap[ii + option][jj] == KEY_VOLUMEDOWN)
           {
             ConsumerControl.press(VOLUME_DOWN);
             pressed = 1;
@@ -726,7 +728,7 @@ void loop() {
             pressed = 1;
           }*/
 
-          if(keyMap[ii + option][jj] == KEY_ESC && fnKeyPushed)
+          else if(keyMap[ii + option][jj] == KEY_ESC && fnKeyPushed)
           {
             if(backLEDOn)
             {
@@ -745,6 +747,7 @@ void loop() {
           {
             Keyboard.press( keyMap[ii + option][jj]);
             pressed = 1;
+            Serial.print("pressed keycode ");
             Serial.println(keyMap[ii + option][jj]);
           }
         }
@@ -799,9 +802,8 @@ void loop() {
           if (keyMap[ii + option][jj] == KEY_CPFL)
           {
             pressed = 0;
-            Keyboard.releaseAll();
           }
-          if (keyMap[ii + option][jj] == KEY_CPFL)
+          if (keyMap[ii + option][jj] == KEY_CLPF)
           {
             pressed = 0;
           }
@@ -902,14 +904,17 @@ void readSerial()
     if (fnKeyPushed && !raisKeyPushed && !loweKeyPushed)
     {
       option1 += 7;
+      Serial.println("FNKeylayer");
     }
     if (raisKeyPushed && !fnKeyPushed && !loweKeyPushed)
     {
       option1 += 14;
+      Serial.println("raisKeylayer");
     }
     if (loweKeyPushed && !fnKeyPushed && !raisKeyPushed)
     {
       option1 += 21;
+      Serial.println("lowerKeylayer");
     }
     if (gameModeEnabled)
     {
@@ -925,30 +930,31 @@ void readSerial()
         Keyboard.press( keyMap[row1 + option1][col1]);
         pressed = 1;
       }
-      if(keyMap[row1 + option1][col1] == KEY_RSFT)
+      else if(keyMap[row1 + option1][col1] == KEY_RSFT)
       {
         rightShiftPushed = true;
         Keyboard.press( keyMap[row1 + option1][col1]);
         pressed = 1;
       }
-      if(keyMap[row1 + option1][col1] == KEY_LCTL)
+      else if(keyMap[row1 + option1][col1] == KEY_LCTL)
       {
         leftControlPushed = true;
         Keyboard.press( keyMap[row1 + option1][col1]);
         pressed = 1;
       }
-      if(keyMap[row1 + option1][col1] == KEY_RCTL)
+      else if(keyMap[row1 + option1][col1] == KEY_RCTL)
       {
         rightControlPushed = true;
         Keyboard.press( keyMap[row1 + option1][col1]);
         pressed = 1;
       }
-      if (keyMap[row1 + option1][col1] == KEY_FN)
+      else if (keyMap[row1 + option1][col1] == KEY_FN)
       {
         Keyboard.releaseAll();
         fnKeyPushed = true;
+        pressed = 1;
       }
-      if (keyMap[row1 + option1][col1] == KEY_RAIS)
+      else if (keyMap[row1 + option1][col1] == KEY_RAIS)
       {
         if(loweKeyPushed)
           {
@@ -964,7 +970,7 @@ void readSerial()
             raisKeyPushed = true;
           }
       }
-      if (keyMap[row1 + option1][col1] == KEY_LOWE)
+      else if (keyMap[row1 + option1][col1] == KEY_LOWE)
       {
         if(raisKeyPushed)
         {
@@ -980,27 +986,27 @@ void readSerial()
           loweKeyPushed = true;
         }
       }
-      if (keyMap[row1 + option1][col1] == KEY_CPFL)
+      else if (keyMap[row1 + option1][col1] == KEY_CPFL)
       {
-          changeProfile();
-          pressed = 1;
+        changeProfile();
+        pressed = 1;
       }
-      if (keyMap[row1 + option1][col1] == KEY_CLPF)
-          {
-            changeLightProfile();
-            pressed = 1;
-          }
-      if (keyMap[row1 + option1][col1] == KEY_MUTE)
+      else if (keyMap[row1 + option1][col1] == KEY_CLPF)
+      {
+        changeLightProfile();
+        pressed = 1;
+      }
+      else if (keyMap[row1 + option1][col1] == KEY_MUTE)
       {
         ConsumerControl.press(VOLUME_MUTE);
         pressed = 1;
       }
-      if (keyMap[row1 + option1][col1] == KEY_VOLUMEUP)
+      else if (keyMap[row1 + option1][col1] == KEY_VOLUMEUP)
       {
         ConsumerControl.press(VOLUME_UP);
         pressed = 1;
       }
-      if (keyMap[row1 + option1][col1] == KEY_VOLUMEDOWN)
+      else if (keyMap[row1 + option1][col1] == KEY_VOLUMEDOWN)
       {
         ConsumerControl.press(VOLUME_DOWN);
         pressed = 1;
@@ -1027,7 +1033,7 @@ void readSerial()
         pressed = 1;
       }*/
 
-      if(keyMap[row1 + option1][col1] == KEY_ESC && fnKeyPushed)
+      else if(keyMap[row1 + option1][col1] == KEY_ESC && fnKeyPushed)
       {
         if(backLEDOn)
         {
@@ -1096,7 +1102,6 @@ void readSerial()
       if (keyMap[row1 + option1][col1] == KEY_CPFL)
       {
         pressed = 0;
-        Keyboard.releaseAll();
       }
       if (keyMap[row1 + option1][col1] == KEY_CLPF)
       {
@@ -1184,16 +1189,22 @@ void changeProfile()
   if(!gameModeEnabled)
   {
     gameModeEnabled = true;
+    statusLED.clear();
+    statusLED.setPixelColor(0, statusLED.Color(5, 0, 0)); 
+    statusLED.show();
   }
   else
   {
     gameModeEnabled = false;
+    statusLED.clear();
+    statusLED.setPixelColor(0, statusLED.Color(0, 0, 0));
+    statusLED.show();
   }
   
 }
 void changeLightProfile()
 {
-  if (LEDProfile <= 6)
+  if (LEDProfile == 6)
   {
     LEDProfile = 0; 
   }
