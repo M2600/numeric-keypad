@@ -282,13 +282,13 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_KEYPAD_ENTER, NONE, NONE, NONE,     NONE,     NONE,     NONE,     NONE,    },
 
   //rightFn
-  {KEY_F7,   KEY_F8,   KEY_VOLUMEUP, KEY_VOLUMEDOWN, KEY_MUTE, KEY_F12,  NONE,     KEY_CPFL },
-  {KEY_BSLS, KEY_7,    KEY_8,        KEY_9,          KEY_0,    KEY_MINS, KEY_EQL,  KEY_HOME },
-  {KEY_RPRN, KEY_Y,    KEY_U,        KEY_I,          KEY_O,    KEY_P,    KEY_LCBR, KEY_PGUP },
-  {KEY_RCBR, KEY_H,    KEY_J,        KEY_K,          KEY_L,    KEY_SCLN, KEY_QUOT, KEY_PGDN  },
-  {KEY_RGHT, KEY_N,    KEY_M,        KEY_COMM,       KEY_DOT,  KEY_SLSH, KEY_UP,   KEY_END  },
-  {KEY_BSPC, KEY_LSFT, KEY_LOWE,     KEY_FN,         KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
-  {KEY_KEYPAD_ENTER, NONE, NONE,     NONE,           NONE,     NONE,     NONE,     NONE,    },
+  {KEY_F7,   KEY_F8,   KEY_F9,       KEY_MUTE,       KEY_VOLUMEDOWN, KEY_VOLUMEUP,  NONE,     KEY_CPFL },
+  {KEY_BSLS, KEY_7,    KEY_8,        KEY_9,          KEY_0,          KEY_MINS,      KEY_EQL,  KEY_HOME },
+  {KEY_RPRN, KEY_Y,    KEY_U,        KEY_I,          KEY_O,          KEY_P,         KEY_LCBR, KEY_PGUP },
+  {KEY_RCBR, KEY_H,    KEY_J,        KEY_K,          KEY_L,          KEY_SCLN,      KEY_QUOT, KEY_PGDN  },
+  {KEY_RGHT, KEY_N,    KEY_M,        KEY_COMM,       KEY_DOT,        KEY_SLSH,      KEY_UP,   KEY_END  },
+  {KEY_BSPC, KEY_LSFT, KEY_LOWE,     KEY_FN,         KEY_RALT,       KEY_LEFT,      KEY_DOWN, KEY_RGHT },
+  {KEY_KEYPAD_ENTER, NONE, NONE,     NONE,           NONE,           NONE,          NONE,     NONE,    },
 
   //rightRais
   {KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  KEY_F11,  KEY_F12,  NONE,     KEY_CPFL },
@@ -318,13 +318,13 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_F24,  NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     NONE,    },
 
   //rightGameFn
-  {KEY_F7,   KEY_F8,   KEY_VOLUMEUP, KEY_VOLUMEDOWN, KEY_MUTE, KEY_F12,  NONE,     KEY_CPFL },
-  {KEY_BSLS, KEY_7,    KEY_8,        KEY_9,          KEY_0,    KEY_MINS, KEY_EQL,  KEY_HOME },
-  {KEY_F19,  KEY_Y,    KEY_U,        KEY_I,          KEY_O,    KEY_P,    KEY_LCBR, KEY_PGUP },
-  {KEY_F20,  KEY_H,    KEY_J,        KEY_K,          KEY_L,    KEY_SCLN, KEY_QUOT, KEY_PGDN },
-  {KEY_F21,  KEY_N,    KEY_M,        KEY_COMM,       KEY_DOT,  KEY_SLSH, KEY_UP,   KEY_END  },
-  {KEY_F23,  KEY_F22,  KEY_LOWE,     KEY_FN,         KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
-  {KEY_F24,  NONE,     NONE,         NONE,           NONE,     NONE,     NONE,     NONE,    },
+  {KEY_F7,   KEY_F8,   KEY_F9,       KEY_MUTE,       KEY_VOLUMEDOWN, KEY_VOLUMEUP,  NONE,     KEY_CPFL },
+  {KEY_BSLS, KEY_7,    KEY_8,        KEY_9,          KEY_0,          KEY_MINS,      KEY_EQL,  KEY_HOME },
+  {KEY_F19,  KEY_Y,    KEY_U,        KEY_I,          KEY_O,          KEY_P,         KEY_LCBR, KEY_PGUP },
+  {KEY_F20,  KEY_H,    KEY_J,        KEY_K,          KEY_L,          KEY_SCLN,      KEY_QUOT, KEY_PGDN },
+  {KEY_F21,  KEY_N,    KEY_M,        KEY_COMM,       KEY_DOT,        KEY_SLSH,      KEY_UP,   KEY_END  },
+  {KEY_F23,  KEY_F22,  KEY_LOWE,     KEY_FN,         KEY_RALT,       KEY_LEFT,      KEY_DOWN, KEY_RGHT },
+  {KEY_F24,  NONE,     NONE,         NONE,           NONE,           NONE,          NONE,     NONE,    },
 
   //rightGameRais
   {KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  KEY_F11,  KEY_F12,  NONE,     KEY_CPFL },
@@ -468,35 +468,40 @@ void setup() {
   Serial1.begin(9600);
   backLED.begin();
   statusLED.begin();
-  delay(200);
+  delay(600);
+  Serial.println("Serial available!!");
 
 
+  //LEDProfile = EEPROM[0x000]; 
+    
 
-  for (int i = 0; i < 5; i++)
+  for (int i = 0; i < 3; i++)
   {
     statusLED.clear();
     backLED.clear();
     for (int i = 0; i < numpixels; i++)
     {
       statusLED.setPixelColor(i, statusLED.Color(5, 0, 0));
-      backLED.setPixelColor(i, backLED.Color(150, 0, 0));
+      backLED.setPixelColor(i, backLED.Color(
+        backLightLEDNormal[LEDProfile][0], backLightLEDNormal[LEDProfile][1], backLightLEDNormal[LEDProfile  ][2]));
     }
   
     statusLED.show();
     backLEDOn=true;
     backLED.show();
-    delay(200);
+    delay(100);
     statusLED.clear();
     for (int i = 0; i < numpixels; i++)
     {
       statusLED.setPixelColor(i, statusLED.Color(0, 0, 0));
     }
     statusLED.show();
-    delay(200);
+    delay(100);
   }
 
 
-
+  Serial.print("EEPROM[0x000] ");
+  Serial.println(EEPROM[0x000]);
 
 
   //起動時にNumLock On
@@ -796,6 +801,10 @@ void loop() {
             pressed = 0;
             Keyboard.releaseAll();
           }
+          if (keyMap[ii + option][jj] == KEY_CPFL)
+          {
+            pressed = 0;
+          }
           if (keyMap[ii + option][jj] == KEY_MUTE)
           {
             pressed = 0;
@@ -1089,6 +1098,10 @@ void readSerial()
         pressed = 0;
         Keyboard.releaseAll();
       }
+      if (keyMap[row1 + option1][col1] == KEY_CLPF)
+      {
+        pressed = 0;
+      }
       if (keyMap[row1 + option1][col1] == KEY_MUTE)
       {
         pressed = 0;
@@ -1168,6 +1181,14 @@ void capsLockLedOff()
 
 void changeProfile()
 {
+  if(!gameModeEnabled)
+  {
+    gameModeEnabled = true;
+  }
+  else
+  {
+    gameModeEnabled = false;
+  }
   
 }
 void changeLightProfile()
@@ -1184,9 +1205,14 @@ void changeLightProfile()
   backLED.clear();
   for (int i = 0; i < numpixels; i++)
   {
-    backLED.setPixelColor(i, backLED.Color(backLightLEDNormal[LEDProfile][0], backLightLEDNormal[LEDProfile][1], backLightLEDNormal[LEDProfile  ][2]));
+    backLED.setPixelColor(i, backLED.Color(
+      backLightLEDNormal[LEDProfile][0], backLightLEDNormal[LEDProfile][1], backLightLEDNormal[LEDProfile  ][2]));
   }
   backLED.show();
   Serial.print("LEDProfile ");
   Serial.println( LEDProfile);
+
+  EEPROM[0x000] = LEDProfile;
+  Serial.print("EEPROM[0x000] ");
+  Serial.println(EEPROM[0x000]);
 }
