@@ -472,7 +472,7 @@ void setup() {
   Serial.println("Serial available!!");
 
 
-  //LEDProfile = EEPROM[0x000]; 
+  LEDProfile = EEPROM[0x000]; 
     
 
   for (int i = 0; i < 3; i++)
@@ -1193,7 +1193,7 @@ void changeProfile()
 }
 void changeLightProfile()
 {
-  if (LEDProfile ==6)
+  if (LEDProfile <= 6)
   {
     LEDProfile = 0; 
   }
