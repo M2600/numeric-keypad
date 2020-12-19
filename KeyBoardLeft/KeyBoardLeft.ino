@@ -237,37 +237,37 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   //leftGame
   {KEY_ESC,  KEY_F1,   KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,   KEY_F6,   NONE     },
   {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,    NONE     },
-  {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_F13,  NONE     },
-  {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_F14,  NONE     },
-  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F15,  NONE     },
-  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_F16,  KEY_F17,  KEY_F18  },
+  {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_F1,   NONE     },
+  {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_F2,   NONE     },
+  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F3,   NONE     },
+  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT, KEY_F5,   KEY_F6   },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
   //leftGameFn
   {KEY_ESC,  KEY_F1,   KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,   KEY_F6,   NONE     },
   {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,    NONE     },
-  {KEY_CLPF, KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_F13,  NONE     },
-  {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_F14,  NONE     },
-  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F15,  NONE     },
-  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_F16,  KEY_F17,  KEY_F18  },
+  {KEY_CLPF, KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_F1,   NONE     },
+  {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_F2,   NONE     },
+  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F3,   NONE     },
+  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT, KEY_F5,   KEY_F6   },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
   //leftGameRAIS
   {KEY_ESC,  KEY_F1,   KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,   KEY_F6,   NONE     },
   {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,    NONE     },
-  {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_F13,  NONE     },
-  {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_F14,  NONE     },
-  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F15,  NONE     },
-  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_F16,  KEY_F17,  KEY_F18  },
+  {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_F1,   NONE     },
+  {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_F2,   NONE     },
+  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F3,   NONE     },
+  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT, KEY_F5,   KEY_F6   },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
   //leftGameLower
   {KEY_ESC,  KEY_F1,   KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,   KEY_F6,   NONE     },
   {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,    NONE     },
-  {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_F13,  NONE     },
-  {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_F14,  NONE     },
-  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F15,  NONE     },
-  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_F16,  KEY_F17,  KEY_F18  },
+  {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_F1,   NONE     },
+  {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_F2,   NONE     },
+  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F3,   NONE     },
+  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT, KEY_F5,   KEY_F6   },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
 
@@ -310,38 +310,38 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   //rightGame
   {KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  KEY_F11,  KEY_F12,  NONE,     KEY_CPFL },
   {KEY_BSLS, KEY_7,    KEY_8,    KEY_9,    KEY_0,    KEY_MINS, KEY_EQL,  KEY_BSPC },
-  {KEY_F19,  KEY_Y,    KEY_U,    KEY_I,    KEY_O,    KEY_P,    KEY_LBRC, KEY_RBRC },
-  {KEY_F20,  KEY_H,    KEY_J,    KEY_K,    KEY_L,    KEY_SCLN, KEY_QUOT, KEY_ENT  },
-  {KEY_F21,  KEY_N,    KEY_M,    KEY_COMM, KEY_DOT,  KEY_SLSH, KEY_UP,   KEY_RSFT },
-  {KEY_BSPC,  KEY_F22,  KEY_LOWE, KEY_FN,   KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
-  {KEY_KEYPAD_ENTER,  NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     NONE,    },
+  {KEY_F7,   KEY_Y,    KEY_U,    KEY_I,    KEY_O,    KEY_P,    KEY_LBRC, KEY_RBRC },
+  {KEY_F8,   KEY_H,    KEY_J,    KEY_K,    KEY_L,    KEY_SCLN, KEY_QUOT, KEY_ENT  },
+  {KEY_F9,   KEY_N,    KEY_M,    KEY_COMM, KEY_DOT,  KEY_SLSH, KEY_UP,   KEY_RSFT },
+  {KEY_BSPC, KEY_LSFT,  KEY_LOWE, KEY_FN,   KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
+  {KEY_KEYPAD_ENTER,   NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     NONE,    },
 
   //rightGameFn
   {KEY_F7,   KEY_F8,   KEY_F9,       KEY_MUTE,       KEY_VOLUMEDOWN, KEY_VOLUMEUP,  NONE,     KEY_CPFL },
   {KEY_BSLS, KEY_7,    KEY_8,        KEY_9,          KEY_0,          KEY_MINS,      KEY_EQL,  KEY_HOME },
-  {KEY_F19,  KEY_Y,    KEY_U,        KEY_I,          KEY_O,          KEY_P,         KEY_LCBR, KEY_PGUP },
-  {KEY_F20,  KEY_H,    KEY_J,        KEY_K,          KEY_L,          KEY_SCLN,      KEY_QUOT, KEY_PGDN },
-  {KEY_F21,  KEY_N,    KEY_M,        KEY_COMM,       KEY_DOT,        KEY_SLSH,      KEY_UP,   KEY_END  },
-  {KEY_BSPC,  KEY_F22,  KEY_LOWE,     KEY_FN,         KEY_RALT,       KEY_LEFT,      KEY_DOWN, KEY_RGHT },
-  {KEY_KEYPAD_ENTER,  NONE,     NONE,         NONE,           NONE,           NONE,          NONE,     NONE,    },
+  {KEY_F7,   KEY_Y,    KEY_U,        KEY_I,          KEY_O,          KEY_P,         KEY_LCBR, KEY_PGUP },
+  {KEY_F8,   KEY_H,    KEY_J,        KEY_K,          KEY_L,          KEY_SCLN,      KEY_QUOT, KEY_PGDN },
+  {KEY_F9,   KEY_N,    KEY_M,        KEY_COMM,       KEY_DOT,        KEY_SLSH,      KEY_UP,   KEY_END  },
+  {KEY_BSPC,  KEY_LSFT,KEY_LOWE,     KEY_FN,         KEY_RALT,       KEY_LEFT,      KEY_DOWN, KEY_RGHT },
+  {KEY_KEYPAD_ENTER,   NONE,     NONE,         NONE,           NONE,           NONE,          NONE,     NONE,    },
 
   //rightGameRais
   {KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  KEY_F11,  KEY_F12,  NONE,     KEY_CPFL },
   {KEY_BSLS, KEY_7,    KEY_8,    KEY_9,    KEY_0,    KEY_MINS, KEY_EQL,  KEY_BSPC },
-  {KEY_F19,  KEY_Y,    KEY_U,    KEY_I,    KEY_O,    KEY_P,    KEY_LBRC, KEY_RBRC },
-  {KEY_F20,  KEY_H,    KEY_J,    KEY_K,    KEY_L,    KEY_SCLN, KEY_QUOT, KEY_ENT  },
-  {KEY_F21,  KEY_N,    KEY_M,    KEY_COMM, KEY_DOT,  KEY_SLSH, KEY_UP,   KEY_RSFT },
-  {KEY_BSPC,  KEY_F22,  KEY_LOWE, KEY_FN,   KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
-  {KEY_KEYPAD_ENTER,  NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     NONE,    },
+  {KEY_F7,   KEY_Y,    KEY_U,    KEY_I,    KEY_O,    KEY_P,    KEY_LBRC, KEY_RBRC },
+  {KEY_F8,   KEY_H,    KEY_J,    KEY_K,    KEY_L,    KEY_SCLN, KEY_QUOT, KEY_ENT  },
+  {KEY_F9,   KEY_N,    KEY_M,    KEY_COMM, KEY_DOT,  KEY_SLSH, KEY_UP,   KEY_RSFT },
+  {KEY_BSPC, KEY_LSFT, KEY_LOWE, KEY_FN,   KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
+  {KEY_KEYPAD_ENTER,   NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     NONE,    },
 
   //rightGameLower
   {KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  KEY_F11,  KEY_F12,  NONE,     KEY_CPFL },
   {KEY_BSLS, KEY_7,    KEY_8,    KEY_9,    KEY_0,    KEY_MINS, KEY_EQL,  KEY_BSPC },
-  {KEY_F19,  KEY_Y,    KEY_U,    KEY_I,    KEY_O,    KEY_P,    KEY_LBRC, KEY_RBRC },
-  {KEY_F20,  KEY_H,    KEY_J,    KEY_K,    KEY_L,    KEY_SCLN, KEY_QUOT, KEY_ENT  },
-  {KEY_F21,  KEY_N,    KEY_M,    KEY_COMM, KEY_DOT,  KEY_SLSH, KEY_UP,   KEY_RSFT },
-  {KEY_BSPC,  KEY_F22,  KEY_LOWE, KEY_FN,   KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
-  {KEY_KEYPAD_ENTER,  NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     NONE,    }
+  {KEY_F7,   KEY_Y,    KEY_U,    KEY_I,    KEY_O,    KEY_P,    KEY_LBRC, KEY_RBRC },
+  {KEY_F8,   KEY_H,    KEY_J,    KEY_K,    KEY_L,    KEY_SCLN, KEY_QUOT, KEY_ENT  },
+  {KEY_F9,   KEY_N,    KEY_M,    KEY_COMM, KEY_DOT,  KEY_SLSH, KEY_UP,   KEY_RSFT },
+  {KEY_BSPC, KEY_LSFT, KEY_LOWE, KEY_FN,   KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
+  {KEY_KEYPAD_ENTER,   NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     NONE,    }
 };
 
 //backLed============================================================
@@ -380,6 +380,8 @@ bool leftControlPushed = 0;
 bool rightControlPushed = 0;
 bool forKeyPushed = 0;
 bool backLEDOn = 0;
+bool capsLocked = false;
+
 
 
 int LEDProfile = 0;
@@ -516,10 +518,23 @@ void setup() {
     Keyboard.press(KEY_KEYPAD_NUMLOCK);
     Keyboard.release(KEY_KEYPAD_NUMLOCK);
   }
-  digitalWrite(capslockLedNum, LOW);
+
+  
+  //capsLockチェック
+  
+  if (Keyboard.getLedStatus(LED_CAPS_LOCK))
+  {
+    capsLockLedOn();
+    sendData = 0b10000001;
+    Serial1.write(sendData);
+    Serial.flush();
+    Serial.print("senddate");
+    Serial.print(" ");
+    Serial.println(sendData);
+    capsLocked = true;
+  }
 }
 
-bool capsLocked = false;
 
 //============================loop==================================
 void loop() {
