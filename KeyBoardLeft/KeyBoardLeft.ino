@@ -1187,6 +1187,6 @@ void changeLightProfile()
     backLED.setPixelColor(i, backLED.Color(backLightLEDNormal[LEDProfile][0], backLightLEDNormal[LEDProfile][1], backLightLEDNormal[LEDProfile  ][2]));
   }
   backLED.show();
-  Serial.print("LEDProfile");
+  Serial.print("LEDProfile ");
   Serial.println( LEDProfile);
 }
