@@ -4,7 +4,7 @@
 #include "ConsumerControl.h"
 //===================================
 //Keyboard
-/*##########################################################################
+  /*########################################################################
   ###                                                                    ###
   ###    Before writing the program, make the left and right settings.   ###
   ###     - It has been updated to work without this setting.            ###
@@ -34,6 +34,7 @@ bool leftSide;
 #define KEY_RAIS 0xfd
 #define KEY_LOWE 0xfc
 
+
 // missing sound control keys
 //
 #define KEY_MUTE        0xFb
@@ -41,6 +42,7 @@ bool leftSide;
 #define KEY_VOLUMEDOWN  0xf9
 
 #define KEY_FOR  0xf8
+#define KEY_CLPF 0xf7
 
 #define KEY_ENT  0xB0 //Enter
 #define KEY_ESC  0xB1 //Escape 
@@ -207,7 +209,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   //leftFn
   {KEY_ESC,  KEY_F1,   KEY_F2,   KEY_F3,   KEY_MUTE, KEY_VOLUMEDOWN,   KEY_VOLUMEUP, NONE     },
   {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,        NONE     },
-  {KEY_CPFL, KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_LPRN,     NONE     },
+  {KEY_CLPF, KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_LPRN,     NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_LCBR,     NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_LEFT,     NONE     },
   {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT, KEY_DEL,      ____     },
@@ -245,7 +247,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   //leftGameFn
   {KEY_ESC,  KEY_F1,   KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,   KEY_F6,   NONE     },
   {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,    NONE     },
-  {KEY_CPFL, KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_F13,  NONE     },
+  {KEY_CLPF, KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_F13,  NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_F14,  NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F15,  NONE     },
   {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_F16,  KEY_F17,  KEY_F18  },
@@ -348,12 +350,18 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
 int backLightLEDNormal[][3]={
   //red
   {150,0,0},
-  //green
-  {0,150,0},
+  //purple
+  {150,0,150},
   //blue
   {0,0,150},
-  //
-  {}
+  //aquablue
+  {0,150,150},
+  //green
+  {0,150,0},
+  //yellow
+  {150,150,0},
+  //white
+  {150,150,150}
   };
 
 //checkLED
@@ -669,6 +677,11 @@ void loop() {
             changeProfile();
             pressed = 1;
           }
+          if (keyMap[ii + option][jj] == KEY_CLPF)
+          {
+            changeLightProfile();
+            pressed = 1;
+          }
           if (keyMap[ii + option][jj] == KEY_MUTE)
           {
             ConsumerControl.press(VOLUME_MUTE);
@@ -963,6 +976,11 @@ void readSerial()
           changeProfile();
           pressed = 1;
       }
+      if (keyMap[row1 + option1][col1] == KEY_CLPF)
+          {
+            changeLightProfile();
+            pressed = 1;
+          }
       if (keyMap[row1 + option1][col1] == KEY_MUTE)
       {
         ConsumerControl.press(VOLUME_MUTE);
@@ -1150,12 +1168,25 @@ void capsLockLedOff()
 
 void changeProfile()
 {
-  if (LEDProfile = 10)
+  
+}
+void changeLightProfile()
+{
+  if (LEDProfile ==6)
   {
-    LEDProfile = 0;
+    LEDProfile = 0; 
   }
   else
   {
     LEDProfile++;
   }
+
+  backLED.clear();
+  for (int i = 0; i < numpixels; i++)
+  {
+    backLED.setPixelColor(i, backLED.Color(backLightLEDNormal[LEDProfile][0], backLightLEDNormal[LEDProfile][1], backLightLEDNormal[LEDProfile  ][2]));
+  }
+  backLED.show();
+  Serial.print("LEDProfile");
+  Serial.println( LEDProfile);
 }
