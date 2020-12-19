@@ -240,7 +240,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_F1,   NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_F2,   NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F3,   NONE     },
-  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT, KEY_F5,   KEY_F6   },
+  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_F4,   KEY_F5,   KEY_F6   },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
   //leftGameFn
@@ -249,7 +249,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_CLPF, KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_F1,   NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_F2,   NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F3,   NONE     },
-  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT, KEY_F5,   KEY_F6   },
+  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_F4,   KEY_F5,   KEY_F6   },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
   //leftGameRAIS
@@ -258,7 +258,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_F1,   NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_F2,   NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F3,   NONE     },
-  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT, KEY_F5,   KEY_F6   },
+  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_F4,   KEY_F5,   KEY_F6   },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
   //leftGameLower
@@ -267,7 +267,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_F1,   NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_F2,   NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F3,   NONE     },
-  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT, KEY_F5,   KEY_F6   },
+  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_F4,   KEY_F5,   KEY_F6   },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
 
@@ -474,6 +474,7 @@ void setup() {
 
 
   LEDProfile = EEPROM[0x000]; 
+  gameModeEnabled = EEPROM[0x001];
     
 
   for (int i = 0; i < 3; i++)
@@ -499,6 +500,8 @@ void setup() {
     statusLED.show();
     delay(100);
   }
+
+  changeProfile();
 
 
   Serial.print("EEPROM[0x000] ");
@@ -1184,7 +1187,8 @@ void onBackLED()
   backLED.clear();
   for (int i = 0; i < numpixels; i++)
   {
-    backLED.setPixelColor(i, backLED.Color(150, 0, 0));
+    backLED.setPixelColor(i, backLED.Color(
+      backLightLEDNormal[LEDProfile][0], backLightLEDNormal[LEDProfile][1], backLightLEDNormal[LEDProfile  ][2]));
   }
   backLED.show();
 }
@@ -1292,6 +1296,7 @@ void changeProfile()
   if(!gameModeEnabled)
   {
     gameModeEnabled = true;
+    EEPROM[0x001] = gameModeEnabled;
     Serial.println("gameMode Enabled");
     uint32_t color1 = statusLED.getPixelColor(1);
     uint8_t color1_0 = color1 >> 16 & 0b0000000011111111;
@@ -1341,6 +1346,7 @@ void changeProfile()
   else
   {
     gameModeEnabled = false;
+    EEPROM[0x001] = gameModeEnabled;
     Serial.println("gameMode Disenabled");
     uint32_t color1 = statusLED.getPixelColor(1);
     uint8_t color1_0 = color1 >> 16 & 0b0000000011111111;
