@@ -500,12 +500,21 @@ void setup() {
     statusLED.show();
     delay(100);
   }
-
+  if(gameModeEnabled)
+  {
+    gameModeEnabled = false;
+  }
+  else
+  {
+    gameModeEnabled = true;
+  }
   changeProfile();
 
 
   Serial.print("EEPROM[0x000] ");
   Serial.println(EEPROM[0x000]);
+  Serial.print("EEPROM[0x001] ");
+  Serial.println(EEPROM[0x001]);
 
 
   //起動時にNumLock On
@@ -1195,7 +1204,7 @@ void onBackLED()
 
 void capsLockLedOn()
 {
-  uint32_t color0 = statusLED.getPixelColor(0);
+  /*uint32_t color0 = statusLED.getPixelColor(0);
   uint8_t color0_0 = color0 >> 16 & 0b0000000011111111;
   uint8_t color0_1 = color0 >> 8 & 0b0000000011111111;
   uint8_t color0_2 = color0   & 0b0000000011111111;
@@ -1230,20 +1239,20 @@ void capsLockLedOn()
   Serial.print(" ");
   Serial.print(color3_1);
   Serial.print(" ");
-  Serial.println(color3_2);
+  Serial.println(color3_2);*/
     
     
-  statusLED.clear();
+  //statusLED.clear();
   statusLED.setPixelColor(2,statusLED.Color(0, 5, 0)); 
-  statusLED.setPixelColor(0,statusLED.Color(color0_0,color0_1,color0_2));
-  statusLED.setPixelColor(1,statusLED.Color(color1_0,color1_1,color1_2));
-  statusLED.setPixelColor(3,statusLED.Color(color3_0,color3_1,color3_2));
+  //statusLED.setPixelColor(0,statusLED.Color(color0_0,color0_1,color0_2));
+  //statusLED.setPixelColor(1,statusLED.Color(color1_0,color1_1,color1_2));
+  //statusLED.setPixelColor(3,statusLED.Color(color3_0,color3_1,color3_2));
   statusLED.show();
     
 }
 void capsLockLedOff()
 {
-  uint32_t color0 = statusLED.getPixelColor(0);
+  /*uint32_t color0 = statusLED.getPixelColor(0);
   uint8_t color0_0 = color0 >> 16 & 0b0000000011111111;
   uint8_t color0_1 = color0 >> 8 & 0b0000000011111111;
   uint8_t color0_2 = color0   & 0b0000000011111111;
@@ -1278,14 +1287,14 @@ void capsLockLedOff()
   Serial.print(" ");
   Serial.print(color3_1);
   Serial.print(" ");
-  Serial.println(color3_2);
+  Serial.println(color3_2);*/
     
     
-  statusLED.clear();
+  //statusLED.clear();
   statusLED.setPixelColor(2,statusLED.Color(0, 0, 0)); 
-  statusLED.setPixelColor(0,statusLED.Color(color0_0,color0_1,color0_2));
-  statusLED.setPixelColor(1,statusLED.Color(color1_0,color1_1,color1_2));
-  statusLED.setPixelColor(3,statusLED.Color(color3_0,color3_1,color3_2));
+  //statusLED.setPixelColor(0,statusLED.Color(color0_0,color0_1,color0_2));
+  //statusLED.setPixelColor(1,statusLED.Color(color1_0,color1_1,color1_2));
+  //statusLED.setPixelColor(3,statusLED.Color(color3_0,color3_1,color3_2));
   statusLED.show();
 
   
@@ -1295,8 +1304,7 @@ void changeProfile()
 {
   if(!gameModeEnabled)
   {
-    gameModeEnabled = true;
-    EEPROM[0x001] = gameModeEnabled;
+    /*gameModeEnabled = true;
     Serial.println("gameMode Enabled");
     uint32_t color1 = statusLED.getPixelColor(1);
     uint8_t color1_0 = color1 >> 16 & 0b0000000011111111;
@@ -1333,14 +1341,14 @@ void changeProfile()
     Serial.print(" ");
     Serial.print(color3_1);
     Serial.print(" ");
-    Serial.println(color3_2);
+    Serial.println(color3_2);*/
     
     
-    statusLED.clear();
+    //statusLED.clear();
     statusLED.setPixelColor(0,statusLED.Color(5, 0, 0)); 
-    statusLED.setPixelColor(1,statusLED.Color(color1_0,color1_1,color1_2));
-    statusLED.setPixelColor(2,statusLED.Color(color2_0,color2_1,color2_2));
-    statusLED.setPixelColor(3,statusLED.Color(color3_0,color3_1,color3_2));
+    //statusLED.setPixelColor(1,statusLED.Color(color1_0,color1_1,color1_2));
+    //statusLED.setPixelColor(2,statusLED.Color(color2_0,color2_1,color2_2));
+    //statusLED.setPixelColor(3,statusLED.Color(color3_0,color3_1,color3_2));
     statusLED.show();
   }
   else
@@ -1348,7 +1356,7 @@ void changeProfile()
     gameModeEnabled = false;
     EEPROM[0x001] = gameModeEnabled;
     Serial.println("gameMode Disenabled");
-    uint32_t color1 = statusLED.getPixelColor(1);
+    /*uint32_t color1 = statusLED.getPixelColor(1);
     uint8_t color1_0 = color1 >> 16 & 0b0000000011111111;
     uint8_t color1_1 = color1 >> 8 & 0b0000000011111111;
     uint8_t color1_2 = color1   & 0b0000000011111111;
@@ -1383,17 +1391,19 @@ void changeProfile()
     Serial.print(" ");
     Serial.print(color3_1);
     Serial.print(" ");
-    Serial.println(color3_2);
+    Serial.println(color3_2);*/
     
     
-    statusLED.clear();
+    //statusLED.clear();
     statusLED.setPixelColor(0,statusLED.Color(0, 0, 0)); 
-    statusLED.setPixelColor(1,statusLED.Color(color1_0,color1_1,color1_2));
-    statusLED.setPixelColor(2,statusLED.Color(color2_0,color2_1,color2_2));
-    statusLED.setPixelColor(3,statusLED.Color(color3_0,color3_1,color3_2));
+    //statusLED.setPixelColor(1,statusLED.Color(color1_0,color1_1,color1_2));
+    //statusLED.setPixelColor(2,statusLED.Color(color2_0,color2_1,color2_2));
+    //statusLED.setPixelColor(3,statusLED.Color(color3_0,color3_1,color3_2));
     statusLED.show();
   }
-  
+  EEPROM[0x001] = gameModeEnabled;
+  Serial.print("EEPROM[0x001] ");
+  Serial.println(EEPROM[0x001]);
 }
 void changeLightProfile()
 {
