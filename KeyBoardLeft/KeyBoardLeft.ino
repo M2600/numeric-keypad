@@ -1304,9 +1304,9 @@ void changeProfile()
 {
   if(!gameModeEnabled)
   {
-    /*gameModeEnabled = true;
+    gameModeEnabled = true;
     Serial.println("gameMode Enabled");
-    uint32_t color1 = statusLED.getPixelColor(1);
+    /*uint32_t color1 = statusLED.getPixelColor(1);
     uint8_t color1_0 = color1 >> 16 & 0b0000000011111111;
     uint8_t color1_1 = color1 >> 8 & 0b0000000011111111;
     uint8_t color1_2 = color1   & 0b0000000011111111;
@@ -1354,7 +1354,6 @@ void changeProfile()
   else
   {
     gameModeEnabled = false;
-    EEPROM[0x001] = gameModeEnabled;
     Serial.println("gameMode Disenabled");
     /*uint32_t color1 = statusLED.getPixelColor(1);
     uint8_t color1_0 = color1 >> 16 & 0b0000000011111111;
