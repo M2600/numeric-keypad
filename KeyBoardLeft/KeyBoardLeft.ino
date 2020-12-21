@@ -42,7 +42,8 @@ bool leftSide;
 #define KEY_VOLUMEDOWN  0x07
 
 #define KEY_FOR  0x08
-#define KEY_CLPF 0x09           
+#define KEY_CLPF 0x09    
+#define KEY_MAIL 0x0a       
 
 #define KEY_ENT  0xB0 //Enter
 #define KEY_ESC  0xB1 //Escape 
@@ -272,7 +273,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
 
 
   //right
-  {KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  KEY_F11,  KEY_F12,  NONE,     KEY_CPFL },
+  {KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  KEY_F11,  KEY_F12,  KEY_MAIL, KEY_CPFL },
   {KEY_BSLS, KEY_7,    KEY_8,    KEY_9,    KEY_0,    KEY_MINS, KEY_EQL,  KEY_BSPC },
   {KEY_RPRN, KEY_Y,    KEY_U,    KEY_I,    KEY_O,    KEY_P,    KEY_LBRC, KEY_RBRC },
   {KEY_RCBR, KEY_H,    KEY_J,    KEY_K,    KEY_L,    KEY_SCLN, KEY_QUOT, KEY_ENT  },
@@ -731,6 +732,11 @@ void loop() {
             ConsumerControl.press(VOLUME_DOWN);
             pressed = 1;
           }
+          else if (keyMap[ii + option][jj] == KEY_MAIL)
+          {
+            Keyboard.print("shota.M.020626.S.K.F@gmail.com");
+            pressed = 1;
+          } 
 
 
           
@@ -1039,6 +1045,11 @@ void readSerial()
         ConsumerControl.press(VOLUME_DOWN);
         pressed = 1;
       }
+      else if (keyMap[row1 + option1][col1] == KEY_MAIL)
+          {
+            Keyboard.print("shota.M.020626.S.K.F@gmail.com");
+            pressed = 1;
+          }
 
       /*if(keyMap[row1 + option1][col1] == KEY_SPC && leftControlPushed)
       {
