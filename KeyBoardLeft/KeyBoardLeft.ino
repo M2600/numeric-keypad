@@ -43,7 +43,8 @@ bool leftSide;
 
 #define KEY_FOR  0x08
 #define KEY_CLPF 0x09    
-#define KEY_MAIL 0x0a       
+#define KEY_MAIL 0x0a
+#define KEY_IF   0x0b  
 
 #define KEY_ENT  0xB0 //Enter
 #define KEY_ESC  0xB1 //Escape 
@@ -202,7 +203,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,    NONE     },
   {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_LPRN, NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_LCBR, NONE     },
-  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_LEFT, NONE     },
+  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_FOR,  NONE     },
   {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT, KEY_DEL,  ____     },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
@@ -211,7 +212,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,          KEY_6,        NONE     },
   {KEY_CLPF, KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,          KEY_LPRN,     NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,          KEY_LCBR,     NONE     },
-  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,          KEY_LEFT,     NONE     },
+  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,          KEY_FOR,      NONE     },
   {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT,       KEY_DEL,      ____     },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,           KEY_SPC,      NONE     },
 
@@ -220,7 +221,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,    NONE     },
   {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_LPRN, NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_LCBR, NONE     },
-  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_LEFT, NONE     },
+  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_FOR,  NONE     },
   {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT, KEY_DEL,  ____     },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
@@ -229,7 +230,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,    NONE     },
   {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_LPRN, NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_LCBR, NONE     },
-  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_LEFT, NONE     },
+  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_FOR,  NONE     },
   {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT, KEY_DEL,  ____     },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
@@ -277,7 +278,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_BSLS, KEY_7,    KEY_8,    KEY_9,    KEY_0,    KEY_MINS, KEY_EQL,  KEY_BSPC },
   {KEY_RPRN, KEY_Y,    KEY_U,    KEY_I,    KEY_O,    KEY_P,    KEY_LBRC, KEY_RBRC },
   {KEY_RCBR, KEY_H,    KEY_J,    KEY_K,    KEY_L,    KEY_SCLN, KEY_QUOT, KEY_ENT  },
-  {KEY_RGHT, KEY_N,    KEY_M,    KEY_COMM, KEY_DOT,  KEY_SLSH, KEY_UP,   KEY_RSFT },
+  {KEY_IF,   KEY_N,    KEY_M,    KEY_COMM, KEY_DOT,  KEY_SLSH, KEY_UP,   KEY_RSFT },
   {KEY_BSPC, KEY_LSFT, KEY_LOWE, KEY_FN,   KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
   {KEY_KEYPAD_ENTER, NONE, NONE, NONE,     NONE,     NONE,     NONE,     NONE,    },
 
@@ -286,7 +287,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_BSLS, KEY_7,    KEY_8,        KEY_9,          KEY_0,          KEY_MINS,      KEY_EQL,  KEY_HOME },
   {KEY_RPRN, KEY_Y,    KEY_U,        KEY_I,          KEY_O,          KEY_P,         KEY_LCBR, KEY_PGUP },
   {KEY_RCBR, KEY_H,    KEY_J,        KEY_K,          KEY_L,          KEY_SCLN,      KEY_QUOT, KEY_PGDN  },
-  {KEY_RGHT, KEY_N,    KEY_M,        KEY_COMM,       KEY_DOT,        KEY_SLSH,      KEY_UP,   KEY_END  },
+  {KEY_IF,   KEY_N,    KEY_M,        KEY_COMM,       KEY_DOT,        KEY_SLSH,      KEY_UP,   KEY_END  },
   {KEY_BSPC, KEY_LSFT, KEY_LOWE,     KEY_FN,         KEY_RALT,       KEY_LEFT,      KEY_DOWN, KEY_RGHT },
   {KEY_KEYPAD_ENTER, NONE, NONE,     NONE,           NONE,           NONE,          NONE,     NONE,    },
 
@@ -295,7 +296,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_BSLS, KEY_7,    KEY_8,    KEY_9,    KEY_0,    KEY_MINS, KEY_EQL,  KEY_BSPC },
   {KEY_RPRN, KEY_Y,    KEY_U,    KEY_UP,    KEY_O,   KEY_P,    KEY_LBRC, KEY_RBRC },
   {KEY_RCBR, KEY_H,    KEY_LEFT, KEY_DOWN, KEY_RGHT, KEY_SCLN, KEY_QUOT, KEY_ENT  },
-  {KEY_RGHT, KEY_N,    KEY_M,    KEY_COMM, KEY_DOT,  KEY_SLSH, KEY_UP,   KEY_RSFT },
+  {KEY_IF,   KEY_N,    KEY_M,    KEY_COMM, KEY_DOT,  KEY_SLSH, KEY_UP,   KEY_RSFT },
   {KEY_BSPC, KEY_LSFT, KEY_LOWE, KEY_FN,   KEY_RALT, KEY_LEFT, KEY_DOWN, KEY_RGHT },
   {KEY_KEYPAD_ENTER, NONE, NONE, NONE,     NONE,     NONE,     NONE,     NONE,    },
 
@@ -304,7 +305,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_BSLS, KEY_7,        KEY_8,        KEY_9,        KEY_0,        KEY_MINS, KEY_EQL,  KEY_BSPC },
   {KEY_RPRN, KEY_Y,        KEY_KEYPAD_7, KEY_KEYPAD_8, KEY_KEYPAD_9, KEY_P,    KEY_LBRC, KEY_RBRC },
   {KEY_RCBR, KEY_H,        KEY_KEYPAD_4, KEY_KEYPAD_5, KEY_KEYPAD_6, KEY_SCLN, KEY_QUOT, KEY_ENT  },
-  {KEY_RGHT, KEY_KEYPAD_0, KEY_KEYPAD_1, KEY_KEYPAD_2, KEY_KEYPAD_3, KEY_SLSH, KEY_UP,   KEY_RSFT },
+  {KEY_IF,   KEY_KEYPAD_0, KEY_KEYPAD_1, KEY_KEYPAD_2, KEY_KEYPAD_3, KEY_SLSH, KEY_UP,   KEY_RSFT },
   {KEY_BSPC, KEY_LSFT,     KEY_LOWE,     KEY_FN,       KEY_RALT,     KEY_LEFT, KEY_DOWN, KEY_RGHT },
   {KEY_KEYPAD_ENTER, NONE, NONE,         NONE,         NONE,         NONE,     NONE,     NONE,    },
 
@@ -737,6 +738,28 @@ void loop() {
             Keyboard.print("shota.M.020626.S.K.F@gmail.com");
             pressed = 1;
           } 
+          else if (keyMap[ii + option][jj] == KEY_FOR)
+          {
+            Keyboard.print("for() \n");
+            Keyboard.print("{ \n");
+            Keyboard.write(KEY_UP);
+            Keyboard.write(KEY_UP);
+            Keyboard.write(KEY_RGHT);
+            Keyboard.write(KEY_RGHT);
+            //Keyboard.print("}");
+            pressed = 1;
+          }
+          else if (keyMap[ii + option][jj] == KEY_IF)
+          {
+            Keyboard.print("if() \n");
+            Keyboard.print("{ \n");
+            Keyboard.write(KEY_UP);
+            Keyboard.write(KEY_UP);
+            Keyboard.write(KEY_RGHT);
+            //Keyboard.print("}");
+            pressed = 1;
+          }
+          
 
 
           
@@ -1046,10 +1069,31 @@ void readSerial()
         pressed = 1;
       }
       else if (keyMap[row1 + option1][col1] == KEY_MAIL)
-          {
-            Keyboard.print("shota.M.020626.S.K.F@gmail.com");
-            pressed = 1;
-          }
+      {
+        Keyboard.print("shota.M.020626.S.K.F@gmail.com");
+        pressed = 1;
+      }
+      else if (keyMap[row1 + option1][col1] == KEY_FOR)
+      {
+        Keyboard.print("for() \n");
+        Keyboard.print("{ \n");
+        Keyboard.write(KEY_UP);
+        Keyboard.write(KEY_UP);
+        Keyboard.write(KEY_RGHT);
+        Keyboard.write(KEY_RGHT);
+        pressed = 1;
+      }
+      else if (keyMap[row1 + option1][col1] == KEY_IF)
+      {
+        Keyboard.print("if() \n");
+        Keyboard.print("{ \n");
+        Keyboard.write(KEY_UP);
+        Keyboard.write(KEY_UP);
+        Keyboard.write(KEY_RGHT);
+        //Keyboard.print("}");
+        pressed = 1;
+      }
+      
 
       /*if(keyMap[row1 + option1][col1] == KEY_SPC && leftControlPushed)
       {
