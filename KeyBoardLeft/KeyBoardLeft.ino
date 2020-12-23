@@ -362,7 +362,7 @@ int backLightLEDNormal[][3]={
   //yellow
   {150,150,0},
   //white
-  {150,150,150}
+  {150,150,200}
   };
 
 //checkLED
