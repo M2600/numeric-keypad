@@ -383,6 +383,8 @@ bool rightControlPushed = 0;
 bool forKeyPushed = 0;
 bool backLEDOn = 0;
 bool capsLocked = false;
+bool chengeIMERaisEnabled = false;
+bool chengeIMELowerEnabled = false;
 
 
 
@@ -614,9 +616,12 @@ void loop() {
       if (currentState[ii][jj] != beforeState[ii][jj])
       {
         int option = 0;
+        int optionIME = 0;
+        bool sendchar = true;
         if (!leftSide)
         {
           option += 56;
+          optionIME = 56;
         }
         if (fnKeyPushed && !raisKeyPushed && !loweKeyPushed)
         {
@@ -641,6 +646,35 @@ void loop() {
 
         if ( !currentState[ii][jj] )
         {
+
+
+          if (keyMap[ii + optionIME][jj] == KEY_RAIS)
+          {
+            if(chengeIMELowerEnabled)
+              {
+                Keyboard.press( KEY_LALT );
+                Keyboard.press( KEY_GRV );
+                Keyboard.release( KEY_GRV );
+                Keyboard.release( KEY_LALT );
+                sendchar = false;
+              }
+              chengeIMERaisEnabled = true;
+              pressed = 1;
+          }
+          else if (keyMap[ii + optionIME][jj] == KEY_LOWE)
+          {
+            if(chengeIMERaisEnabled)
+            {
+              Keyboard.press( KEY_LALT );
+              Keyboard.press( KEY_GRV );
+              Keyboard.release( KEY_GRV );
+              Keyboard.release( KEY_LALT );
+              sendchar = false;
+            }
+            chengeIMELowerEnabled = true;
+            pressed = 1;
+          }
+          
           
           if(keyMap[ii + option][jj] == KEY_LSFT)
           {
@@ -675,38 +709,14 @@ void loop() {
           }
           else if (keyMap[ii + option][jj] == KEY_RAIS)
           {
-            if(loweKeyPushed)
-            {
-              Keyboard.press( KEY_LALT );
-              Keyboard.press( KEY_GRV );
-              Keyboard.release( KEY_GRV );
-              Keyboard.release( KEY_LALT );
-              pressed = 1;
-            }
-            else
-            {
               Keyboard.releaseAll();
               raisKeyPushed = true;
-              pressed = 1;
-            }
-            
-          }
+              pressed = 1; }
           else if (keyMap[ii + option][jj] == KEY_LOWE)
           {
-            if(raisKeyPushed)
-            {
-              Keyboard.press( KEY_LALT );
-              Keyboard.press( KEY_GRV );
-              Keyboard.release( KEY_GRV );
-              Keyboard.release( KEY_LALT );
-              pressed = 1;
-            }
-            else
-            {
               Keyboard.releaseAll();
               loweKeyPushed = true;
               pressed = 1;
-            }
           }
           else if (keyMap[ii + option][jj] == KEY_CPFL)
           {
@@ -801,14 +811,31 @@ void loop() {
           
           else
           {
-            Keyboard.press( keyMap[ii + option][jj]);
-            pressed = 1;
-            Serial.print("pressed keycode ");
-            Serial.println(keyMap[ii + option][jj]);
+            if(sendchar)
+            {
+              Keyboard.press( keyMap[ii + option][jj]);
+              pressed = 1;
+              Serial.print("pressed keycode ");
+              Serial.println(keyMap[ii + option][jj]);
+            }
+            
           }
         }
         else
         {
+
+          if (keyMap[ii + optionIME][jj] == KEY_RAIS)
+          {
+              chengeIMERaisEnabled = false;
+              pressed = 0;
+          }
+          if (keyMap[ii + optionIME][jj] == KEY_LOWE)
+          {
+            chengeIMELowerEnabled = false;
+            pressed = 0;
+          }
+
+          
 
           if(keyMap[ii + option][jj] == KEY_LSFT)
           {
@@ -953,9 +980,12 @@ void readSerial()
     Serial.println(col1);
 
     int option1 = 0;
+    int optionIME1 = 0;
+    bool sendChar1 = true;
     if (leftSide)
     {
       option1 = 56;
+      optionIME1 = 56;
     }
     if (fnKeyPushed && !raisKeyPushed && !loweKeyPushed)
     {
@@ -979,7 +1009,34 @@ void readSerial()
     }
     if (pressed1)
     {
-      
+
+      if (keyMap[row1 + optionIME1][col1] == KEY_RAIS)
+      {
+        if(chengeIMELowerEnabled)
+          {
+            Keyboard.press( KEY_LALT );
+            Keyboard.press( KEY_GRV );
+            Keyboard.release( KEY_GRV );
+            Keyboard.release( KEY_LALT );
+            sendChar1 = false;
+          }
+          chengeIMERaisEnabled = true;
+          pressed = 1;
+      }
+      else if (keyMap[row1 + optionIME1][col1] == KEY_LOWE)
+      {
+        if(chengeIMERaisEnabled)
+        {
+          Keyboard.press( KEY_LALT );
+          Keyboard.press( KEY_GRV );
+          Keyboard.release( KEY_GRV );
+          Keyboard.release( KEY_LALT );
+          sendChar1 = false;
+        }
+        chengeIMELowerEnabled = true;
+        pressed = 1;
+      }
+        
 
       if(keyMap[row1 + option1][col1] == KEY_LSFT)
       {
@@ -1013,35 +1070,15 @@ void readSerial()
       }
       else if (keyMap[row1 + option1][col1] == KEY_RAIS)
       {
-        if(loweKeyPushed)
-          {
-            Keyboard.press( KEY_LALT );
-            Keyboard.press( KEY_GRV );
-            Keyboard.release( KEY_GRV );
-            Keyboard.release( KEY_LALT );
-            pressed = 1;
-          }
-          else
-          {
-            Keyboard.releaseAll();
-            raisKeyPushed = true;
-          }
+        Keyboard.releaseAll();
+        raisKeyPushed = true;
+        pressed = 1;
       }
       else if (keyMap[row1 + option1][col1] == KEY_LOWE)
       {
-        if(raisKeyPushed)
-        {
-          Keyboard.press( KEY_LALT );
-          Keyboard.press( KEY_GRV );
-          Keyboard.release( KEY_GRV );
-          Keyboard.release( KEY_LALT );
-          pressed = 1;
-        }
-        else
-        {
-          Keyboard.releaseAll();
-          loweKeyPushed = true;
-        }
+        Keyboard.releaseAll();
+        loweKeyPushed = true; 
+        pressed = 1;
       }
       else if (keyMap[row1 + option1][col1] == KEY_CPFL)
       {
@@ -1133,14 +1170,30 @@ void readSerial()
       
       else
       {
-        Keyboard.press( keyMap[row1 + option1][col1]);
-        Serial.println(keyMap[row1 + option1][col1]);
-        Serial.print("pressed keycode ");
-        Serial.println(keyMap[row1 + option1][col1]);
+        if(sendChar1)
+        {
+          Keyboard.press( keyMap[row1 + option1][col1]);
+          Serial.println(keyMap[row1 + option1][col1]);
+          Serial.print("pressed keycode ");
+          Serial.println(keyMap[row1 + option1][col1]);
+        }
       }
     }
     else
     {
+
+      if (keyMap[row1 + optionIME1][col1] == KEY_RAIS)
+      {
+          chengeIMERaisEnabled = false;
+          pressed = 0;
+      }
+      if (keyMap[row1 + optionIME1][col1] == KEY_LOWE)
+      {
+        chengeIMELowerEnabled = false;
+        pressed = 0;
+      }
+
+      
       if (keyMap[row1 + option1][col1] == KEY_FN)
       {
         fnKeyPushed = false;
