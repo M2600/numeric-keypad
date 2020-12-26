@@ -46,6 +46,15 @@ bool leftSide;
 #define KEY_MAIL 0x0a
 #define KEY_IF   0x0b  
 
+#define KEY_MUP  0x0c
+#define KEY_MDWN 0x0d
+#define KEY_MRIT 0x0e
+#define KEY_MLFT 0x0f
+#define KEY_MRCL 0x10
+#define KEY_MLCL 0x11
+#define KEY_MHUP 0x12
+#define KEY_MHDW 0x13
+
 #define KEY_ENT  0xB0 //Enter
 #define KEY_ESC  0xB1 //Escape 
 #define KEY_BSPC 0xB2 //Backspace
