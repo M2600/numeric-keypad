@@ -19,13 +19,13 @@ static const uint8_t _hidReportDescriptor[] PROGMEM = {
   0xC0 //   END_COLLECTION
 };
 
-/*ConsumerControl_::ConsumerControl_(void)
+ConsumerControl_::ConsumerControl_(void)
 {
   static HIDSubDescriptor node(_hidReportDescriptor, sizeof(_hidReportDescriptor));
   HID().AppendDescriptor(&node);
 }
 
-/*void ConsumerControl_::press(u8 buttonBit)
+void ConsumerControl_::press(u8 buttonBit)
 {
   u8 m[1];
   m[0]=(1 << buttonBit);
@@ -37,6 +37,6 @@ void ConsumerControl_::release()
   u8 m[1];
   m[0]=0;
   HID().SendReport(REPORT_ID, m, sizeof(m));
-}*/
+}
 
 ConsumerControl_ ConsumerControl;

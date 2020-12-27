@@ -8,9 +8,9 @@
 class ConsumerControl_
 {
 public:
-  //ConsumerControl_(void);
- // void press(u8 buttonBit);
-  //void release(void);
+  ConsumerControl_(void);
+  void press(u8 buttonBit);
+  void release(void);
 };
 
 extern ConsumerControl_ ConsumerControl;
