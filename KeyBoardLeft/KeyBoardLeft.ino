@@ -1,9 +1,9 @@
 #include "Keyboard.h"
-//#include "Mouse.h"
+#include "Mouse.h"
 #include "HID.h"
 #include "Adafruit_NeoPixel.h"
 #include "EEPROM.h"
-#include "ConsumerControl.h"
+//#include "ConsumerControl.h"
 //===================================
 //Keyboard
   /*########################################################################
@@ -239,11 +239,11 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   //leftLower
   {KEY_ESC,  KEY_F1,   KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,   KEY_F6,   NONE     },
   {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,    NONE     },
-  {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_LPRN, NONE     },
-  {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_LCBR, NONE     },
+  {KEY_TAB,  KEY_Q,    KEY_W,    KEY_MUP,  KEY_R,    KEY_T,    KEY_LPRN, NONE     },
+  {KEY_CAPS, KEY_A,    KEY_MLFT, KEY_MDWN, KEY_MRIT, KEY_G,    KEY_LCBR, NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_FOR,  NONE     },
-  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT, KEY_DEL,  ____     },
-  {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
+  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_MLCL, KEY_DEL,  ____     },
+  {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_MRCL,  NONE     },
 
 
 
@@ -396,6 +396,13 @@ bool backLEDOn = 0;
 bool capsLocked = false;
 bool chengeIMERaisEnabled = false;
 bool chengeIMELowerEnabled = false;
+
+bool mouseMovex = false;
+bool mouseMove_x = false;
+bool mouseMovey = false;
+bool mouseMove_y = false;
+
+float MouseConstant = 3.0;
 
 
 
@@ -596,8 +603,20 @@ void loop() {
     capsLocked = false;
   }
 
-  //profile
-
+  if(mouseMovey)
+  {
+    Mouse.move(0,MouseConstant);
+  }
+  if(mouseMove_y)
+  {
+    Mouse.move(0,-MouseConstant);
+  }if(mouseMovex)
+  {
+    Mouse.move(MouseConstant,0);
+  }if(mouseMove_x)
+  {
+    Mouse.move(-MouseConstant,0);
+  }
 
 
   if(leftShiftPushed)
@@ -739,7 +758,7 @@ void loop() {
             changeLightProfile();
             pressed = 1;
           }
-          else if (keyMap[ii + option][jj] == KEY_MUTE)
+          /*else if (keyMap[ii + option][jj] == KEY_MUTE)
           {
             ConsumerControl.press(VOLUME_MUTE);
             pressed = 1;
@@ -753,7 +772,7 @@ void loop() {
           {
             ConsumerControl.press(VOLUME_DOWN);
             pressed = 1;
-          }
+          }*/
           else if (keyMap[ii + option][jj] == KEY_MAIL)
           {
             Keyboard.print("shota.M.020626.S.K.F@gmail.com");
@@ -780,7 +799,36 @@ void loop() {
             //Keyboard.print("}");
             pressed = 1;
           }
-          
+          else if (keyMap[ii + option][jj] == KEY_MUP)
+          {
+            startMouseMove(KEY_MUP);
+            pressed = 1;
+          }
+          else if (keyMap[ii + option][jj] == KEY_MDWN)
+          {
+            startMouseMove(KEY_MDWN);
+            pressed = 1;
+          }
+          else if (keyMap[ii + option][jj] == KEY_MRIT)
+          {
+            startMouseMove(KEY_MRIT);
+            pressed = 1;
+          }
+          else if (keyMap[ii + option][jj] == KEY_MLFT)
+          {
+            startMouseMove(KEY_MLFT);
+            pressed = 1;
+          }
+          else if (keyMap[ii + option][jj] == KEY_MLCL)
+          {
+            Mouse.press(MOUSE_LEFT);
+            pressed = 1;
+          }
+          else if (keyMap[ii + option][jj] == KEY_MRCL)
+          {
+            Mouse.press(MOUSE_RIGHT);
+            pressed = 1;
+          }
 
 
           
@@ -878,7 +926,7 @@ void loop() {
             fnKeyPushed = false;
             pressed = 0;
             Keyboard.releaseAll();
-            ConsumerControl.release();
+            //ConsumerControl.release();
             Serial.println("FNKeyreleased!");
           }
           if (keyMap[ii + option][jj] == KEY_RAIS)
@@ -901,7 +949,41 @@ void loop() {
           {
             pressed = 0;
           }
-          if (keyMap[ii + option][jj] == KEY_MUTE)
+
+          if (keyMap[ii + option][jj] == KEY_MUP)
+          {
+            stopMouseMove(KEY_MUP);
+            pressed = 0;
+          }
+          if (keyMap[ii + option][jj] == KEY_MDWN)
+          {
+            stopMouseMove(KEY_MDWN);
+            pressed = 0;
+          }
+          if (keyMap[ii + option][jj] == KEY_MRIT)
+          {
+            stopMouseMove(KEY_MRIT);
+            pressed = 0;
+          }
+          if (keyMap[ii + option][jj] == KEY_MLFT)
+          {
+            stopMouseMove(KEY_MLFT);
+            pressed = 0;
+          }
+          if (keyMap[ii + option][jj] == KEY_MLCL)
+          {
+            Mouse.release(MOUSE_LEFT);
+            pressed = 1;
+          }
+          if (keyMap[ii + option][jj] == KEY_MRCL)
+          {
+            Mouse.release(MOUSE_RIGHT);
+            pressed = 1;
+          }
+
+
+          
+          /*if (keyMap[ii + option][jj] == KEY_MUTE)
           {
             pressed = 0;
             ConsumerControl.release();
@@ -915,7 +997,7 @@ void loop() {
           {
             pressed = 0;
             ConsumerControl.release();
-          }
+          }*/
           else
           {
             Keyboard.release( keyMap[ii + option][jj]);
@@ -1101,7 +1183,7 @@ void readSerial()
         changeLightProfile();
         pressed = 1;
       }
-      else if (keyMap[row1 + option1][col1] == KEY_MUTE)
+      /*else if (keyMap[row1 + option1][col1] == KEY_MUTE)
       {
         ConsumerControl.press(VOLUME_MUTE);
         pressed = 1;
@@ -1115,7 +1197,7 @@ void readSerial()
       {
         ConsumerControl.press(VOLUME_DOWN);
         pressed = 1;
-      }
+      }*/
       else if (keyMap[row1 + option1][col1] == KEY_MAIL)
       {
         Keyboard.print("shota.M.020626.S.K.F@gmail.com");
@@ -1141,6 +1223,39 @@ void readSerial()
         //Keyboard.print("}");
         pressed = 1;
       }
+
+      else if (keyMap[row1 + option1][col1] == KEY_MUP)
+      {
+        startMouseMove(KEY_MUP);
+        pressed = 1;
+      }
+      else if (keyMap[row1 + option1][col1] == KEY_MDWN)
+      {
+        startMouseMove(KEY_MDWN);
+        pressed = 1;
+      }
+      else if (keyMap[row1 + option1][col1] == KEY_MRIT)
+      {
+        startMouseMove(KEY_MRIT);
+        pressed = 1;
+      }
+      else if (keyMap[row1 + option1][col1] == KEY_MLFT)
+      {
+        startMouseMove(KEY_MLFT);
+        pressed = 1;
+      }
+      else if (keyMap[row1 + option1][col1] == KEY_MLCL)
+      {
+        Mouse.press(MOUSE_LEFT);
+        pressed = 1;
+      }
+      else if (keyMap[row1 + option1][col1] == KEY_MRCL)
+      {
+        Mouse.press(MOUSE_RIGHT);
+        pressed = 1;
+      }
+
+
       
 
       /*if(keyMap[row1 + option1][col1] == KEY_SPC && leftControlPushed)
@@ -1209,7 +1324,7 @@ void readSerial()
       {
         fnKeyPushed = false;
         Keyboard.releaseAll();
-        ConsumerControl.release();
+        //ConsumerControl.release();
       }
 
       if(keyMap[row1 + option1][col1] == KEY_LSFT)
@@ -1256,7 +1371,41 @@ void readSerial()
       {
         pressed = 0;
       }
-      if (keyMap[row1 + option1][col1] == KEY_MUTE)
+
+      if (keyMap[row1 + option1][col1] == KEY_MUP)
+      {
+        stopMouseMove(KEY_MUP);
+        pressed = 0;
+      }
+      if (keyMap[row1 + option1][col1] == KEY_MDWN)
+      {
+        stopMouseMove(KEY_MDWN);
+        pressed = 0;
+      }
+      if (keyMap[row1 + option1][col1] == KEY_MRIT)
+      {
+        stopMouseMove(KEY_MRIT);
+        pressed = 0;
+      }
+      if (keyMap[row1 + option1][col1] == KEY_MLFT)
+      {
+        stopMouseMove(KEY_MLFT);
+        pressed = 0;
+      }
+      if (keyMap[row1 + option1][col1] == KEY_MLCL)
+      {
+        Mouse.release(MOUSE_LEFT);
+        pressed = 1;
+      }
+      if (keyMap[row1 + option1][col1] == KEY_MRCL)
+      {
+        Mouse.release(MOUSE_RIGHT);
+        pressed = 1;
+      }
+
+
+      
+      /*if (keyMap[row1 + option1][col1] == KEY_MUTE)
       {
         pressed = 0;
         ConsumerControl.release();
@@ -1270,7 +1419,7 @@ void readSerial()
       {
         pressed = 0;
         ConsumerControl.release();
-      }
+      }*/
       else
       {
         Keyboard.release( keyMap[row1 + option1][col1]);
@@ -1547,4 +1696,42 @@ void changeLightProfile()
   EEPROM[0x000] = LEDProfile;
   Serial.print("EEPROM[0x000] ");
   Serial.println(EEPROM[0x000]);
+}
+void startMouseMove(uint8_t direction)
+{
+  if(direction == KEY_MUP)
+  {
+    mouseMove_y = true;
+  }
+  if(direction == KEY_MDWN)
+  {
+    mouseMovey = true;
+  }
+  if(direction == KEY_MRIT)
+  {
+    mouseMovex = true;
+  }
+  if(direction == KEY_MLFT)
+  {
+    mouseMove_x = true;
+  }
+}
+void stopMouseMove(uint8_t direction)
+{
+  if(direction == KEY_MUP)
+  {
+    mouseMove_y = false;
+  }
+  if(direction == KEY_MDWN)
+  {
+    mouseMovey = false;
+  }
+  if(direction == KEY_MRIT)
+  {
+    mouseMovex = false;
+  }
+  if(direction == KEY_MLFT)
+  {
+    mouseMove_x = false;
+  }
 }
