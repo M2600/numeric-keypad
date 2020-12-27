@@ -1,5 +1,3 @@
-
-
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "HID.h"
@@ -947,6 +945,7 @@ void loop() {
           {
             loweKeyPushed = false;
             pressed = 0;
+            stopMouseMove(0);
             Keyboard.releaseAll();
           }
           if (keyMap[ii + option][jj] == KEY_CPFL)
@@ -1371,6 +1370,7 @@ void readSerial()
       if (keyMap[row1 + option1][col1] == KEY_LOWE)
       {
         Keyboard.releaseAll();
+        stopMouseMove(0);
         loweKeyPushed = false;
       }
       if (keyMap[row1 + option1][col1] == KEY_CPFL)
@@ -1405,12 +1405,12 @@ void readSerial()
       if (keyMap[row1 + option1][col1] == KEY_MLCL)
       {
         Mouse.release(MOUSE_LEFT);
-        pressed = 1;
+        pressed = 0;
       }
       if (keyMap[row1 + option1][col1] == KEY_MRCL)
       {
         Mouse.release(MOUSE_RIGHT);
-        pressed = 1;
+        pressed = 0;
       }
 
 
@@ -1707,41 +1707,53 @@ void changeLightProfile()
   Serial.print("EEPROM[0x000] ");
   Serial.println(EEPROM[0x000]);
 }
-void startMouseMove(uint8_t direction)
+void startMouseMove(uint8_t directions)
 {
-  if(direction == KEY_MUP)
+  if(directions == KEY_MUP)
   {
     mouseMove_y = true;
   }
-  if(direction == KEY_MDWN)
+  if(directions == KEY_MDWN)
   {
     mouseMovey = true;
   }
-  if(direction == KEY_MRIT)
+  if(directions == KEY_MRIT)
   {
     mouseMovex = true;
   }
-  if(direction == KEY_MLFT)
+  if(directions == KEY_MLFT)
   {
     mouseMove_x = true;
   }
 }
-void stopMouseMove(uint8_t direction)
+void stopMouseMove(uint8_t directions)
 {
-  if(direction == KEY_MUP)
+  if(directions == 0)
   {
-    mouseMove_y = false;
+     mouseMove_y = false;
+     mouseMovey = false;
+     mouseMovex = false;
+     mouseMove_x = false;
+     Mouse.release();
   }
-  if(direction == KEY_MDWN)
+  else
   {
-    mouseMovey = false;
+    if(directions == KEY_MUP)
+    {
+      mouseMove_y = false;
+    }
+    if(directions == KEY_MDWN)
+    {
+      mouseMovey = false;
+    }
+    if(directions == KEY_MRIT)
+    {
+      mouseMovex = false;
+    }
+    if(directions == KEY_MLFT)
+    {
+      mouseMove_x = false;
+    }
   }
-  if(direction == KEY_MRIT)
-  {
-    mouseMovex = false;
-  }
-  if(direction == KEY_MLFT)
-  {
-    mouseMove_x = false;
-  }
+  
 }
