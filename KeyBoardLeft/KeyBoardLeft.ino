@@ -1,3 +1,5 @@
+
+
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "HID.h"
@@ -761,17 +763,20 @@ void loop() {
           }
           else if (keyMap[ii + option][jj] == KEY_MUTE)
           {
+            //Consumer.write(MEDIA_VOLUME_MUTE);
             //ConsumerControl.press(VOLUME_MUTE);
             pressed = 1;
           }
           else if (keyMap[ii + option][jj] == KEY_VOLUMEUP)
           {
+            //Consumer.write(MEDIA_VOLUME_UP);
             //Keyboard.print(128+AS_RAW_SCANCODE);
             //ConsumerControl.press(VOLUME_UP);
             pressed = 1;
           }
           else if (keyMap[ii + option][jj] == KEY_VOLUMEDOWN)
           {
+            //Consumer.write(MEDIA_VOLUME_DOWN);
             //Keyboard.print(129+AS_RAW_SCANCODE);
             //ConsumerControl.press(VOLUME_DOWN);
             pressed = 1;
