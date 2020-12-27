@@ -1,10 +1,11 @@
 #include "ConsumerControl.h"
 
 static const uint8_t _hidReportDescriptor[] PROGMEM = {
-  0x05, 0x0c, // USAGE_PAGE (Consumer)
+  0x05, 0x01, // USAGE_PAGE (Consumer)
   0x09, 0x01, // USAGE (Consumer Control)
   0xa1, 0x01, // COLLECTION (Application)
-  0x85, REPORT_ID, // REPORT_ID (X)
+  //0x85, REPORT_ID, // REPORT_ID (X)
+  0x85, 0x01, // REPORT_ID (1)
   0x15, 0x00, // LOGICAL_MINIMUM (0)
   0x25, 0x01, // LOGICAL_MAXIMUM (1)
   0x09, 0xe9, // USAGE (Volume Increment)
@@ -25,18 +26,18 @@ static const uint8_t _hidReportDescriptor[] PROGMEM = {
   HID().AppendDescriptor(&node);
 }
 
-/*void ConsumerControl_::press(u8 buttonBit)
+/*void ConsumerControl_::press(uint8_t buttonBit)
 {
   u8 m[1];
   m[0]=(1 << buttonBit);
-  HID().SendReport(REPORT_ID, m, sizeof(m));
+  HID().SendReport(1, m, sizeof(m));
 }
 
 void ConsumerControl_::release()
 {
   u8 m[1];
   m[0]=0;
-  HID().SendReport(REPORT_ID, m, sizeof(m));
+  HID().SendReport(1, m, sizeof(m));
 }*/
 
 ConsumerControl_ ConsumerControl;

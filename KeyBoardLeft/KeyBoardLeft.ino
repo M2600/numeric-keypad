@@ -403,6 +403,7 @@ bool mouseMovey = false;
 bool mouseMove_y = false;
 
 float MouseConstant = 3.0;
+const int AS_RAW_SCANCODE = 136;
 
 
 
@@ -758,21 +759,23 @@ void loop() {
             changeLightProfile();
             pressed = 1;
           }
-          /*else if (keyMap[ii + option][jj] == KEY_MUTE)
+          else if (keyMap[ii + option][jj] == KEY_MUTE)
           {
-            ConsumerControl.press(VOLUME_MUTE);
+            //ConsumerControl.press(VOLUME_MUTE);
             pressed = 1;
           }
           else if (keyMap[ii + option][jj] == KEY_VOLUMEUP)
           {
-            ConsumerControl.press(VOLUME_UP);
+            //Keyboard.print(128+AS_RAW_SCANCODE);
+            //ConsumerControl.press(VOLUME_UP);
             pressed = 1;
           }
           else if (keyMap[ii + option][jj] == KEY_VOLUMEDOWN)
           {
-            ConsumerControl.press(VOLUME_DOWN);
+            //Keyboard.print(129+AS_RAW_SCANCODE);
+            //ConsumerControl.press(VOLUME_DOWN);
             pressed = 1;
-          }*/
+          }
           else if (keyMap[ii + option][jj] == KEY_MAIL)
           {
             Keyboard.print("shota.M.020626.S.K.F@gmail.com");
@@ -973,12 +976,12 @@ void loop() {
           if (keyMap[ii + option][jj] == KEY_MLCL)
           {
             Mouse.release(MOUSE_LEFT);
-            pressed = 1;
+            pressed = 0;
           }
           if (keyMap[ii + option][jj] == KEY_MRCL)
           {
             Mouse.release(MOUSE_RIGHT);
-            pressed = 1;
+            pressed = 0;
           }
 
 
@@ -1183,21 +1186,23 @@ void readSerial()
         changeLightProfile();
         pressed = 1;
       }
-      /*else if (keyMap[row1 + option1][col1] == KEY_MUTE)
+      else if (keyMap[row1 + option1][col1] == KEY_MUTE)
       {
-        ConsumerControl.press(VOLUME_MUTE);
+        //ConsumerControl.press(VOLUME_MUTE);
         pressed = 1;
       }
       else if (keyMap[row1 + option1][col1] == KEY_VOLUMEUP)
       {
-        ConsumerControl.press(VOLUME_UP);
+        //Keyboard.print(128+AS_RAW_SCANCODE);
+        //ConsumerControl.press(VOLUME_UP);
         pressed = 1;
       }
       else if (keyMap[row1 + option1][col1] == KEY_VOLUMEDOWN)
       {
-        ConsumerControl.press(VOLUME_DOWN);
+        //Keyboard.print(129+AS_RAW_SCANCODE);
+        //ConsumerControl.press(VOLUME_DOWN);
         pressed = 1;
-      }*/
+      }
       else if (keyMap[row1 + option1][col1] == KEY_MAIL)
       {
         Keyboard.print("shota.M.020626.S.K.F@gmail.com");

@@ -1,6 +1,6 @@
 #include "HID.h"
 
-#define REPORT_ID 1
+//#define REPORT_ID 1
 #define VOLUME_UP 0
 #define VOLUME_DOWN 1
 #define VOLUME_MUTE 2
@@ -9,7 +9,7 @@ class ConsumerControl_
 {
 public:
   //ConsumerControl_(void);
- // void press(u8 buttonBit);
+  //void press(uint8_t buttonBit);
   //void release(void);
 };
 
