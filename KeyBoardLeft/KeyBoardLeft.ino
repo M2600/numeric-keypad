@@ -220,7 +220,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
 
   //leftFn
   {KEY_ESC,  KEY_F1,   KEY_F2,   KEY_F3,   KEY_MUTE, KEY_VOLUMEDOWN, KEY_VOLUMEUP, NONE     },
-  {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,          KEY_6,        NONE     },
+  {KEY_CPFL, KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,          KEY_6,        NONE     },
   {KEY_CLPF, KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,          KEY_LPRN,     NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,          KEY_LCBR,     NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,          KEY_FOR,      NONE     },
@@ -249,7 +249,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
 
   //leftGame
   {KEY_ESC,  KEY_F1,   KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,   KEY_F6,   NONE     },
-  {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,    NONE     },
+  {KEY_CPFL, KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,    NONE     },
   {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_F1,   NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_F2,   NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F3,   NONE     },
