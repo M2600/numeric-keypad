@@ -1,4 +1,4 @@
-//#include "Keyboard.h"
+/*//#include "Keyboard.h"
 #include "Mouse.h"
 #include "ConsumerControl.h"
 #include <Adafruit_NeoPixel.h>
@@ -27,5 +27,24 @@ void loop() {
     pixels.setPixelColor(i, pixels.Color(0, 150, 0));
     pixels.show();
     delay(DELAYVAL);
+  }
+}*/
+int inByte = 0;
+int SA = 0;
+ 
+void setup() {
+  Serial.begin(9600);
+}
+ 
+void loop() {
+  SA = Serial.available();  // シリアルポートにデータがあるかを確認
+  if(SA > 0){
+    Serial.println("received");
+    inByte = Serial.read(); // データを読み込む
+    if(inByte==65){
+      Serial.print("Done.");  // ASCIIコードで"A"だった場合に"Done."を送信
+      delay(1000);  // 通信用の待機時間
+      Serial.println("send");
+    }
   }
 }
