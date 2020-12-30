@@ -24,68 +24,52 @@
       <Value Profile="(Default)">Arduino</Value>
     </Setting>
     <Setting Name="Gamelists5" Type="System.String" Scope="User">
-      <Value Profile="(Default)">
-                </Value>
+      <Value Profile="(Default)">PUBG</Value>
     </Setting>
     <Setting Name="Gamelists6" Type="System.String" Scope="User">
-      <Value Profile="(Default)">
-                </Value>
+      <Value Profile="(Default)">..</Value>
     </Setting>
     <Setting Name="Gamelists7" Type="System.String" Scope="User">
-      <Value Profile="(Default)">
-                </Value>
+      <Value Profile="(Default)">..</Value>
     </Setting>
     <Setting Name="Gamelists8" Type="System.String" Scope="User">
-      <Value Profile="(Default)">
-                </Value>
+      <Value Profile="(Default)">..</Value>
     </Setting>
     <Setting Name="Gamelists9" Type="System.String" Scope="User">
-      <Value Profile="(Default)">
-                </Value>
+      <Value Profile="(Default)">..</Value>
     </Setting>
     <Setting Name="Gamelists10" Type="System.String" Scope="User">
-      <Value Profile="(Default)">
-                </Value>
+      <Value Profile="(Default)">..</Value>
     </Setting>
     <Setting Name="Codinglists1" Type="System.String" Scope="User">
-      <Value Profile="(Default)">
-                </Value>
+      <Value Profile="(Default)">..</Value>
     </Setting>
     <Setting Name="Codinglists2" Type="System.String" Scope="User">
-      <Value Profile="(Default)">
-                </Value>
+      <Value Profile="(Default)">..</Value>
     </Setting>
     <Setting Name="Codinglists3" Type="System.String" Scope="User">
-      <Value Profile="(Default)">
-                </Value>
+      <Value Profile="(Default)">..</Value>
     </Setting>
     <Setting Name="Codinglists4" Type="System.String" Scope="User">
-      <Value Profile="(Default)">
-                </Value>
+      <Value Profile="(Default)">..</Value>
     </Setting>
     <Setting Name="Codinglists5" Type="System.String" Scope="User">
-      <Value Profile="(Default)">
-                </Value>
+      <Value Profile="(Default)">..</Value>
     </Setting>
     <Setting Name="Codinglists6" Type="System.String" Scope="User">
-      <Value Profile="(Default)">
-                </Value>
+      <Value Profile="(Default)">..</Value>
     </Setting>
     <Setting Name="Codinglists7" Type="System.String" Scope="User">
-      <Value Profile="(Default)">
-                </Value>
+      <Value Profile="(Default)">..</Value>
     </Setting>
     <Setting Name="Codinglists8" Type="System.String" Scope="User">
-      <Value Profile="(Default)">
-                </Value>
+      <Value Profile="(Default)">..</Value>
     </Setting>
     <Setting Name="Codinglists9" Type="System.String" Scope="User">
-      <Value Profile="(Default)">
-                </Value>
+      <Value Profile="(Default)">..</Value>
     </Setting>
     <Setting Name="Codinglists10" Type="System.String" Scope="User">
-      <Value Profile="(Default)">
-                </Value>
+      <Value Profile="(Default)">..</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -109,7 +109,7 @@ namespace Keyboard_configuration_software.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("PUBG")]
         public string Gamelists5 {
             get {
                 return ((string)(this["Gamelists5"]));
@@ -121,7 +121,7 @@ namespace Keyboard_configuration_software.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
         public string Gamelists6 {
             get {
                 return ((string)(this["Gamelists6"]));
@@ -133,7 +133,7 @@ namespace Keyboard_configuration_software.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
         public string Gamelists7 {
             get {
                 return ((string)(this["Gamelists7"]));
@@ -145,7 +145,7 @@ namespace Keyboard_configuration_software.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
         public string Gamelists8 {
             get {
                 return ((string)(this["Gamelists8"]));
@@ -157,7 +157,7 @@ namespace Keyboard_configuration_software.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
         public string Gamelists9 {
             get {
                 return ((string)(this["Gamelists9"]));
@@ -169,7 +169,7 @@ namespace Keyboard_configuration_software.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
         public string Gamelists10 {
             get {
                 return ((string)(this["Gamelists10"]));
@@ -181,7 +181,7 @@ namespace Keyboard_configuration_software.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
         public string Codinglists1 {
             get {
                 return ((string)(this["Codinglists1"]));
@@ -193,7 +193,7 @@ namespace Keyboard_configuration_software.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
         public string Codinglists2 {
             get {
                 return ((string)(this["Codinglists2"]));
@@ -205,7 +205,7 @@ namespace Keyboard_configuration_software.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
         public string Codinglists3 {
             get {
                 return ((string)(this["Codinglists3"]));
@@ -217,7 +217,7 @@ namespace Keyboard_configuration_software.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
         public string Codinglists4 {
             get {
                 return ((string)(this["Codinglists4"]));
@@ -229,7 +229,7 @@ namespace Keyboard_configuration_software.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
         public string Codinglists5 {
             get {
                 return ((string)(this["Codinglists5"]));
@@ -241,7 +241,7 @@ namespace Keyboard_configuration_software.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
         public string Codinglists6 {
             get {
                 return ((string)(this["Codinglists6"]));
@@ -253,7 +253,7 @@ namespace Keyboard_configuration_software.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
         public string Codinglists7 {
             get {
                 return ((string)(this["Codinglists7"]));
@@ -265,7 +265,7 @@ namespace Keyboard_configuration_software.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
         public string Codinglists8 {
             get {
                 return ((string)(this["Codinglists8"]));
@@ -277,7 +277,7 @@ namespace Keyboard_configuration_software.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
         public string Codinglists9 {
             get {
                 return ((string)(this["Codinglists9"]));
@@ -289,7 +289,7 @@ namespace Keyboard_configuration_software.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
         public string Codinglists10 {
             get {
                 return ((string)(this["Codinglists10"]));

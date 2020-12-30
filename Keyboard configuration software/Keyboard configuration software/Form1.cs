@@ -21,7 +21,10 @@ namespace Keyboard_configuration_software
     {
         
         Form2 form2 = new Form2();
+        Form3 form3 = new Form3();
         public static Form1 _form1Instance;
+
+        NotifyIcon notifyIcon;
 
         [DllImport("user32.dll")]
         public static extern IntPtr GetForegroundWindow();
@@ -78,8 +81,39 @@ namespace Keyboard_configuration_software
         {
             InitializeComponent();
 
-            
+            this.ShowInTaskbar = false;
+            this.setComponents();
+
         }
+        private void setComponents()
+        {
+            notifyIcon = new NotifyIcon();
+            // アイコンの設定
+            notifyIcon.Icon = new Icon(@"E:\M260\Documents\GitHub\numeric-keypad\Keyboard configuration software\Keyboard configuration software\keyboard.ico");
+            // アイコンを表示する
+            notifyIcon.Visible = true;
+            // アイコンにマウスポインタを合わせたときのテキスト
+            notifyIcon.Text = "KeyboardConfiguration";
+            ContextMenuStrip contextMenuStrip = new ContextMenuStrip();
+            ToolStripMenuItem toolStripMenuItem = new ToolStripMenuItem();
+            toolStripMenuItem.Text = " & 終了";
+            toolStripMenuItem.Click += ToolStripMenuItem_Click;
+            contextMenuStrip.Items.Add(toolStripMenuItem);
+            notifyIcon.ContextMenuStrip = contextMenuStrip;
+
+            notifyIcon.Click += NotifyIcon_Click;
+        }
+        private void ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        private void NotifyIcon_Click(object sender, EventArgs e)
+        {
+            // Formの表示/非表示を反転
+            this.Visible = !this.Visible;
+        }
+
+
         private void Form1_Load(object sender, EventArgs e)
         {
             Form1._form1Instance = this;
@@ -282,30 +316,12 @@ namespace Keyboard_configuration_software
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+            }
 
-            Properties.Settings.Default.Gamelists0 = Gamelists[0];
-            Properties.Settings.Default.Gamelists1 = Gamelists[1];
-            Properties.Settings.Default.Gamelists2 = Gamelists[2];
-            Properties.Settings.Default.Gamelists3 = Gamelists[3];
-            Properties.Settings.Default.Gamelists4 = Gamelists[4];
-            Properties.Settings.Default.Gamelists5 = Gamelists[5];
-            Properties.Settings.Default.Gamelists6 = Gamelists[6];
-            Properties.Settings.Default.Gamelists7 = Gamelists[7];
-            Properties.Settings.Default.Gamelists8 = Gamelists[8];
-            Properties.Settings.Default.Gamelists9 = Gamelists[9];
-            //Properties.Settings.Default.Gamelists10 = Gamelists[10];
-            Properties.Settings.Default.Codinglists0 = Gamelists[0];
-            Properties.Settings.Default.Codinglists1 = Gamelists[1];
-            Properties.Settings.Default.Codinglists2 = Gamelists[2];
-            Properties.Settings.Default.Codinglists3 = Gamelists[3];
-            Properties.Settings.Default.Codinglists4 = Gamelists[4];
-            Properties.Settings.Default.Codinglists5 = Gamelists[5];
-            Properties.Settings.Default.Codinglists6 = Gamelists[6];
-            Properties.Settings.Default.Codinglists7 = Gamelists[7];
-            Properties.Settings.Default.Codinglists8 = Gamelists[8];
-            Properties.Settings.Default.Codinglists9 = Gamelists[9];
-            //Properties.Settings.Default.Codinglists10 = Gamelists[10];
-            Properties.Settings.Default.Save();
+            this.Visible = !this.Visible;
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -345,5 +361,7 @@ namespace Keyboard_configuration_software
             Properties.Settings.Default.Codinglists9 = Gamelists[9];
             Properties.Settings.Default.Save();
         }
+
+        
     }
 }

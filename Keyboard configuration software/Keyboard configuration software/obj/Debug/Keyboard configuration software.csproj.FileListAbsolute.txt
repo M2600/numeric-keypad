@@ -19,3 +19,4 @@ E:\M260\Documents\GitHub\numeric-keypad\Keyboard configuration software\Keyboard
 E:\M260\Documents\GitHub\numeric-keypad\Keyboard configuration software\Keyboard configuration software\obj\Debug\Keyboard configuration software.exe
 E:\M260\Documents\GitHub\numeric-keypad\Keyboard configuration software\Keyboard configuration software\obj\Debug\Keyboard configuration software.pdb
 E:\M260\Documents\GitHub\numeric-keypad\Keyboard configuration software\Keyboard configuration software\obj\Debug\Keyboard_configuration_software.Form2.resources
+E:\M260\Documents\GitHub\numeric-keypad\Keyboard configuration software\Keyboard configuration software\obj\Debug\Keyboard_configuration_software.Form3.resources
