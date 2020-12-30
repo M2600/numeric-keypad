@@ -38,6 +38,7 @@ namespace Keyboard_configuration_software
         public List<string> Gamelists = new List<string> (10){"Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends" };
         public List<string> Codinglists = new List<string>(10) { "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino" };
 
+        private string sendmessage = "0";
         
         public static Form1 Form1Instance
         {
@@ -77,9 +78,7 @@ namespace Keyboard_configuration_software
         {
             InitializeComponent();
 
-            _timer = new System.Timers.Timer(1000.0 / 60.0); // in milliseconds - you might have to play with this value to throttle your framerate depending on how involved your update and render code is 
-            _timer.Elapsed += TimerElapsed;
-            _timer.Start();
+            
         }
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -95,9 +94,11 @@ namespace Keyboard_configuration_software
             GetWindowText(GetForegroundWindow(), sb, 65535);
             Console.WriteLine(sb);
 
-            serialport1.Close();
-            serialport1.PortName = Properties.Settings.Default.SerialPort;
-            serialport1.Open();
+            serialPort1.Close();
+            serialPort1.PortName = Properties.Settings.Default.SerialPort;
+            serialPort1.WriteTimeout = 500;
+            serialPort1.Open();
+            
             Invoke((MethodInvoker)(() =>    // 受信用スレッドから切り替えてデータを書き込む
             {
                 textBox1.AppendText("Port opened to " + Form1.Form1Instance.serialport1.PortName + "\r\n");
@@ -138,6 +139,13 @@ namespace Keyboard_configuration_software
                 }));
             }
 
+
+
+            _timer = new System.Timers.Timer(1000.0 / 10.0); // in milliseconds - you might have to play with this value to throttle your framerate depending on how involved your update and render code is 
+            _timer.Elapsed += TimerElapsed;
+            _timer.Start();
+
+            Console.WriteLine("form1Loaded");
         }
 
         
@@ -207,6 +215,7 @@ namespace Keyboard_configuration_software
             StringBuilder sb = new StringBuilder(65535);//65535に特に意味はない
             GetWindowText(GetForegroundWindow(), sb, 65535);
             Console.WriteLine(sb);
+            bool send = false;
             
             if(appname != sb.ToString() && IsHandleCreated)
             {
@@ -222,7 +231,9 @@ namespace Keyboard_configuration_software
                         Invoke((MethodInvoker)(() =>    // 受信用スレッドから切り替えてデータを書き込む
                         {
                             textBox1.AppendText("game" + "\r\n");
-
+                            sendSerialCommunication("G");
+                            appname = sb.ToString();
+                            send = true;
                         }));
                     }
                     else if (sb.ToString().Contains(Codinglists[i]))
@@ -230,14 +241,42 @@ namespace Keyboard_configuration_software
                         Invoke((MethodInvoker)(() =>    // 受信用スレッドから切り替えてデータを書き込む
                         {
                             textBox1.AppendText("code" + "\r\n");
-
+                            sendSerialCommunication("C");
+                            appname = sb.ToString();
+                            send = true;
                         }));
                     }
+                    
                 }
+                if(!send)
+                {
+                    Invoke((MethodInvoker)(() =>    // 受信用スレッドから切り替えてデータを書き込む
+                    {
+                        //textBox1.AppendText("other" + "\r\n");
+                        sendSerialCommunication("D");
+                        appname = sb.ToString();
+                    }));
+                }
+                
             }
                 
             
-            appname = sb.ToString();
+            
+
+        }
+        private void sendSerialCommunication(string message)
+        {
+            if(sendmessage != message && serialport1.IsOpen)
+            {
+                Invoke((MethodInvoker)(() =>    // 受信用スレッドから切り替えてデータを書き込む
+                {
+                    serialPort1.Write(message);
+                    textBox1.AppendText(message + "\r\n");
+                }));
+                
+                Console.WriteLine("send " + message);
+                sendmessage = message;
+            }
 
         }
 

@@ -1,0 +1,11 @@
+E:\M260\Documents\GitHub\numeric-keypad\Keyboard configuration software\Keyboard configuration software\bin\Release\Keyboard configuration software.exe.config
+E:\M260\Documents\GitHub\numeric-keypad\Keyboard configuration software\Keyboard configuration software\bin\Release\Keyboard configuration software.exe
+E:\M260\Documents\GitHub\numeric-keypad\Keyboard configuration software\Keyboard configuration software\bin\Release\Keyboard configuration software.pdb
+E:\M260\Documents\GitHub\numeric-keypad\Keyboard configuration software\Keyboard configuration software\obj\Release\Keyboard configuration software.csprojAssemblyReference.cache
+E:\M260\Documents\GitHub\numeric-keypad\Keyboard configuration software\Keyboard configuration software\obj\Release\Keyboard_configuration_software.Form1.resources
+E:\M260\Documents\GitHub\numeric-keypad\Keyboard configuration software\Keyboard configuration software\obj\Release\Keyboard_configuration_software.Form2.resources
+E:\M260\Documents\GitHub\numeric-keypad\Keyboard configuration software\Keyboard configuration software\obj\Release\Keyboard_configuration_software.Properties.Resources.resources
+E:\M260\Documents\GitHub\numeric-keypad\Keyboard configuration software\Keyboard configuration software\obj\Release\Keyboard configuration software.csproj.GenerateResource.cache
+E:\M260\Documents\GitHub\numeric-keypad\Keyboard configuration software\Keyboard configuration software\obj\Release\Keyboard configuration software.csproj.CoreCompileInputs.cache
+E:\M260\Documents\GitHub\numeric-keypad\Keyboard configuration software\Keyboard configuration software\obj\Release\Keyboard configuration software.exe
+E:\M260\Documents\GitHub\numeric-keypad\Keyboard configuration software\Keyboard configuration software\obj\Release\Keyboard configuration software.pdb

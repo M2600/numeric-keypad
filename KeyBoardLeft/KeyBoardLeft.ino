@@ -577,7 +577,10 @@ void loop() {
   int delayTime = 5;
   delay(delayTime);
 
-  
+  if(Serial.available())
+  {
+    readPcSerial();
+  }
 
 
   //capslockSetting
@@ -1058,6 +1061,16 @@ void readSerial()
     Serial.print(" ");
     Serial.println(receiveData);
   }
+  else if (receiveData == 0b10000011)
+  {
+    gameModeEnabled = false;
+    changeProfile();
+  }
+  else if (receiveData == 0b10000100)
+  {
+    gameModeEnabled = true;
+    changeProfile();
+  }
   else if (receiveData & 0b10000000)
   {
 
@@ -1436,6 +1449,25 @@ void readSerial()
       }
     }
   }
+}
+
+void readPcSerial()
+{
+  byte receivedata = Serial.read();
+
+  if(receivedata == 'G')
+  {
+    gameModeEnabled = false;
+    Serial1.write(0b10000011);
+    changeProfile();
+  }
+  else if(receivedata == 'D')
+  {
+    gameModeEnabled = true;
+    Serial1.write(0b10000100);
+    changeProfile();
+  }
+  
 }
 void LEDTape()
 {
