@@ -81,7 +81,7 @@ namespace Keyboard_configuration_software
         {
             InitializeComponent();
 
-            this.ShowInTaskbar = false;
+            this.ShowInTaskbar = true;
             this.setComponents();
 
         }
@@ -111,6 +111,7 @@ namespace Keyboard_configuration_software
         {
             // Formの表示/非表示を反転
             this.Visible = !this.Visible;
+            this.ShowInTaskbar = this.Visible;
         }
 
 
@@ -322,6 +323,7 @@ namespace Keyboard_configuration_software
             }
 
             this.Visible = !this.Visible;
+            this.ShowInTaskbar = Visible;
         }
 
         private void button2_Click(object sender, EventArgs e)
