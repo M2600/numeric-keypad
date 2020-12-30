@@ -310,18 +310,40 @@ namespace Keyboard_configuration_software
 
         private void button2_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < textBox2.Lines.Length; i++)
+            for (int i = 0; i < Math.Min(textBox2.Lines.Length, 10); i++)
             {
-                Gamelists[i]=(textBox1.Lines[i]);
+                Gamelists[i]=(textBox2.Lines[i]);
             }
+            Properties.Settings.Default.Gamelists0 = Gamelists[0];
+            Properties.Settings.Default.Gamelists1 = Gamelists[1];
+            Properties.Settings.Default.Gamelists2 = Gamelists[2];
+            Properties.Settings.Default.Gamelists3 = Gamelists[3];
+            Properties.Settings.Default.Gamelists4 = Gamelists[4];
+            Properties.Settings.Default.Gamelists5 = Gamelists[5];
+            Properties.Settings.Default.Gamelists6 = Gamelists[6];
+            Properties.Settings.Default.Gamelists7 = Gamelists[7];
+            Properties.Settings.Default.Gamelists8 = Gamelists[8];
+            Properties.Settings.Default.Gamelists9 = Gamelists[9];
+            Properties.Settings.Default.Save();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < textBox3.Lines.Length; i++)
+            for (int i = 0; i < Math.Min(textBox3.Lines.Length,10); i++)
             {
                 Codinglists[i]=(textBox3.Lines[i]);
             }
+            Properties.Settings.Default.Codinglists0 = Gamelists[0];
+            Properties.Settings.Default.Codinglists1 = Gamelists[1];
+            Properties.Settings.Default.Codinglists2 = Gamelists[2];
+            Properties.Settings.Default.Codinglists3 = Gamelists[3];
+            Properties.Settings.Default.Codinglists4 = Gamelists[4];
+            Properties.Settings.Default.Codinglists5 = Gamelists[5];
+            Properties.Settings.Default.Codinglists6 = Gamelists[6];
+            Properties.Settings.Default.Codinglists7 = Gamelists[7];
+            Properties.Settings.Default.Codinglists8 = Gamelists[8];
+            Properties.Settings.Default.Codinglists9 = Gamelists[9];
+            Properties.Settings.Default.Save();
         }
     }
 }

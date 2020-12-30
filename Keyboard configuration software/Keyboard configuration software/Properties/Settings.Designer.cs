@@ -97,6 +97,18 @@ namespace Keyboard_configuration_software.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Arduino")]
+        public string Codinglists0 {
+            get {
+                return ((string)(this["Codinglists0"]));
+            }
+            set {
+                this["Codinglists0"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string Gamelists5 {
             get {
@@ -164,18 +176,6 @@ namespace Keyboard_configuration_software.Properties {
             }
             set {
                 this["Gamelists10"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Arduino")]
-        public string Codinglists0 {
-            get {
-                return ((string)(this["Codinglists0"]));
-            }
-            set {
-                this["Codinglists0"] = value;
             }
         }
         
