@@ -120,6 +120,8 @@ namespace Keyboard_configuration_software
             Form1._form1Instance = this;
             Form2 form2 = new Form2();
             form2.Hide();
+            form2.Left = this.Location.X + 20;
+            form2.Top = this.Location.Y + 20;
 
             //ユーザーがサイズを変更できないようにする
             //最大化、最小化はできる
@@ -209,6 +211,8 @@ namespace Keyboard_configuration_software
         }
         private void button1_Click_1(object sender, EventArgs e)
         {
+            form2.Left = this.Location.X + 20;
+            form2.Top = this.Location.Y + 20;
             form2.Show();
             form2.Activate();
             Console.WriteLine("form2 showed");

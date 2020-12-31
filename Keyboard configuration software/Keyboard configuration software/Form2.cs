@@ -23,6 +23,7 @@ namespace Keyboard_configuration_software
         public static extern int GetWindowText(IntPtr hWnd, StringBuilder lpString, int nMaxCount);
         //Form1 form1 = new Form1();
 
+       
         public static Form2 _form2Instance;
 
         public static Form2 Form2Instance
@@ -75,6 +76,7 @@ namespace Keyboard_configuration_software
                 Console.WriteLine("Port opened to " + Form1.Form1Instance.serialport1.PortName);
                 Properties.Settings.Default.SerialPort = Form1.Form1Instance.serialport1.PortName;
                 Properties.Settings.Default.Save();
+                label2.Text = " ";
                 this.Hide();
             }
             else
@@ -87,6 +89,16 @@ namespace Keyboard_configuration_software
         private void button1_Click(object sender, EventArgs e)
         {
             
+        }
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                e.Cancel = true;
+            }
+            label2.Text = " ";
+
+            this.Hide();
         }
     }
 }
