@@ -495,6 +495,8 @@ void setup() {
   delay(600);
   Serial.println("Serial available!!");
 
+  
+
 
   LEDProfile = EEPROM[0x000]; 
   gameModeEnabled = EEPROM[0x001];
@@ -568,13 +570,15 @@ void setup() {
     Serial.println(sendData);
     capsLocked = true;
   }
+  Keyboard.releaseAll();
 }
 
 
 //============================loop==================================
 void loop() {
   //AntiChattering
-  int delayTime = 5;
+  int delayTime = 8;
+  int gameDelayTime = 5;
   delay(delayTime);
 
   if(Serial.available())
