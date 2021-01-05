@@ -579,7 +579,15 @@ void loop() {
   //AntiChattering
   int delayTime = 8;
   int gameDelayTime = 5;
-  delay(delayTime);
+  if(gameModeEnabled) 
+  { 
+    delay(gameDelayTime);
+  }
+  else
+  {
+    delay(delayTime);
+  }
+  
 
   if(Serial.available())
   {
