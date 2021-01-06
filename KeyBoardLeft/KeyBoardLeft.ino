@@ -57,6 +57,8 @@ bool leftSide;
 #define KEY_MHUP 0x12
 #define KEY_MHDW 0x13
 
+#define KEY_KLCK 0x14
+
 #define KEY_ENT  0xB0 //Enter
 #define KEY_ESC  0xB1 //Escape 
 #define KEY_BSPC 0xB2 //Backspace
@@ -225,7 +227,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,          KEY_LCBR,     NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,          KEY_FOR,      NONE     },
   {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT,       KEY_DEL,      ____     },
-  {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,           KEY_SPC,      NONE     },
+  {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,           KEY_KLCK,     NONE     },
 
   //leftRais
   {KEY_ESC,  KEY_F1,   KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,   KEY_F6,   NONE     },
@@ -263,7 +265,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,          KEY_F2,       NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,          KEY_F3,       NONE     },
   {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_C,    KEY_F4,         KEY_F5,       KEY_F6   },
-  {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,           KEY_SPC,      NONE     },
+  {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,           KEY_KLCK,     NONE     },
 
   //leftGameRAIS
   {KEY_ESC,  KEY_F1,   KEY_F2,   KEY_F3,   KEY_F4,   KEY_F5,   KEY_F6,   NONE     },
@@ -401,6 +403,8 @@ bool mouseMovex = false;
 bool mouseMove_x = false;
 bool mouseMovey = false;
 bool mouseMove_y = false;
+
+bool keyboardEnabled = true;
 
 float MouseConstant = 3.0;
 const int AS_RAW_SCANCODE = 136;
@@ -888,17 +892,20 @@ void loop() {
             }
             pressed = 1;
           }
+          else if(keyMap[ii + option][jj] == KEY_KLCK)
+          {
+            chengeKeyboardEnabled();
+          }
           
           else
           {
-            if(sendchar)
+            if(sendchar && keyboardEnabled)
             {
               Keyboard.press( keyMap[ii + option][jj]);
-              pressed = 1;
               Serial.print("pressed keycode ");
               Serial.println(keyMap[ii + option][jj]);
             }
-            
+            pressed = 1;
           }
         }
         else
@@ -1082,8 +1089,27 @@ void readSerial()
   {
     gameModeEnabled = true;
     changeProfile();
+    Serial.print("keyboardEnabled :");
+    Serial.print(keyboardEnabled);
   }
-  else if (receiveData & 0b10000000)
+  else if (receiveData == 0b10000101)
+  {
+    keyboardEnabled = false;
+    statusLED.setPixelColor(3,statusLED.Color(5, 0, 0));
+    statusLED.show();
+    Serial.print("keyboardEnabled :");
+    Serial.println(keyboardEnabled);
+  }
+  else if (receiveData == 0b10000110)
+  {
+    
+    keyboardEnabled = true;
+    statusLED.setPixelColor(3,statusLED.Color(0, 5, 0));
+    statusLED.show();
+    Serial.print("keyboardEnabled :");
+    Serial.println(keyboardEnabled);
+  }
+  if (receiveData & 0b10000000)
   {
 
   }
@@ -1330,7 +1356,11 @@ void readSerial()
       
       else
       {
-        if(sendChar1)
+        Serial.print("sendChar1 :");
+        Serial.print(sendChar1);
+        Serial.print("keyboardEnabled :");
+        Serial.print(keyboardEnabled);
+        if(sendChar1 && keyboardEnabled)
         {
           Keyboard.press( keyMap[row1 + option1][col1]);
           Serial.println(keyMap[row1 + option1][col1]);
@@ -1344,8 +1374,8 @@ void readSerial()
 
       if (keyMap[row1 + optionIME1][col1] == KEY_RAIS)
       {
-          chengeIMERaisEnabled = false;
-          pressed = 0;
+        chengeIMERaisEnabled = false;
+        pressed = 0;
       }
       if (keyMap[row1 + optionIME1][col1] == KEY_LOWE)
       {
@@ -1798,6 +1828,28 @@ void stopMouseMove(uint8_t directions)
     {
       mouseMove_x = false;
     }
+  }
+  
+}
+void chengeKeyboardEnabled()
+{
+  if(!keyboardEnabled)
+  {
+    keyboardEnabled = true;
+    Serial1.write(0b10000101);
+    statusLED.setPixelColor(3,statusLED.Color(0, 5, 0)); 
+    statusLED.show();
+    Serial.print("keyboardEnabled :");
+    Serial.println(keyboardEnabled);
+  }
+  else
+  {
+    keyboardEnabled = false;
+    Serial1.write(0b10000110);
+    statusLED.setPixelColor(3,statusLED.Color(5, 0, 0)); 
+    statusLED.show();
+    Serial.print("keyboardEnabled :");
+    Serial.println(keyboardEnabled);
   }
   
 }
