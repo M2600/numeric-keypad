@@ -460,15 +460,15 @@ void setup() {
     pinMode(row[ii], OUTPUT);
     digitalWrite(row[ii], HIGH);
     Serial.print(digitalRead(row[ii]));
-    Serial.print(" ");
+    Serial.print(F(" "));
   }
-  Serial.println(" ");
+  Serial.println(F(" "));
   Serial.println(sizeof(col) / 2);
   for (int ii = 0; ii < sizeof(col) / 2; ii++)
   {
     pinMode(col[ii], INPUT_PULLUP);
     Serial.print(digitalRead(col[ii]));
-    Serial.print(" ");
+    Serial.print(F(" "));
   }
 
   //setKeysStatus
@@ -497,7 +497,7 @@ void setup() {
   backLED.begin();
   statusLED.begin();
   delay(600);
-  Serial.println("Serial available!!");
+  Serial.println(F("Serial available!!"));
 
   
 
@@ -540,9 +540,9 @@ void setup() {
   changeProfile();
 
 
-  Serial.print("EEPROM[0x000] ");
+  Serial.print(F("EEPROM[0x000] "));
   Serial.println(EEPROM[0x000]);
-  Serial.print("EEPROM[0x001] ");
+  Serial.print(F("EEPROM[0x001] "));
   Serial.println(EEPROM[0x001]);
 
 
@@ -569,8 +569,8 @@ void setup() {
     sendData = 0b10000001;
     Serial1.write(sendData);
     Serial.flush();
-    Serial.print("senddate");
-    Serial.print(" ");
+    Serial.print(F("senddate"));
+    Serial.print(F(" "));
     Serial.println(sendData);
     capsLocked = true;
   }
@@ -606,8 +606,8 @@ void loop() {
     sendData = 0b10000001;
     Serial1.write(sendData);
     Serial.flush();
-    Serial.print("senddate");
-    Serial.print(" ");
+    Serial.print(F("senddate"));
+    Serial.print(F(" "));
     Serial.println(sendData);
     capsLocked = true;
   }
@@ -616,8 +616,8 @@ void loop() {
     capsLockLedOff();
     sendData = 0b10000010;
     Serial1.write(sendData);
-    Serial.print("senddate");
-    Serial.print(" ");
+    Serial.print(F("senddate"));
+    Serial.print(F(" "));
     Serial.println(sendData);
     Serial.flush();
     capsLocked = false;
@@ -677,22 +677,22 @@ void loop() {
         if (fnKeyPushed && !raisKeyPushed && !loweKeyPushed)
         {
           option += 7;
-          Serial.println("FNKeylayer");
+          Serial.println(F("FNKeylayer"));
         }
         if (raisKeyPushed && !fnKeyPushed && !loweKeyPushed)
         {
           option += 14;
-          Serial.println("reisKeylayer");
+          Serial.println(F("reisKeylayer"));
         }
         if (loweKeyPushed && !fnKeyPushed && !raisKeyPushed)
         {
           option += 21;
-          Serial.println("lowerKeylayer");
+          Serial.println(F("lowerKeylayer"));
         }
         if (gameModeEnabled)
         {
           option += 28;
-          Serial.println("gameKeylayer");
+          Serial.println(F("gameKeylayer"));
         }
 
         if ( !currentState[ii][jj] )
@@ -762,7 +762,7 @@ void loop() {
             //Keyboard.releaseAll();
             fnKeyPushed = true;
             pressed = 1;
-            Serial.println("FNKeyPushed!");
+            Serial.println(F("FNKeyPushed!"));
           }
           else if (keyMap[ii + option][jj] == KEY_RAIS)
           {
@@ -809,7 +809,7 @@ void loop() {
           {
             if(keyboardEnabled)
             {
-              Keyboard.print("shota.M.020626.S.K.F@gmail.com");
+              Keyboard.print(F("shota.M.020626.S.K.F@gmail.com"));
             }
             pressed = 1;
           } 
@@ -817,8 +817,8 @@ void loop() {
           {
             if(keyboardEnabled)
             {
-              Keyboard.print("for() \n");
-              Keyboard.print("{ \n");
+              Keyboard.print(F("for() \n"));
+              Keyboard.print(F("{ \n"));
               Keyboard.write(KEY_UP);
               Keyboard.write(KEY_UP);
               Keyboard.write(KEY_RGHT);
@@ -831,8 +831,8 @@ void loop() {
           {
             if(keyboardEnabled)
             {
-              Keyboard.print("if() \n");
-              Keyboard.print("{ \n");
+              Keyboard.print(F("if() \n"));
+              Keyboard.print(F("{ \n"));
               Keyboard.write(KEY_UP);
               Keyboard.write(KEY_UP);
               Keyboard.write(KEY_RGHT);
@@ -925,7 +925,7 @@ void loop() {
             if(sendchar && keyboardEnabled)
             {
               Keyboard.press( keyMap[ii + option][jj]);
-              Serial.print("pressed keycode ");
+              Serial.print(F("pressed keycode "));
               Serial.println(keyMap[ii + option][jj]);
             }
             pressed = 1;
@@ -978,7 +978,7 @@ void loop() {
             pressed = 0;
             Keyboard.releaseAll();
             //ConsumerControl.release();
-            Serial.println("FNKeyreleased!");
+            Serial.println(F("FNKeyreleased!"));
           }
           if (keyMap[ii + option][jj] == KEY_RAIS)
           {
@@ -1062,14 +1062,14 @@ void loop() {
         Serial1.write(sendData);
         Serial.flush();
 
-        Serial.print("senddate");
-        Serial.print(" ");
+        Serial.print(F("senddate"));
+        Serial.print(F(" "));
         Serial.print(sendData);
-        Serial.print(" ");
+        Serial.print(F(" "));
         Serial.print(pressed);
-        Serial.print(" ");
+        Serial.print(F(" "));
         Serial.print(ii);
-        Serial.print(" ");
+        Serial.print(F(" "));
         Serial.println(jj);
       }
     }
@@ -1092,15 +1092,15 @@ void readSerial()
   if (receiveData == 0b10000001)
   {
     capsLockLedOn();
-    Serial.print("readdate");
-    Serial.print(" ");
+    Serial.print(F("readdate"));
+    Serial.print(F(" "));
     Serial.println(receiveData);
   }
   else if (receiveData == 0b10000010)
   {
     capsLockLedOff();
-    Serial.print("readdate");
-    Serial.print(" ");
+    Serial.print(F("readdate"));
+    Serial.print(F(" "));
     Serial.println(receiveData);
   }
   else if (receiveData == 0b10000011)
@@ -1112,7 +1112,7 @@ void readSerial()
   {
     gameModeEnabled = true;
     changeProfile();
-    Serial.print("keyboardEnabled :");
+    Serial.print(F("keyboardEnabled :"));
     Serial.print(keyboardEnabled);
   }
   else if (receiveData == 0b10000101)
@@ -1120,7 +1120,7 @@ void readSerial()
     keyboardEnabled = false;
     statusLED.setPixelColor(3,statusLED.Color(5, 0, 0));
     statusLED.show();
-    Serial.print("keyboardEnabled :");
+    Serial.print(F("keyboardEnabled :"));
     Serial.println(keyboardEnabled);
   }
   else if (receiveData == 0b10000110)
@@ -1129,7 +1129,7 @@ void readSerial()
     keyboardEnabled = true;
     statusLED.setPixelColor(3,statusLED.Color(0, 5, 0));
     statusLED.show();
-    Serial.print("keyboardEnabled :");
+    Serial.print(F("keyboardEnabled :"));
     Serial.println(keyboardEnabled);
   }
   if (receiveData & 0b10000000)
@@ -1143,14 +1143,14 @@ void readSerial()
     int row1 = receiveData  >> 3 & 0b00000111;
     int col1 = receiveData & 0b00000111;
 
-    Serial.print("readdate");
-    Serial.print(" ");
+    Serial.print(F("readdate"));
+    Serial.print(F(" "));
     Serial.print(receiveData);
-    Serial.print(" ");
+    Serial.print(F(" "));
     Serial.print(pressed1);
-    Serial.print(" ");
+    Serial.print(F(" "));
     Serial.print(row1);
-    Serial.print(" ");
+    Serial.print(F(" "));
     Serial.println(col1);
 
     int option1 = 0;
@@ -1164,22 +1164,22 @@ void readSerial()
     if (fnKeyPushed && !raisKeyPushed && !loweKeyPushed)
     {
       option1 += 7;
-      Serial.println("FNKeylayer");
+      Serial.println(F("FNKeylayer"));
     }
     if (raisKeyPushed && !fnKeyPushed && !loweKeyPushed)
     {
       option1 += 14;
-      Serial.println("raisKeylayer");
+      Serial.println(F("raisKeylayer"));
     }
     if (loweKeyPushed && !fnKeyPushed && !raisKeyPushed)
     {
       option1 += 21;
-      Serial.println("lowerKeylayer");
+      Serial.println(F("lowerKeylayer"));
     }
     if (gameModeEnabled)
     {
       option1 += 28;
-      Serial.println("gameKeylayer");
+      Serial.println(F("gameKeylayer"));
     }
     if (pressed1)
     {
@@ -1292,7 +1292,7 @@ void readSerial()
       {
         if(keyboardEnabled)
         {
-          Keyboard.print("shota.M.020626.S.K.F@gmail.com");
+          Keyboard.print(F("shota.M.020626.S.K.F@gmail.com"));
         }
         pressed = 1;
       }
@@ -1300,8 +1300,8 @@ void readSerial()
       {
         if(keyboardEnabled)
         {
-          Keyboard.print("for() \n");
-          Keyboard.print("{ \n");
+          Keyboard.print(F("for() \n"));
+          Keyboard.print(F("{ \n"));
           Keyboard.write(KEY_UP);
           Keyboard.write(KEY_UP);
           Keyboard.write(KEY_RGHT);
@@ -1313,8 +1313,8 @@ void readSerial()
       {
         if(keyboardEnabled)
         {
-          Keyboard.print("if() \n");
-          Keyboard.print("{ \n");
+          Keyboard.print(F("if() \n"));
+          Keyboard.print(F("{ \n"));
           Keyboard.write(KEY_UP);
           Keyboard.write(KEY_UP);
           Keyboard.write(KEY_RGHT);
@@ -1401,15 +1401,15 @@ void readSerial()
       
       else
       {
-        Serial.print("sendChar1 :");
+        Serial.print(F("sendChar1 :"));
         Serial.print(sendChar1);
-        Serial.print("keyboardEnabled :");
+        Serial.print(F("keyboardEnabled :"));
         Serial.print(keyboardEnabled);
         if(sendChar1 && keyboardEnabled)
         {
           Keyboard.press( keyMap[row1 + option1][col1]);
           Serial.println(keyMap[row1 + option1][col1]);
-          Serial.print("pressed keycode ");
+          Serial.print(F("pressed keycode "));
           Serial.println(keyMap[row1 + option1][col1]);
         }
       }
@@ -1708,7 +1708,7 @@ void changeProfile()
   if(!gameModeEnabled)
   {
     gameModeEnabled = true;
-    Serial.println("gameMode Enabled");
+    Serial.println(F("gameMode Enabled"));
     /*uint32_t color1 = statusLED.getPixelColor(1);
     uint8_t color1_0 = color1 >> 16 & 0b0000000011111111;
     uint8_t color1_1 = color1 >> 8 & 0b0000000011111111;
@@ -1757,7 +1757,7 @@ void changeProfile()
   else
   {
     gameModeEnabled = false;
-    Serial.println("gameMode Disenabled");
+    Serial.println(F("gameMode Disenabled"));
     /*uint32_t color1 = statusLED.getPixelColor(1);
     uint8_t color1_0 = color1 >> 16 & 0b0000000011111111;
     uint8_t color1_1 = color1 >> 8 & 0b0000000011111111;
@@ -1804,7 +1804,7 @@ void changeProfile()
     statusLED.show();
   }
   EEPROM[0x001] = gameModeEnabled;
-  Serial.print("EEPROM[0x001] ");
+  Serial.print(F("EEPROM[0x001] "));
   Serial.println(EEPROM[0x001]);
 }
 void changeLightProfile()
@@ -1825,11 +1825,11 @@ void changeLightProfile()
       backLightLEDNormal[LEDProfile][0], backLightLEDNormal[LEDProfile][1], backLightLEDNormal[LEDProfile  ][2]));
   }
   backLED.show();
-  Serial.print("LEDProfile ");
+  Serial.print(F("LEDProfile "));
   Serial.println( LEDProfile);
 
   EEPROM[0x000] = LEDProfile;
-  Serial.print("EEPROM[0x000] ");
+  Serial.print(F("EEPROM[0x000] "));
   Serial.println(EEPROM[0x000]);
 }
 void startMouseMove(uint8_t directions)
@@ -1890,7 +1890,7 @@ void chengeKeyboardEnabled()
     Serial1.write(0b10000101);
     statusLED.setPixelColor(3,statusLED.Color(0, 5, 0)); 
     statusLED.show();
-    Serial.print("keyboardEnabled :");
+    Serial.print(F("keyboardEnabled :"));
     Serial.println(keyboardEnabled);
   }
   else
@@ -1899,7 +1899,7 @@ void chengeKeyboardEnabled()
     Serial1.write(0b10000110);
     statusLED.setPixelColor(3,statusLED.Color(5, 0, 0)); 
     statusLED.show();
-    Serial.print("keyboardEnabled :");
+    Serial.print(F("keyboardEnabled :"));
     Serial.println(keyboardEnabled);
   }
   
