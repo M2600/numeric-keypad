@@ -623,35 +623,36 @@ void loop() {
     capsLocked = false;
   }
 
-  if(mouseMovey)
+  if(mouseMovey && keyboardEnabled)
   {
+    
     Mouse.move(0,MouseConstant);
   }
-  if(mouseMove_y)
+  if(mouseMove_y && keyboardEnabled)
   {
     Mouse.move(0,-MouseConstant);
-  }if(mouseMovex)
+  }if(mouseMovex && keyboardEnabled)
   {
     Mouse.move(MouseConstant,0);
-  }if(mouseMove_x)
+  }if(mouseMove_x && keyboardEnabled)
   {
     Mouse.move(-MouseConstant,0);
   }
 
 
-  if(leftShiftPushed)
+  if(leftShiftPushed && keyboardEnabled)
   {
     Keyboard.press(KEY_LSFT);
   }
-  if(rightShiftPushed)
+  if(rightShiftPushed && keyboardEnabled)
   {
     Keyboard.press(KEY_RSFT);
   }
-  if(leftControlPushed)
+  if(leftControlPushed && keyboardEnabled)
   {
     Keyboard.press(KEY_LCTL);
   }
-  if(rightControlPushed)
+  if(rightControlPushed && keyboardEnabled)
   {
     Keyboard.press(KEY_RCTL);
   }
@@ -701,24 +702,30 @@ void loop() {
           if (keyMap[ii + optionIME][jj] == KEY_RAIS)
           {
             if(chengeIMELowerEnabled)
+            {
+              if(keyboardEnabled)
               {
                 Keyboard.press( KEY_LALT );
                 Keyboard.press( KEY_GRV );
                 Keyboard.release( KEY_GRV );
                 Keyboard.release( KEY_LALT );
-                sendchar = false;
               }
-              chengeIMERaisEnabled = true;
-              pressed = 1;
+              sendchar = false;
+            }
+            chengeIMERaisEnabled = true;
+            pressed = 1;
           }
           else if (keyMap[ii + optionIME][jj] == KEY_LOWE)
           {
             if(chengeIMERaisEnabled)
             {
-              Keyboard.press( KEY_LALT );
-              Keyboard.press( KEY_GRV );
-              Keyboard.release( KEY_GRV );
-              Keyboard.release( KEY_LALT );
+              if(keyboardEnabled)
+              {
+                Keyboard.press( KEY_LALT );
+                Keyboard.press( KEY_GRV );
+                Keyboard.release( KEY_GRV );
+                Keyboard.release( KEY_LALT );
+              }
               sendchar = false;
             }
             chengeIMELowerEnabled = true;
@@ -800,27 +807,37 @@ void loop() {
           }
           else if (keyMap[ii + option][jj] == KEY_MAIL)
           {
-            Keyboard.print("shota.M.020626.S.K.F@gmail.com");
+            if(keyboardEnabled)
+            {
+              Keyboard.print("shota.M.020626.S.K.F@gmail.com");
+            }
             pressed = 1;
           } 
           else if (keyMap[ii + option][jj] == KEY_FOR)
           {
-            Keyboard.print("for() \n");
-            Keyboard.print("{ \n");
-            Keyboard.write(KEY_UP);
-            Keyboard.write(KEY_UP);
-            Keyboard.write(KEY_RGHT);
-            Keyboard.write(KEY_RGHT);
+            if(keyboardEnabled)
+            {
+              Keyboard.print("for() \n");
+              Keyboard.print("{ \n");
+              Keyboard.write(KEY_UP);
+              Keyboard.write(KEY_UP);
+              Keyboard.write(KEY_RGHT);
+              Keyboard.write(KEY_RGHT);
+            }
             //Keyboard.print("}");
             pressed = 1;
           }
           else if (keyMap[ii + option][jj] == KEY_IF)
           {
-            Keyboard.print("if() \n");
-            Keyboard.print("{ \n");
-            Keyboard.write(KEY_UP);
-            Keyboard.write(KEY_UP);
-            Keyboard.write(KEY_RGHT);
+            if(keyboardEnabled)
+            {
+              Keyboard.print("if() \n");
+              Keyboard.print("{ \n");
+              Keyboard.write(KEY_UP);
+              Keyboard.write(KEY_UP);
+              Keyboard.write(KEY_RGHT);
+            }
+            
             //Keyboard.print("}");
             pressed = 1;
           }
@@ -846,12 +863,18 @@ void loop() {
           }
           else if (keyMap[ii + option][jj] == KEY_MLCL)
           {
-            Mouse.press(MOUSE_LEFT);
+            if(keyboardEnabled)
+            {
+              Mouse.press(MOUSE_LEFT);
+            }
             pressed = 1;
           }
           else if (keyMap[ii + option][jj] == KEY_MRCL)
           {
-            Mouse.press(MOUSE_RIGHT);
+            if(keyboardEnabled)
+            {
+              Mouse.press(MOUSE_RIGHT);
+            }
             pressed = 1;
           }
 
@@ -1165,10 +1188,13 @@ void readSerial()
       {
         if(chengeIMELowerEnabled)
           {
+            if(keyboardEnabled)
+          {
             Keyboard.press( KEY_LALT );
             Keyboard.press( KEY_GRV );
             Keyboard.release( KEY_GRV );
             Keyboard.release( KEY_LALT );
+          }
             sendChar1 = false;
           }
           chengeIMERaisEnabled = true;
@@ -1178,10 +1204,14 @@ void readSerial()
       {
         if(chengeIMERaisEnabled)
         {
-          Keyboard.press( KEY_LALT );
-          Keyboard.press( KEY_GRV );
-          Keyboard.release( KEY_GRV );
-          Keyboard.release( KEY_LALT );
+          if(keyboardEnabled)
+          {
+            Keyboard.press( KEY_LALT );
+            Keyboard.press( KEY_GRV );
+            Keyboard.release( KEY_GRV );
+            Keyboard.release( KEY_LALT );
+          }
+          
           sendChar1 = false;
         }
         chengeIMELowerEnabled = true;
@@ -1260,26 +1290,35 @@ void readSerial()
       }
       else if (keyMap[row1 + option1][col1] == KEY_MAIL)
       {
-        Keyboard.print("shota.M.020626.S.K.F@gmail.com");
+        if(keyboardEnabled)
+        {
+          Keyboard.print("shota.M.020626.S.K.F@gmail.com");
+        }
         pressed = 1;
       }
       else if (keyMap[row1 + option1][col1] == KEY_FOR)
       {
-        Keyboard.print("for() \n");
-        Keyboard.print("{ \n");
-        Keyboard.write(KEY_UP);
-        Keyboard.write(KEY_UP);
-        Keyboard.write(KEY_RGHT);
-        Keyboard.write(KEY_RGHT);
+        if(keyboardEnabled)
+        {
+          Keyboard.print("for() \n");
+          Keyboard.print("{ \n");
+          Keyboard.write(KEY_UP);
+          Keyboard.write(KEY_UP);
+          Keyboard.write(KEY_RGHT);
+          Keyboard.write(KEY_RGHT);
+        }
         pressed = 1;
       }
       else if (keyMap[row1 + option1][col1] == KEY_IF)
       {
-        Keyboard.print("if() \n");
-        Keyboard.print("{ \n");
-        Keyboard.write(KEY_UP);
-        Keyboard.write(KEY_UP);
-        Keyboard.write(KEY_RGHT);
+        if(keyboardEnabled)
+        {
+          Keyboard.print("if() \n");
+          Keyboard.print("{ \n");
+          Keyboard.write(KEY_UP);
+          Keyboard.write(KEY_UP);
+          Keyboard.write(KEY_RGHT);
+        }
         //Keyboard.print("}");
         pressed = 1;
       }
@@ -1306,12 +1345,18 @@ void readSerial()
       }
       else if (keyMap[row1 + option1][col1] == KEY_MLCL)
       {
-        Mouse.press(MOUSE_LEFT);
+        if(keyboardEnabled)
+        {
+          Mouse.press(MOUSE_LEFT);
+        }
         pressed = 1;
       }
       else if (keyMap[row1 + option1][col1] == KEY_MRCL)
       {
-        Mouse.press(MOUSE_RIGHT);
+        if(keyboardEnabled)
+        {
+          Mouse.press(MOUSE_RIGHT);
+        }
         pressed = 1;
       }
 
@@ -1459,12 +1504,18 @@ void readSerial()
       }
       if (keyMap[row1 + option1][col1] == KEY_MLCL)
       {
-        Mouse.release(MOUSE_LEFT);
+        if(keyboardEnabled)
+        {
+          Mouse.release(MOUSE_LEFT);
+        }
         pressed = 0;
       }
       if (keyMap[row1 + option1][col1] == KEY_MRCL)
       {
-        Mouse.release(MOUSE_RIGHT);
+        if(keyboardEnabled)
+        {
+          Mouse.release(MOUSE_RIGHT);
+        }
         pressed = 0;
       }
 

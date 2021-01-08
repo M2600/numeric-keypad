@@ -105,6 +105,7 @@ namespace Keyboard_configuration_software
         }
         private void ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            notifyIcon.Dispose();
             Application.Exit();
         }
         private void NotifyIcon_Click(object sender, EventArgs e)
