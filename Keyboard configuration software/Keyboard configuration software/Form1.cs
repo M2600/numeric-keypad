@@ -42,6 +42,7 @@ namespace Keyboard_configuration_software
         public List<string> Codinglists = new List<string>(10) { "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino" };
 
         private string sendmessage = "0";
+        public bool serialPortOpen = true;
         
         public static Form1 Form1Instance
         {
@@ -381,6 +382,17 @@ namespace Keyboard_configuration_software
             Properties.Settings.Default.Save();
         }
 
-        
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if(serialPortOpen)
+            {
+                serialPortOpen = false;
+            }
+            else
+            {
+                serialPortOpen = true;
+            }
+            
+        }
     }
 }
