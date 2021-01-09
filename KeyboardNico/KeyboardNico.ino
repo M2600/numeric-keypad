@@ -68,7 +68,7 @@ bool leftSide;
 #define KEY_DEL  0xD4 //Delete
 #define KEY_TAB  0xB3 //Tab
 #define KEY_CAPS 0xC1 //Capslock
-#define KEY_LCTL 0x80 //Leftcontrol
+#define KEY_LCTL 0x01 //Leftcontrol
 #define KEY_LSFT 0x81 //Leftshift
 #define KEY_LALT 0x82 //Leftalt
 #define KEY_LGUI 0x83 //Leftgui

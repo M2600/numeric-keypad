@@ -1130,7 +1130,7 @@ void readSerial()
   else if (receiveData == 0b10000101)
   {
     keyboardEnabled = false;
-    statusLED.setPixelColor(3,statusLED.Color(5, 0, 0));
+    statusLED.setPixelColor(3,statusLED.Color(0, 0, 0));
     statusLED.show();
     Serial.print(F("keyboardEnabled :"));
     Serial.println(keyboardEnabled);
@@ -1139,7 +1139,7 @@ void readSerial()
   {
     
     keyboardEnabled = true;
-    statusLED.setPixelColor(3,statusLED.Color(0, 5, 0));
+    statusLED.setPixelColor(3,statusLED.Color(0, 0, 5));
     statusLED.show();
     Serial.print(F("keyboardEnabled :"));
     Serial.println(keyboardEnabled);
@@ -1902,7 +1902,7 @@ void chengeKeyboardEnabled()
   {
     keyboardEnabled = true;
     Serial1.write(0b10000101);
-    statusLED.setPixelColor(3,statusLED.Color(0, 5, 0)); 
+    statusLED.setPixelColor(3,statusLED.Color(0, 0, 5)); 
     statusLED.show();
     Serial.print(F("keyboardEnabled :"));
     Serial.println(keyboardEnabled);
@@ -1911,7 +1911,7 @@ void chengeKeyboardEnabled()
   {
     keyboardEnabled = false;
     Serial1.write(0b10000110);
-    statusLED.setPixelColor(3,statusLED.Color(5, 0, 0)); 
+    statusLED.setPixelColor(3,statusLED.Color(0, 0, 0)); 
     statusLED.show();
     Serial.print(F("keyboardEnabled :"));
     Serial.println(keyboardEnabled);
