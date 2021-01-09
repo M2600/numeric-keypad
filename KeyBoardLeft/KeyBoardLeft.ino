@@ -287,7 +287,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
 
 
   //right
-  {KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  KEY_F11,  KEY_F12,  KEY_MAIL, KEY_CPFL },
+  {KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  KEY_F11,  KEY_F12,  KEY_KLCK, KEY_CPFL },
   {KEY_BSLS, KEY_7,    KEY_8,    KEY_9,    KEY_0,    KEY_MINS, KEY_EQL,  KEY_BSPC },
   {KEY_RPRN, KEY_Y,    KEY_U,    KEY_I,    KEY_O,    KEY_P,    KEY_LBRC, KEY_RBRC },
   {KEY_RCBR, KEY_H,    KEY_J,    KEY_K,    KEY_L,    KEY_SCLN, KEY_QUOT, KEY_ENT  },
@@ -300,7 +300,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_BSLS, KEY_7,    KEY_8,        KEY_9,          KEY_0,          KEY_MINS,      KEY_EQL,  KEY_HOME },
   {KEY_RPRN, KEY_Y,    KEY_U,        KEY_I,          KEY_O,          KEY_P,         KEY_LCBR, KEY_PGUP },
   {KEY_RCBR, KEY_H,    KEY_J,        KEY_K,          KEY_L,          KEY_SCLN,      KEY_QUOT, KEY_PGDN  },
-  {KEY_IF,   KEY_N,    KEY_M,        KEY_COMM,       KEY_DOT,        KEY_SLSH,      KEY_UP,   KEY_END  },
+  {KEY_IF,   KEY_N,    KEY_MAIL,     KEY_COMM,       KEY_DOT,        KEY_SLSH,      KEY_UP,   KEY_END  },
   {KEY_BSPC, KEY_LSFT, KEY_LOWE,     KEY_FN,         KEY_RALT,       KEY_LEFT,      KEY_DOWN, KEY_RGHT },
   {KEY_KEYPAD_ENTER, NONE, NONE,     NONE,           NONE,           NONE,          NONE,     NONE,    },
 
@@ -323,7 +323,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_KEYPAD_ENTER, NONE, NONE,         NONE,         NONE,         NONE,     NONE,     NONE,    },
 
   //rightGame
-  {KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  KEY_F11,  KEY_F12,  NONE,     KEY_CPFL },
+  {KEY_F7,   KEY_F8,   KEY_F9,   KEY_F10,  KEY_F11,  KEY_F12,  KEY_KLCK, KEY_CPFL },
   {KEY_BSLS, KEY_7,    KEY_8,    KEY_9,    KEY_0,    KEY_MINS, KEY_EQL,  KEY_BSPC },
   {KEY_F7,   KEY_Y,    KEY_U,    KEY_I,    KEY_O,    KEY_P,    KEY_LBRC, KEY_RBRC },
   {KEY_F8,   KEY_H,    KEY_J,    KEY_K,    KEY_L,    KEY_SCLN, KEY_QUOT, KEY_ENT  },
@@ -336,7 +336,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_BSLS, KEY_7,    KEY_8,        KEY_9,          KEY_0,          KEY_MINS,      KEY_EQL,  KEY_HOME },
   {KEY_F7,   KEY_Y,    KEY_U,        KEY_I,          KEY_O,          KEY_P,         KEY_LCBR, KEY_PGUP },
   {KEY_F8,   KEY_H,    KEY_J,        KEY_K,          KEY_L,          KEY_SCLN,      KEY_QUOT, KEY_PGDN },
-  {KEY_F9,   KEY_N,    KEY_M,        KEY_COMM,       KEY_DOT,        KEY_SLSH,      KEY_UP,   KEY_END  },
+  {KEY_F9,   KEY_N,    KEY_MAIL,     KEY_COMM,       KEY_DOT,        KEY_SLSH,      KEY_UP,   KEY_END  },
   {KEY_BSPC,  KEY_LSFT,KEY_LOWE,     KEY_FN,         KEY_RALT,       KEY_LEFT,      KEY_DOWN, KEY_RGHT },
   {KEY_KEYPAD_ENTER, NONE, NONE,     NONE,           NONE,           NONE,          NONE,     NONE,    },
 
@@ -504,22 +504,18 @@ void setup() {
 
   LEDProfile = EEPROM[0x000]; 
   gameModeEnabled = EEPROM[0x001];
+  backLEDOn = EEPROM[0x002];
     
 
   for (int i = 0; i < 3; i++)
   {
     statusLED.clear();
-    backLED.clear();
     for (int i = 0; i < numpixels; i++)
     {
       statusLED.setPixelColor(i, statusLED.Color(5, 0, 0));
-      backLED.setPixelColor(i, backLED.Color(
-        backLightLEDNormal[LEDProfile][0], backLightLEDNormal[LEDProfile][1], backLightLEDNormal[LEDProfile  ][2]));
     }
   
     statusLED.show();
-    backLEDOn=true;
-    backLED.show();
     delay(100);
     statusLED.clear();
     for (int i = 0; i < numpixels; i++)
@@ -529,6 +525,22 @@ void setup() {
     statusLED.show();
     delay(100);
   }
+  if(!backLEDOn)
+  {
+    backLED.clear();
+    for (int i = 0; i < numpixels; i++)
+    {
+      backLED.setPixelColor(i, backLED.Color(
+        backLightLEDNormal[LEDProfile][0], backLightLEDNormal[LEDProfile][1], backLightLEDNormal[LEDProfile  ][2]));
+    }
+    backLED.show();
+    backLEDOn = true;
+  }
+  else
+  {
+    backLEDOn = false;
+  }
+  
   if(gameModeEnabled)
   {
     gameModeEnabled = false;
@@ -1593,6 +1605,7 @@ void offBackLED()
     backLED.setPixelColor(i, backLED.Color(0, 0, 0));
   }
   backLED.show();
+  EEPROM[0x002] = backLEDOn;
 }
 void onBackLED()
 {
@@ -1603,6 +1616,7 @@ void onBackLED()
       backLightLEDNormal[LEDProfile][0], backLightLEDNormal[LEDProfile][1], backLightLEDNormal[LEDProfile  ][2]));
   }
   backLED.show();
+  EEPROM[0x002] = backLEDOn;
 }
 
 void capsLockLedOn()
