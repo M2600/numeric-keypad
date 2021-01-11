@@ -133,10 +133,10 @@ namespace Keyboard_configuration_software
             GetWindowText(GetForegroundWindow(), sb, 65535);
             Console.WriteLine(sb);
 
-            serialPort1.Close();
+            //serialPort1.Close();
             serialPort1.PortName = Properties.Settings.Default.SerialPort;
             serialPort1.WriteTimeout = 500;
-            serialPort1.Open();
+            //serialPort1.Open();
             
             Invoke((MethodInvoker)(() =>    // 受信用スレッドから切り替えてデータを書き込む
             {
@@ -272,10 +272,10 @@ namespace Keyboard_configuration_software
                         Invoke((MethodInvoker)(() =>    // 受信用スレッドから切り替えてデータを書き込む
                         {
                             textBox1.AppendText("game" + "\r\n");
-                            if (!serialPort1.IsOpen)
-                            {
-                                serialPort1.Open();
-                            }
+                            //if (!serialPort1.IsOpen)
+                            //{
+                            //    serialPort1.Open();
+                            //}
                             sendSerialCommunication("G");
                             appname = sb.ToString();
                             send = true;
@@ -286,13 +286,14 @@ namespace Keyboard_configuration_software
                         Invoke((MethodInvoker)(() =>    // 受信用スレッドから切り替えてデータを書き込む
                         {
                             textBox1.AppendText("code" + "\r\n");
-                            if (!serialPort1.IsOpen)
-                            {
-                                serialPort1.Open();
-                            }
+                            //if (!serialPort1.IsOpen)
+                            //{
+                            //    serialPort1.Open();
+                            //}
                             sendSerialCommunication("C");
                             appname = sb.ToString();
                             send = true;
+                            //serialport1.Close();
                         }));
                     }
                     
@@ -308,6 +309,7 @@ namespace Keyboard_configuration_software
                         }
                         sendSerialCommunication("D");
                         appname = sb.ToString();
+                        serialport1.Close();
                     }));
                 }
                 
@@ -319,12 +321,17 @@ namespace Keyboard_configuration_software
         }
         private void sendSerialCommunication(string message)
         {
-            if(sendmessage != message && serialport1.IsOpen)
+            if(sendmessage != message && serialPortOpen)
             {
                 Invoke((MethodInvoker)(() =>    // 受信用スレッドから切り替えてデータを書き込む
                 {
+                    if (!serialPort1.IsOpen)
+                    {
+                        serialPort1.Open();
+                    }
                     serialPort1.Write(message);
                     textBox1.AppendText(message + "\r\n");
+                    serialPort1.Close();
                 }));
                 
                 Console.WriteLine("send " + message);
@@ -387,10 +394,16 @@ namespace Keyboard_configuration_software
             if(serialPortOpen)
             {
                 serialPortOpen = false;
+                Console.WriteLine("serialPortClosed.");
+                textBox1.AppendText("PortClosed" + "\r\n");
+                button4.Text = "PortOpen";
             }
             else
             {
                 serialPortOpen = true;
+                Console.WriteLine("serialPortOpened.");
+                textBox1.AppendText("PortOpened" + "\r\n");
+                button4.Text = "PortClose";
             }
             
         }
