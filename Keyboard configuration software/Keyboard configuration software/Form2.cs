@@ -69,9 +69,15 @@ namespace Keyboard_configuration_software
         {
             if(comboBox1.SelectedItem != null)
             {
-                Form1.Form1Instance.serialport1.Close();
+                if (Form1.Form1Instance.serialport1.IsOpen)
+                {
+                    Form1.Form1Instance.serialport1.Close();
+                }
                 Form1.Form1Instance.serialport1.PortName = comboBox1.SelectedItem.ToString();
-                Form1.Form1Instance.serialport1.Open();
+                if (!Form1.Form1Instance.serialport1.IsOpen)
+                {
+                    Form1.Form1Instance.serialport1.Open();
+                }
                 Form1.Form1Instance.TextBox.AppendText("Port opened to " + Form1.Form1Instance.serialport1.PortName + "\r\n");
                 Console.WriteLine("Port opened to " + Form1.Form1Instance.serialport1.PortName);
                 Properties.Settings.Default.SerialPort = Form1.Form1Instance.serialport1.PortName;

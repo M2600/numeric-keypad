@@ -224,7 +224,7 @@ namespace Keyboard_configuration_software
 
         private void serialPort1_DataReceived(object sender, System.IO.Ports.SerialDataReceivedEventArgs e)
         {
-            Console.WriteLine("serialPort1_DataReceived");
+            /*Console.WriteLine("serialPort1_DataReceived");
             try
             {
                 string data = serialPort1.ReadLine();	// ポートから文字列を受信する
@@ -244,7 +244,7 @@ namespace Keyboard_configuration_software
             {
                 MessageBox.Show(ex.Message);
                 Console.WriteLine("catched");
-            }
+            }*/
         }
 
         private void textBox1_TextChanged_1(object sender, EventArgs e)
@@ -303,13 +303,16 @@ namespace Keyboard_configuration_software
                     Invoke((MethodInvoker)(() =>    // 受信用スレッドから切り替えてデータを書き込む
                     {
                         //textBox1.AppendText("other" + "\r\n");
-                        if(!serialPort1.IsOpen)
-                        {
-                            serialPort1.Open();
-                        }
+                        //if(!serialPort1.IsOpen)
+                        //{
+                        //    serialPort1.Open();
+                        //}
                         sendSerialCommunication("D");
                         appname = sb.ToString();
-                        serialport1.Close();
+                        //if (serialPort1.IsOpen)
+                        //{
+                        //    serialPort1.Close();
+                        //}
                     }));
                 }
                 
@@ -325,13 +328,16 @@ namespace Keyboard_configuration_software
             {
                 Invoke((MethodInvoker)(() =>    // 受信用スレッドから切り替えてデータを書き込む
                 {
-                    if (!serialPort1.IsOpen)
-                    {
+                    //if (!serialPort1.IsOpen)
+                    //{
                         serialPort1.Open();
-                    }
+                    //}
                     serialPort1.Write(message);
                     textBox1.AppendText(message + "\r\n");
-                    serialPort1.Close();
+                    //if (serialPort1.IsOpen)
+                    //{
+                        serialPort1.Close();
+                    //}
                 }));
                 
                 Console.WriteLine("send " + message);
