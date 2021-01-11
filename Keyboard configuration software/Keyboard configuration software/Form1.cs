@@ -272,12 +272,7 @@ namespace Keyboard_configuration_software
                         Invoke((MethodInvoker)(() =>    // 受信用スレッドから切り替えてデータを書き込む
                         {
                             textBox1.AppendText("game" + "\r\n");
-                            //if (!serialPort1.IsOpen)
-                            //{
-                            //    serialPort1.Open();
-                            //}
                             sendSerialCommunication("G");
-                            appname = sb.ToString();
                             send = true;
                         }));
                     }
@@ -286,14 +281,8 @@ namespace Keyboard_configuration_software
                         Invoke((MethodInvoker)(() =>    // 受信用スレッドから切り替えてデータを書き込む
                         {
                             textBox1.AppendText("code" + "\r\n");
-                            //if (!serialPort1.IsOpen)
-                            //{
-                            //    serialPort1.Open();
-                            //}
                             sendSerialCommunication("C");
-                            appname = sb.ToString();
                             send = true;
-                            //serialport1.Close();
                         }));
                     }
                     
@@ -303,23 +292,14 @@ namespace Keyboard_configuration_software
                     Invoke((MethodInvoker)(() =>    // 受信用スレッドから切り替えてデータを書き込む
                     {
                         //textBox1.AppendText("other" + "\r\n");
-                        //if(!serialPort1.IsOpen)
-                        //{
-                        //    serialPort1.Open();
-                        //}
                         sendSerialCommunication("D");
-                        appname = sb.ToString();
-                        //if (serialPort1.IsOpen)
-                        //{
-                        //    serialPort1.Close();
-                        //}
                     }));
                 }
                 
             }
-                
-            
-            
+            appname = sb.ToString();
+
+
 
         }
         private void sendSerialCommunication(string message)
@@ -328,16 +308,16 @@ namespace Keyboard_configuration_software
             {
                 Invoke((MethodInvoker)(() =>    // 受信用スレッドから切り替えてデータを書き込む
                 {
-                    //if (!serialPort1.IsOpen)
-                    //{
+                    if (!serialPort1.IsOpen)
+                    {
                         serialPort1.Open();
-                    //}
+                    }
                     serialPort1.Write(message);
                     textBox1.AppendText(message + "\r\n");
-                    //if (serialPort1.IsOpen)
-                    //{
+                    if (serialPort1.IsOpen)
+                    {
                         serialPort1.Close();
-                    //}
+                    }
                 }));
                 
                 Console.WriteLine("send " + message);
