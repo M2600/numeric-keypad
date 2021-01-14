@@ -1,6 +1,5 @@
-//#include <HID-Project.h>
-//#include <HID-Settings.h>
-#include "HID-Project.h"
+#include <HID-Project.h>
+#include <HID-Settings.h>
 //#include "Keyboard.h"
 //#include "Mouse.h"
 //#include "HID.h"
@@ -123,7 +122,7 @@ bool leftSide;
 #define KEY_DOT  0x2E // Period .
 #define KEY_SLSH 0x2F // Slash
 
-#define KEY_A 0x61
+//#define KEY_A 0x61
 #define KEY_B 0x62
 #define KEY_C 0x63
 #define KEY_D 0x64
@@ -219,7 +218,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,    NONE     },
   {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_LPRN, NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_LCBR, NONE     },
-  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_FOR,  NONE     },
+  {KEY_LEFT_SHIFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_FOR,  NONE     },
   {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT, KEY_DEL,  ____     },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
@@ -228,7 +227,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_CPFL, KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,          KEY_6,        NONE     },
   {KEY_CLPF, KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,          KEY_LPRN,     NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,          KEY_LCBR,     NONE     },
-  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,          KEY_FOR,      NONE     },
+  {KEY_LEFT_SHIFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,          KEY_FOR,      NONE     },
   {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT,       KEY_DEL,      ____     },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,           KEY_KLCK,     NONE     },
 
@@ -237,7 +236,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,    NONE     },
   {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_LPRN, NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_LCBR, NONE     },
-  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_FOR,  NONE     },
+  {KEY_LEFT_SHIFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_FOR,  NONE     },
   {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT, KEY_DEL,  ____     },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
@@ -246,7 +245,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,    NONE     },
   {KEY_TAB,  KEY_Q,    KEY_W,    KEY_MUP,  KEY_R,    KEY_T,    KEY_LPRN, NONE     },
   {KEY_CAPS, KEY_A,    KEY_MLFT, KEY_MDWN, KEY_MRIT, KEY_G,    KEY_LCBR, NONE     },
-  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_FOR,  NONE     },
+  {KEY_LEFT_SHIFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_FOR,  NONE     },
   {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_MLCL, KEY_DEL,  ____     },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_MRCL,  NONE     },
 
@@ -257,7 +256,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,    NONE     },
   {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_F1,   NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_F2,   NONE     },
-  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F3,   NONE     },
+  {KEY_LEFT_SHIFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F3,   NONE     },
   {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_C,    KEY_F4,   KEY_F5,   KEY_F6   },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
@@ -266,7 +265,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_CPFL, KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,          KEY_6,        NONE     },
   {KEY_CLPF, KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,          KEY_F1,       NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,          KEY_F2,       NONE     },
-  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,          KEY_F3,       NONE     },
+  {KEY_LEFT_SHIFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,          KEY_F3,       NONE     },
   {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_C,    KEY_F4,         KEY_F5,       KEY_F6   },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,           KEY_KLCK,     NONE     },
 
@@ -275,7 +274,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,    NONE     },
   {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_F1,   NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_F2,   NONE     },
-  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F3,   NONE     },
+  {KEY_LEFT_SHIFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F3,   NONE     },
   {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_C,    KEY_F4,   KEY_F5,   KEY_F6   },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
@@ -284,7 +283,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_GRV,  KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,    KEY_6,    NONE     },
   {KEY_TAB,  KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_F1,   NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_F2,   NONE     },
-  {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F3,   NONE     },
+  {KEY_LEFT_SHIFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_F3,   NONE     },
   {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_C,    KEY_F4,   KEY_F5,   KEY_F6   },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
