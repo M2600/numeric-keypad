@@ -421,7 +421,8 @@ bool mouseMove_y = false;
 bool keyboardEnabled = true;
 
 float MouseConstant = 3.0;
-const int AS_RAW_SCANCODE = 136;
+float MouseLowConstant = 3.0;
+float MouseHighConstant = 6.0;
 
 
 
@@ -770,12 +771,14 @@ void loop() {
             pressed = 1;
             leftShiftPushed = true;
             sendKey( keyMap[ii + option][jj],pressed);
+            MouseConstant = MouseHighConstant;
           }
           else if(keyMap[ii + option][jj] == KEY_RSFT)
           {
             pressed = 1;
             rightShiftPushed = true;
             sendKey( keyMap[ii + option][jj],pressed);
+            MouseConstant = MouseHighConstant;
           }
           else if(keyMap[ii + option][jj] == KEY_LCTL)
           {
@@ -994,12 +997,14 @@ void loop() {
             pressed = 0;
             leftShiftPushed = false;
             sendKey( keyMap[ii + option][jj],pressed);
+            MouseConstant = MouseLowConstant;
           }
           if(keyMap[ii + option][jj] == KEY_RSFT)
           {
             pressed = 0;
             rightShiftPushed = false;
             sendKey( keyMap[ii + option][jj],pressed);
+            MouseConstant = MouseLowConstant;
           }
           if(keyMap[ii + option][jj] == KEY_LCTL)
           {
@@ -1266,12 +1271,14 @@ void readSerial()
         pressed = 1;
         leftShiftPushed = true;
         sendKey( keyMap[row1 + option1][col1],pressed);
+        MouseConstant = MouseHighConstant;
       }
       else if(keyMap[row1 + option1][col1] == KEY_RSFT)
       {
         pressed = 1;
         rightShiftPushed = true;
         sendKey( keyMap[row1 + option1][col1],pressed);
+        MouseConstant = MouseHighConstant;
       }
       else if(keyMap[row1 + option1][col1] == KEY_LCTL)
       {
@@ -1498,12 +1505,14 @@ void readSerial()
         pressed = 0;
         leftShiftPushed = false;
         sendKey( keyMap[row1 + option1][col1],pressed);
+        MouseConstant = MouseLowConstant;
       }
       if(keyMap[row1 + option1][col1] == KEY_RSFT)
       {
         pressed = 0;
         rightShiftPushed = false;
         sendKey( keyMap[row1 + option1][col1],pressed);
+        MouseConstant = MouseLowConstant;
       }
       if(keyMap[row1 + option1][col1] == KEY_LCTL)
       {
