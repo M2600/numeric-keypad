@@ -587,12 +587,12 @@ void setup() {
     Keyboard.release(KEY_KEYPAD_NUMLOCK);
     Keyboard.press(KEY_KEYPAD_NUMLOCK);
     Keyboard.release(KEY_KEYPAD_NUMLOCK);
-  }
+  }*/
 
   
   //capsLockチェック
   
-  if (Keyboard.getLedStatus(LED_CAPS_LOCK))
+  if (BootKeyboard.getLeds() & LED_CAPS_LOCK)
   {
     capsLockLedOn();
     sendData = 0b10000001;
@@ -602,7 +602,7 @@ void setup() {
     Serial.print(F(" "));
     Serial.println(sendData);
     capsLocked = true;
-  }*/
+  }
   BootKeyboard.releaseAll();
 }
 
@@ -892,7 +892,7 @@ void loop() {
           {
             if(keyboardEnabled)
             {
-              //Mouse.press(MOUSE_LEFT);
+              BootMouse.press(MOUSE_LEFT);
             }
             pressed = 1;
           }
@@ -900,7 +900,7 @@ void loop() {
           {
             if(keyboardEnabled)
             {
-              //Mouse.press(MOUSE_RIGHT);
+              BootMouse.press(MOUSE_RIGHT);
             }
             pressed = 1;
           }
