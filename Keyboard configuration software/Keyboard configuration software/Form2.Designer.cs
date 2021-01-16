@@ -49,7 +49,8 @@ namespace Keyboard_configuration_software
             "COM7",
             "COM8",
             "COM9",
-            "COM14"});
+            "COM14",
+            "COM20"});
             this.comboBox1.Location = new System.Drawing.Point(88, 10);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 20);

@@ -5,7 +5,6 @@
 //#include "HID.h"
 #include "Adafruit_NeoPixel.h"
 #include "EEPROM.h"
-//#include "ConsumerControl.h"
 //===================================
 //Keyboard
   /*########################################################################
