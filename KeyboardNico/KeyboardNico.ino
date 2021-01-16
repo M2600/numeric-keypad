@@ -507,6 +507,7 @@ void setup() {
   //Keyboard.begin();
   BootKeyboard.begin();
   BootMouse.begin();
+  Consumer.begin();
   FlashLED( led, 4);
   Serial.begin(9600);
   Serial1.begin(9600);
@@ -815,22 +816,17 @@ void loop() {
           }
           else if (keyMap[ii + option][jj] == KEY_MUTE)
           {
-            //Consumer.write(MEDIA_VOLUME_MUTE);
-            //ConsumerControl.press(VOLUME_MUTE);
+            Consumer.press(MEDIA_VOLUME_MUTE);
             pressed = 1;
           }
           else if (keyMap[ii + option][jj] == KEY_VOLUMEUP)
           {
-            //Consumer.write(MEDIA_VOLUME_UP);
-            //Keyboard.print(128+AS_RAW_SCANCODE);
-            //ConsumerControl.press(VOLUME_UP);
+            Consumer.press(MEDIA_VOLUME_UP);
             pressed = 1;
           }
           else if (keyMap[ii + option][jj] == KEY_VOLUMEDOWN)
           {
-            //Consumer.write(MEDIA_VOLUME_DOWN);
-            //Keyboard.print(129+AS_RAW_SCANCODE);
-            //ConsumerControl.press(VOLUME_DOWN);
+            Consumer.press(MEDIA_VOLUME_DOWN);
             pressed = 1;
           }
           else if (keyMap[ii + option][jj] == KEY_MAIL)
@@ -906,7 +902,21 @@ void loop() {
             pressed = 1;
           }
 
-
+          if (keyMap[ii + option][jj] == KEY_MUTE)
+          {
+            pressed = 1;
+            Consumer.press(MEDIA_VOLUME_MUTE);
+          }
+          if (keyMap[ii + option][jj] == KEY_VOLUMEUP)
+          {
+            pressed = 1;
+            Consumer.press(MEDIA_VOLUME_UP);
+          }
+          if (keyMap[ii + option][jj] == KEY_VOLUMEDOWN)
+          {
+            pressed = 1;
+            Consumer.press(MEDIA_VOLUME_DOWN);
+          }
           
           /*if(keyMap[ii + option][jj] == KEY_SPC && leftControlPushed)
           {
@@ -1064,21 +1074,21 @@ void loop() {
 
 
           
-          /*if (keyMap[ii + option][jj] == KEY_MUTE)
+          if (keyMap[ii + option][jj] == KEY_MUTE)
           {
             pressed = 0;
-            ConsumerControl.release();
+            Consumer.release(MEDIA_VOLUME_MUTE);
           }
           if (keyMap[ii + option][jj] == KEY_VOLUMEUP)
           {
             pressed = 0;
-            ConsumerControl.release();
+            Consumer.release(MEDIA_VOLUME_UP);
           }
           if (keyMap[ii + option][jj] == KEY_VOLUMEDOWN)
           {
             pressed = 0;
-            ConsumerControl.release();
-          }*/
+            Consumer.release(MEDIA_VOLUME_DOWN);
+          }
           else
           {
             pressed = 0;
@@ -1389,7 +1399,21 @@ void readSerial()
         pressed = 1;
       }
 
-
+      if (keyMap[row1 + option1][col1] == KEY_MUTE)
+      {
+        pressed = 1;
+        Consumer.press(MEDIA_VOLUME_MUTE);
+      }
+      if (keyMap[row1 + option1][col1] == KEY_VOLUMEUP)
+      {
+        pressed = 1;
+        Consumer.press(MEDIA_VOLUME_UP);
+      }
+      if (keyMap[row1 + option1][col1] == KEY_VOLUMEDOWN)
+      {
+        pressed = 1;
+        Consumer.press(MEDIA_VOLUME_DOWN);
+      }
       
 
       /*if(keyMap[row1 + option1][col1] == KEY_SPC && leftControlPushed)
@@ -1551,21 +1575,21 @@ void readSerial()
 
 
       
-      /*if (keyMap[row1 + option1][col1] == KEY_MUTE)
+      if (keyMap[row1 + option1][col1] == KEY_MUTE)
       {
         pressed = 0;
-        ConsumerControl.release();
+        Consumer.release(MEDIA_VOLUME_MUTE);
       }
       if (keyMap[row1 + option1][col1] == KEY_VOLUMEUP)
       {
         pressed = 0;
-        ConsumerControl.release();
+        Consumer.release(MEDIA_VOLUME_UP);
       }
       if (keyMap[row1 + option1][col1] == KEY_VOLUMEDOWN)
       {
         pressed = 0;
-        ConsumerControl.release();
-      }*/
+        Consumer.release(MEDIA_VOLUME_DOWN);
+      }
       else
       {
         pressed = 0;
