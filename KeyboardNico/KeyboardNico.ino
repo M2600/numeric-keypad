@@ -629,7 +629,7 @@ void loop() {
 
 
   //capslockSetting
- /* if (Keyboard.getLedStatus(LED_CAPS_LOCK) && !capsLocked)
+  if (BootKeyboard.getLeds() & LED_CAPS_LOCK && !capsLocked)
   {
     capsLockLedOn();
     sendData = 0b10000001;
@@ -640,8 +640,10 @@ void loop() {
     Serial.println(sendData);
     capsLocked = true;
   }
-  else if (!Keyboard.getLedStatus(LED_CAPS_LOCK) && capsLocked)
+  else
   {
+    if(capsLocked)
+    {
     capsLockLedOff();
     sendData = 0b10000010;
     Serial1.write(sendData);
@@ -650,7 +652,8 @@ void loop() {
     Serial.println(sendData);
     Serial.flush();
     capsLocked = false;
-  }*/
+    }
+  }
 
   if(mouseMovey && keyboardEnabled)
   {
