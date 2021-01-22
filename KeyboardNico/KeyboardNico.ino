@@ -75,6 +75,10 @@ bool leftSide;
 #define KEY_RALT 0x86 //Rightalt
 #define KEY_RGUI 0x87 //Rightgui
 
+#define KEY_PSCR   0xCE
+#define KEY_SLCK  0xCF
+#define KEY_PAUS  0xD0
+
 #define KEY_PGUP 0xD3 //Pageup
 #define KEY_PGDN 0xD6 //Pagedown
 #define KEY_HOM 0xD2 //Home
@@ -310,7 +314,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
 
   //rightFn
   {KEY_FU7,  KEY_FU8,  KEY_FU9,      KEY_MUTE,       KEY_VOLUMEDOWN, KEY_VOLUMEUP,  NONE,     KEY_CPFL },
-  {KEY_BSLS, KEY_7,    KEY_8,        KEY_9,          KEY_0,          KEY_MINS,      KEY_EQL,  KEY_HOM  },
+  {KEY_BSLS, KEY_7,    KEY_8,        KEY_9,          KEY_0,          KEY_MINS,      KEY_PSCR, KEY_HOM  },
   {KEY_RPRN, KEY_Y,    KEY_U,        KEY_I,          KEY_O,          KEY_P,         KEY_LCBR, KEY_PGUP },
   {KEY_RCBR, KEY_H,    KEY_J,        KEY_K,          KEY_L,          KEY_SCLN,      KEY_QUOT, KEY_PGDN },
   {KEY_IF,   KEY_N,    KEY_MAIL,     KEY_COMM,       KEY_DOT,        KEY_SLSH,      KEY_UP,   KEY_EN   }, 
@@ -346,7 +350,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
 
   //rightGameFn
   {KEY_FU7,  KEY_FU8,  KEY_FU9,      KEY_MUTE,       KEY_VOLUMEDOWN, KEY_VOLUMEUP,  NONE,     KEY_CPFL },
-  {KEY_BSLS, KEY_7,    KEY_8,        KEY_9,          KEY_0,          KEY_MINS,      KEY_EQL,  KEY_HOM  },
+  {KEY_BSLS, KEY_7,    KEY_8,        KEY_9,          KEY_0,          KEY_MINS,      KEY_PSCR, KEY_HOM  },
   {KEY_FU7,   KEY_Y,   KEY_U,        KEY_I,          KEY_O,          KEY_P,         KEY_LCBR, KEY_PGUP },
   {KEY_FU8,   KEY_H,   KEY_J,        KEY_K,          KEY_L,          KEY_SCLN,      KEY_QUOT, KEY_PGDN },
   {KEY_FU9,   KEY_N,   KEY_MAIL,     KEY_COMM,       KEY_DOT,        KEY_SLSH,      KEY_UP,   KEY_EN   },
@@ -2189,5 +2193,7 @@ void sendKey(byte keycode,bool pressed)
     else if(keycode == KEY_FU10) BootKeyboard.release(KEY_F10);
     else if(keycode == KEY_FU11) BootKeyboard.release(KEY_F11);
     else if(keycode == KEY_FU12) BootKeyboard.release(KEY_F12);
+
+    else if(keycode == KEY_PSCR) BootKeyboard.release(KEY_PRINTSCREEN);
   }
 }
