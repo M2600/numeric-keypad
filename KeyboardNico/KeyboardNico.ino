@@ -2069,6 +2069,9 @@ void sendKey(byte keycode,bool pressed)
     else if(keycode == KEY_FU10) BootKeyboard.press(KEY_F10);
     else if(keycode == KEY_FU11) BootKeyboard.press(KEY_F11);
     else if(keycode == KEY_FU12) BootKeyboard.press(KEY_F12);
+
+    else if(keycode == KEY_PSCR) BootKeyboard.press(KEY_PRINTSCREEN);
+    
   }
   else
   {
