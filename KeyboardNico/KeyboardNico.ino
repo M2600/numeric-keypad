@@ -78,6 +78,7 @@ bool leftSide;
 #define KEY_PSCR   0xCE
 #define KEY_SLCK  0xCF
 #define KEY_PAUS  0xD0
+#define KEY_INS  0xD1
 
 #define KEY_PGUP 0xD3 //Pageup
 #define KEY_PGDN 0xD6 //Pagedown
@@ -2071,7 +2072,9 @@ void sendKey(byte keycode,bool pressed)
     else if(keycode == KEY_FU12) BootKeyboard.press(KEY_F12);
 
     else if(keycode == KEY_PSCR) BootKeyboard.press(KEY_PRINTSCREEN);
-    
+    else if(keycode == KEY_SLCK) BootKeyboard.press(KEY_SCROLL_LOCK);
+    else if(keycode == KEY_PAUS) BootKeyboard.press(KEY_PAUSE);
+    else if(keycode == KEY_INS) BootKeyboard.press(KEY_INSERT);
   }
   else
   {
@@ -2198,5 +2201,8 @@ void sendKey(byte keycode,bool pressed)
     else if(keycode == KEY_FU12) BootKeyboard.release(KEY_F12);
 
     else if(keycode == KEY_PSCR) BootKeyboard.release(KEY_PRINTSCREEN);
+    else if(keycode == KEY_SLCK) BootKeyboard.release(KEY_SCROLL_LOCK);
+    else if(keycode == KEY_PAUS) BootKeyboard.release(KEY_PAUSE);
+    else if(keycode == KEY_INS) BootKeyboard.release(KEY_INSERT);
   }
 }
