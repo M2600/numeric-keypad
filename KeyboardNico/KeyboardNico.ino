@@ -1695,49 +1695,8 @@ void capsLockLedOn()
 }
 void capsLockLedOff()
 {
-  /*uint32_t color0 = statusLED.getPixelColor(0);
-  uint8_t color0_0 = color0 >> 16 & 0b0000000011111111;
-  uint8_t color0_1 = color0 >> 8 & 0b0000000011111111;
-  uint8_t color0_2 = color0   & 0b0000000011111111;
-  Serial.print("color1 ");
-  Serial.print(color0);
-  Serial.print(" ");
-  Serial.print(color0_0);
-  Serial.print(" ");
-  Serial.print(color0_1);
-  Serial.print(" ");
-  Serial.println(color0_2);
-  uint32_t color1 = statusLED.getPixelColor(1);
-  uint8_t color1_0 = color1 >> 16 & 0b0000000011111111;
-  uint8_t color1_1 = color1 >> 8 & 0b0000000011111111;
-  uint8_t color1_2 = color1   & 0b0000000011111111;
-  Serial.print("color1");
-  Serial.print(color1);
-  Serial.print(" ");
-  Serial.print(color1_0);
-  Serial.print(" ");
-  Serial.print(color1_1);
-  Serial.print(" ");
-  Serial.println(color1_2);
-  uint32_t color3 = statusLED.getPixelColor(3);
-  uint8_t color3_0 = color3 >> 16 & 0b0000000011111111;
-  uint8_t color3_1 = color3 >> 8 & 0b0000000011111111;
-  uint8_t color3_2 = color3   & 0b0000000011111111;
-  Serial.print("color3 ");
-  Serial.print(color3);
-  Serial.print(" ");
-  Serial.print(color3_0);
-  Serial.print(" ");
-  Serial.print(color3_1);
-  Serial.print(" ");
-  Serial.println(color3_2);*/
-    
-    
   //statusLED.clear();
   statusLED.setPixelColor(2,statusLED.Color(0, 0, 0)); 
-  //statusLED.setPixelColor(0,statusLED.Color(color0_0,color0_1,color0_2));
-  //statusLED.setPixelColor(1,statusLED.Color(color1_0,color1_1,color1_2));
-  //statusLED.setPixelColor(3,statusLED.Color(color3_0,color3_1,color3_2));
   statusLED.show();
 
   
@@ -1749,98 +1708,16 @@ void changeProfile()
   {
     gameModeEnabled = true;
     Serial.println(F("gameMode Enabled"));
-    /*uint32_t color1 = statusLED.getPixelColor(1);
-    uint8_t color1_0 = color1 >> 16 & 0b0000000011111111;
-    uint8_t color1_1 = color1 >> 8 & 0b0000000011111111;
-    uint8_t color1_2 = color1   & 0b0000000011111111;
-    Serial.print("color1 ");
-    Serial.print(color1);
-    Serial.print(" ");
-    Serial.print(color1_0);
-    Serial.print(" ");
-    Serial.print(color1_1);
-    Serial.print(" ");
-    Serial.println(color1_2);
-    uint32_t color2 = statusLED.getPixelColor(2);
-    uint8_t color2_0 = color2 >> 16 & 0b0000000011111111;
-    uint8_t color2_1 = color2 >> 8 & 0b0000000011111111;
-    uint8_t color2_2 = color2   & 0b0000000011111111;
-    Serial.print("color2 ");
-    Serial.print(color2);
-    Serial.print(" ");
-    Serial.print(color2_0);
-    Serial.print(" ");
-    Serial.print(color2_1);
-    Serial.print(" ");
-    Serial.println(color2_2);
-    uint32_t color3 = statusLED.getPixelColor(3);
-    uint8_t color3_0 = color3 >> 16 & 0b0000000011111111;
-    uint8_t color3_1 = color3 >> 8 & 0b0000000011111111;
-    uint8_t color3_2 = color3   & 0b0000000011111111;
-    Serial.print("color3 ");
-    Serial.print(color3);
-    Serial.print(" ");
-    Serial.print(color3_0);
-    Serial.print(" ");
-    Serial.print(color3_1);
-    Serial.print(" ");
-    Serial.println(color3_2);*/
-    
-    
     //statusLED.clear();
     statusLED.setPixelColor(0,statusLED.Color(5, 0, 0)); 
-    //statusLED.setPixelColor(1,statusLED.Color(color1_0,color1_1,color1_2));
-    //statusLED.setPixelColor(2,statusLED.Color(color2_0,color2_1,color2_2));
-    //statusLED.setPixelColor(3,statusLED.Color(color3_0,color3_1,color3_2));
     statusLED.show();
   }
   else
   {
     gameModeEnabled = false;
     Serial.println(F("gameMode Disenabled"));
-    /*uint32_t color1 = statusLED.getPixelColor(1);
-    uint8_t color1_0 = color1 >> 16 & 0b0000000011111111;
-    uint8_t color1_1 = color1 >> 8 & 0b0000000011111111;
-    uint8_t color1_2 = color1   & 0b0000000011111111;
-    Serial.print("color1 ");
-    Serial.print(color1);
-    Serial.print(" ");
-    Serial.print(color1_0);
-    Serial.print(" ");
-    Serial.print(color1_1);
-    Serial.print(" ");
-    Serial.println(color1_2);
-    uint32_t color2 = statusLED.getPixelColor(2);
-    uint8_t color2_0 = color2 >> 16 & 0b0000000011111111;
-    uint8_t color2_1 = color2 >> 8 & 0b0000000011111111;
-    uint8_t color2_2 = color2   & 0b0000000011111111;
-    Serial.print("color2 ");
-    Serial.print(color2);
-    Serial.print(" ");
-    Serial.print(color2_0);
-    Serial.print(" ");
-    Serial.print(color2_1);
-    Serial.print(" ");
-    Serial.println(color2_2);
-    uint32_t color3 = statusLED.getPixelColor(3);
-    uint8_t color3_0 = color3 >> 16 & 0b0000000011111111;
-    uint8_t color3_1 = color3 >> 8 & 0b0000000011111111;
-    uint8_t color3_2 = color3   & 0b0000000011111111;
-    Serial.print("color3 ");
-    Serial.print(color3);
-    Serial.print(" ");
-    Serial.print(color3_0);
-    Serial.print(" ");
-    Serial.print(color3_1);
-    Serial.print(" ");
-    Serial.println(color3_2);*/
-    
-    
     //statusLED.clear();
     statusLED.setPixelColor(0,statusLED.Color(0, 0, 0)); 
-    //statusLED.setPixelColor(1,statusLED.Color(color1_0,color1_1,color1_2));
-    //statusLED.setPixelColor(2,statusLED.Color(color2_0,color2_1,color2_2));
-    //statusLED.setPixelColor(3,statusLED.Color(color3_0,color3_1,color3_2));
     statusLED.show();
   }
   EEPROM[0x001] = gameModeEnabled;
