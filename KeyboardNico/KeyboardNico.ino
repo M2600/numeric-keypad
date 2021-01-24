@@ -659,7 +659,7 @@ void loop() {
 
   
   
-  
+    
 
   if (mouseMovey && keyboardEnabled)
   {
@@ -965,7 +965,7 @@ void loop() {
               Serial.print(F("pressed keycode "));
               Serial.println(keyMap[ii + option][jj]);
             }
-
+            pressed = 1;
           }
         }
         else
