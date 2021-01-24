@@ -1,3 +1,4 @@
+
 #include <HID-Project.h>
 #include <HID-Settings.h>
 //#include "Keyboard.h"
@@ -7,24 +8,6 @@
 #include "EEPROM.h"
 //===================================
 //Keyboard
-  /*########################################################################
-  ###                                                                    ###
-  ###    Before writing the program, make the left and right settings.   ###
-  ###     - It has been updated to work without this setting.            ###
-  ###                                                                    ###
-  ########################################################################*/
-
-                       //#//
-                       //#//
-                       //#//
-                       //#//
-                       //#//
-                   //////#//////
-                    /////#/////
-                     ////#////
-                      ///#///
-                       //#//
-                        ///
 
 bool leftSide;
 
@@ -45,9 +28,9 @@ bool leftSide;
 #define KEY_VOLUMEDOWN  0x07
 
 #define KEY_FOR  0x08
-#define KEY_CLPF 0x09    
+#define KEY_CLPF 0x09
 #define KEY_MAIL 0x0a
-#define KEY_IF   0x0b  
+#define KEY_IF   0x0b
 
 #define KEY_MUP  0x0c
 #define KEY_MDWN 0x0d
@@ -318,7 +301,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_BSLS, KEY_7,    KEY_8,        KEY_9,          KEY_0,          KEY_MINS,      KEY_PSCR, KEY_HOM  },
   {KEY_RPRN, KEY_Y,    KEY_U,        KEY_I,          KEY_O,          KEY_P,         KEY_LCBR, KEY_PGUP },
   {KEY_RCBR, KEY_H,    KEY_J,        KEY_K,          KEY_L,          KEY_SCLN,      KEY_QUOT, KEY_PGDN },
-  {KEY_IF,   KEY_N,    KEY_MAIL,     KEY_COMM,       KEY_DOT,        KEY_SLSH,      KEY_UP,   KEY_EN   }, 
+  {KEY_IF,   KEY_N,    KEY_MAIL,     KEY_COMM,       KEY_DOT,        KEY_SLSH,      KEY_UP,   KEY_EN   },
   {KEY_BSPC, KEY_LSFT, KEY_LOWE,     KEY_FN,         KEY_RALT,       KEY_LEFT,      KEY_DOWN, KEY_RGHT },
   {KEY_KEYPAD_ENTER, NONE, NONE,     NONE,           NONE,           NONE,          NONE,     NONE,    },
 
@@ -355,7 +338,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_FU7,   KEY_Y,   KEY_U,        KEY_I,          KEY_O,          KEY_P,         KEY_LCBR, KEY_PGUP },
   {KEY_FU8,   KEY_H,   KEY_J,        KEY_K,          KEY_L,          KEY_SCLN,      KEY_QUOT, KEY_PGDN },
   {KEY_FU9,   KEY_N,   KEY_MAIL,     KEY_COMM,       KEY_DOT,        KEY_SLSH,      KEY_UP,   KEY_EN   },
-  {KEY_BSPC,  KEY_LSFT,KEY_LOWE,     KEY_FN,         KEY_RALT,       KEY_LEFT,      KEY_DOWN, KEY_RGHT },
+  {KEY_BSPC,  KEY_LSFT, KEY_LOWE,     KEY_FN,         KEY_RALT,       KEY_LEFT,      KEY_DOWN, KEY_RGHT },
   {KEY_KEYPAD_ENTER, NONE, NONE,     NONE,           NONE,           NONE,          NONE,     NONE,    },
 
   //rightGameRais
@@ -379,22 +362,22 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
 
 //backLed============================================================
 
-int backLightLEDNormal[][3]={
+int backLightLEDNormal[][3] = {
   //red
-  {150,0,0},
+  {150, 0, 0},
   //purple
-  {150,0,150},
+  {150, 0, 150},
   //blue
-  {0,0,150},
+  {0, 0, 150},
   //aquablue
-  {0,150,150},
+  {0, 150, 150},
   //green
-  {0,150,0},
+  {0, 150, 0},
   //yellow
-  {150,150,0},
+  {150, 150, 0},
   //white
-  {150,150,200}
-  };
+  {150, 150, 200}
+};
 
 //checkLED
 int led = 13 ;
@@ -446,25 +429,39 @@ void FlashLED( int pin, int num )
 
 }
 
+void EVENT_USB_Device_Suspend()
+{
+  if (backLEDOn)
+  {
+    backLED.clear();
+    for (int i = 0; i < numpixels; i++)
+    {
+      backLED.setPixelColor(i, backLED.Color(0, 0, 0));
+    }
+    backLED.show();
+    backLEDOn = false;
+  }
+}
+
 
 
 //=========================setup========================
 void setup() {
 
   //check left or right
-  pinMode(12,OUTPUT);
-  digitalWrite(12,HIGH);
-  if(!digitalRead(12))
+  pinMode(12, OUTPUT);
+  digitalWrite(12, HIGH);
+  if (!digitalRead(12))
   {
-    leftSide=true;
+    leftSide = true;
   }
   else
   {
-    leftSide=false;
+    leftSide = false;
   }
-  digitalWrite(12,LOW);
+  digitalWrite(12, LOW);
 
-  
+
   pinMode(led, OUTPUT); //setLEDPin
   FlashLED( led, 4 );   //flashStatusLED
 
@@ -521,13 +518,13 @@ void setup() {
   delay(600);
   Serial.println(F("Serial available!!"));
 
-  
 
 
-  LEDProfile = EEPROM[0x000]; 
+
+  LEDProfile = EEPROM[0x000];
   gameModeEnabled = EEPROM[0x001];
   backLEDOn = EEPROM[0x002];
-    
+
 
   for (int i = 0; i < 3; i++)
   {
@@ -536,7 +533,7 @@ void setup() {
     {
       statusLED.setPixelColor(i, statusLED.Color(5, 0, 0));
     }
-  
+
     statusLED.show();
     delay(100);
     statusLED.clear();
@@ -547,13 +544,13 @@ void setup() {
     statusLED.show();
     delay(100);
   }
-  if(!backLEDOn)
+  if (!backLEDOn)
   {
     backLED.clear();
     for (int i = 0; i < numpixels; i++)
     {
       backLED.setPixelColor(i, backLED.Color(
-        backLightLEDNormal[LEDProfile][0], backLightLEDNormal[LEDProfile][1], backLightLEDNormal[LEDProfile  ][2]));
+                              backLightLEDNormal[LEDProfile][0], backLightLEDNormal[LEDProfile][1], backLightLEDNormal[LEDProfile  ][2]));
     }
     backLED.show();
     backLEDOn = true;
@@ -562,8 +559,8 @@ void setup() {
   {
     backLEDOn = false;
   }
-  
-  if(gameModeEnabled)
+
+  if (gameModeEnabled)
   {
     gameModeEnabled = false;
   }
@@ -582,21 +579,21 @@ void setup() {
 
   //起動時にNumLock On
   /*if (!Keyboard.getLedStatus(LED_NUM_LOCK))
-  {
+    {
     Keyboard.press(KEY_KEYPAD_NUMLOCK);
     Keyboard.release(KEY_KEYPAD_NUMLOCK);
-  }
-  else
-  {
+    }
+    else
+    {
     Keyboard.press(KEY_KEYPAD_NUMLOCK);
     Keyboard.release(KEY_KEYPAD_NUMLOCK);
     Keyboard.press(KEY_KEYPAD_NUMLOCK);
     Keyboard.release(KEY_KEYPAD_NUMLOCK);
-  }*/
+    }*/
 
-  
+
   //capsLockチェック
-  
+
   if (BootKeyboard.getLeds() & LED_CAPS_LOCK)
   {
     capsLockLedOn();
@@ -617,17 +614,17 @@ void loop() {
   //AntiChattering
   int delayTime = 8;
   int gameDelayTime = 5;
-  if(gameModeEnabled) 
-  { 
+  if (gameModeEnabled)
+  {
     delay(gameDelayTime);
   }
   else
   {
     delay(delayTime);
   }
-  
 
-  if(Serial.available())
+
+  if (Serial.available())
   {
     readPcSerial();
   }
@@ -647,49 +644,53 @@ void loop() {
   }
   else
   {
-    if(capsLocked)
+    if (capsLocked)
     {
-    capsLockLedOff();
-    sendData = 0b10000010;
-    Serial1.write(sendData);
-    Serial.print(F("senddate"));
-    Serial.print(F(" "));
-    Serial.println(sendData);
-    Serial.flush();
-    capsLocked = false;
+      capsLockLedOff();
+      sendData = 0b10000010;
+      Serial1.write(sendData);
+      Serial.print(F("senddate"));
+      Serial.print(F(" "));
+      Serial.println(sendData);
+      Serial.flush();
+      capsLocked = false;
     }
   }
 
-  if(mouseMovey && keyboardEnabled)
+  
+  
+  
+
+  if (mouseMovey && keyboardEnabled)
   {
-    
-    BootMouse.move(0,MouseConstant);
+
+    BootMouse.move(0, MouseConstant);
   }
-  if(mouseMove_y && keyboardEnabled)
+  if (mouseMove_y && keyboardEnabled)
   {
-    BootMouse.move(0,-MouseConstant);
-  }if(mouseMovex && keyboardEnabled)
+    BootMouse.move(0, -MouseConstant);
+  } if (mouseMovex && keyboardEnabled)
   {
-    BootMouse.move(MouseConstant,0);
-  }if(mouseMove_x && keyboardEnabled)
+    BootMouse.move(MouseConstant, 0);
+  } if (mouseMove_x && keyboardEnabled)
   {
-    BootMouse.move(-MouseConstant,0);
+    BootMouse.move(-MouseConstant, 0);
   }
 
 
-  if(leftShiftPushed && keyboardEnabled)
+  if (leftShiftPushed && keyboardEnabled)
   {
     BootKeyboard.press(KEY_LEFT_SHIFT);
   }
-  if(rightShiftPushed && keyboardEnabled)
+  if (rightShiftPushed && keyboardEnabled)
   {
     BootKeyboard.press(KEY_RIGHT_SHIFT);
   }
-  if(leftControlPushed && keyboardEnabled)
+  if (leftControlPushed && keyboardEnabled)
   {
     BootKeyboard.press(KEY_LEFT_CTRL);
   }
-  if(rightControlPushed && keyboardEnabled)
+  if (rightControlPushed && keyboardEnabled)
   {
     BootKeyboard.press(KEY_RIGHT_CTRL);
   }
@@ -738,9 +739,9 @@ void loop() {
 
           if (keyMap[ii + optionIME][jj] == KEY_RAIS)
           {
-            if(chengeIMELowerEnabled)
+            if (chengeIMELowerEnabled)
             {
-              if(keyboardEnabled)
+              if (keyboardEnabled)
               {
                 BootKeyboard.press( KEY_LEFT_ALT );
                 BootKeyboard.press( KEY_TILDE );
@@ -754,9 +755,9 @@ void loop() {
           }
           else if (keyMap[ii + optionIME][jj] == KEY_LOWE)
           {
-            if(chengeIMERaisEnabled)
+            if (chengeIMERaisEnabled)
             {
-              if(keyboardEnabled)
+              if (keyboardEnabled)
               {
                 BootKeyboard.press( KEY_LEFT_ALT );
                 BootKeyboard.press( KEY_TILDE );
@@ -768,33 +769,33 @@ void loop() {
             chengeIMELowerEnabled = true;
             pressed = 1;
           }
-          
-          
-          if(keyMap[ii + option][jj] == KEY_LSFT)
+
+
+          if (keyMap[ii + option][jj] == KEY_LSFT)
           {
             pressed = 1;
             leftShiftPushed = true;
-            sendKey( keyMap[ii + option][jj],pressed);
+            sendKey( keyMap[ii + option][jj], pressed);
             MouseConstant = MouseHighConstant;
           }
-          else if(keyMap[ii + option][jj] == KEY_RSFT)
+          else if (keyMap[ii + option][jj] == KEY_RSFT)
           {
             pressed = 1;
             rightShiftPushed = true;
-            sendKey( keyMap[ii + option][jj],pressed);
+            sendKey( keyMap[ii + option][jj], pressed);
             MouseConstant = MouseHighConstant;
           }
-          else if(keyMap[ii + option][jj] == KEY_LCTL)
+          else if (keyMap[ii + option][jj] == KEY_LCTL)
           {
             pressed = 1;
             leftControlPushed = true;
-            sendKey( keyMap[ii + option][jj],pressed);
+            sendKey( keyMap[ii + option][jj], pressed);
           }
-          else if(keyMap[ii + option][jj] == KEY_RCTL)
+          else if (keyMap[ii + option][jj] == KEY_RCTL)
           {
             pressed = 1;
             rightControlPushed = true;
-            sendKey( keyMap[ii + option][jj],pressed);
+            sendKey( keyMap[ii + option][jj], pressed);
           }
           else if (keyMap[ii + option][jj] == KEY_FN)
           {
@@ -805,14 +806,15 @@ void loop() {
           }
           else if (keyMap[ii + option][jj] == KEY_RAIS)
           {
-              BootKeyboard.releaseAll();
-              raisKeyPushed = true;
-              pressed = 1; }
+            BootKeyboard.releaseAll();
+            raisKeyPushed = true;
+            pressed = 1;
+          }
           else if (keyMap[ii + option][jj] == KEY_LOWE)
           {
-              BootKeyboard.releaseAll();
-              loweKeyPushed = true;
-              pressed = 1;
+            BootKeyboard.releaseAll();
+            loweKeyPushed = true;
+            pressed = 1;
           }
           else if (keyMap[ii + option][jj] == KEY_CPFL)
           {
@@ -841,15 +843,15 @@ void loop() {
           }
           else if (keyMap[ii + option][jj] == KEY_MAIL)
           {
-            if(keyboardEnabled)
+            if (keyboardEnabled)
             {
               BootKeyboard.print(F("shota.M.020626.S.K.F@gmail.com"));
             }
             pressed = 1;
-          } 
+          }
           else if (keyMap[ii + option][jj] == KEY_FOR)
           {
-            if(keyboardEnabled)
+            if (keyboardEnabled)
             {
               BootKeyboard.print(F("for() \n"));
               BootKeyboard.print(F("{ \n"));
@@ -863,7 +865,7 @@ void loop() {
           }
           else if (keyMap[ii + option][jj] == KEY_IF)
           {
-            if(keyboardEnabled)
+            if (keyboardEnabled)
             {
               BootKeyboard.print(F("if() \n"));
               BootKeyboard.print(F("{ \n"));
@@ -871,7 +873,7 @@ void loop() {
               BootKeyboard.write(KEY_UP);
               BootKeyboard.write(KEY_RGHT);
             }
-            
+
             //Keyboard.print("}");
             pressed = 1;
           }
@@ -897,7 +899,7 @@ void loop() {
           }
           else if (keyMap[ii + option][jj] == KEY_MLCL)
           {
-            if(keyboardEnabled)
+            if (keyboardEnabled)
             {
               BootMouse.press(MOUSE_LEFT);
             }
@@ -905,17 +907,17 @@ void loop() {
           }
           else if (keyMap[ii + option][jj] == KEY_MRCL)
           {
-            if(keyboardEnabled)
+            if (keyboardEnabled)
             {
               BootMouse.press(MOUSE_RIGHT);
             }
             pressed = 1;
           }
 
-          
-          
+
+
           /*if(keyMap[ii + option][jj] == KEY_SPC && leftControlPushed)
-          {
+            {
             Keyboard.release( KEY_LCTL );
             Keyboard.press( KEY_LALT );
             Keyboard.press( KEY_GRV );
@@ -923,9 +925,9 @@ void loop() {
             Keyboard.release( KEY_LALT );
             Keyboard.press( KEY_LCTL );
             pressed = 1;
-          }
-          else if(keyMap[ii + option][jj] == KEY_SPC && rightControlPushed)
-          {
+            }
+            else if(keyMap[ii + option][jj] == KEY_SPC && rightControlPushed)
+            {
             Keyboard.release( KEY_RCTL );
             Keyboard.press( KEY_LALT );
             Keyboard.press( KEY_GRV );
@@ -933,37 +935,37 @@ void loop() {
             Keyboard.release( KEY_LALT );
             Keyboard.press( KEY_RCTL );
             pressed = 1;
-          }*/
+            }*/
 
-          else if(keyMap[ii + option][jj] == KEY_ESCP && fnKeyPushed)
+          else if (keyMap[ii + option][jj] == KEY_ESCP && fnKeyPushed)
           {
-            if(backLEDOn)
+            if (backLEDOn)
             {
               offBackLED();
-              backLEDOn=false;
+              backLEDOn = false;
             }
             else
             {
               onBackLED();
-              backLEDOn=true;
+              backLEDOn = true;
             }
             pressed = 1;
           }
-          else if(keyMap[ii + option][jj] == KEY_KLCK)
+          else if (keyMap[ii + option][jj] == KEY_KLCK)
           {
             chengeKeyboardEnabled();
           }
-          
+
           else
           {
-            if(sendchar && keyboardEnabled)
+            if (sendchar && keyboardEnabled)
             {
               pressed = 1;
-              sendKey( keyMap[ii + option][jj],pressed);
+              sendKey( keyMap[ii + option][jj], pressed);
               Serial.print(F("pressed keycode "));
               Serial.println(keyMap[ii + option][jj]);
             }
-            
+
           }
         }
         else
@@ -971,8 +973,8 @@ void loop() {
 
           if (keyMap[ii + optionIME][jj] == KEY_RAIS)
           {
-              chengeIMERaisEnabled = false;
-              pressed = 0;
+            chengeIMERaisEnabled = false;
+            pressed = 0;
           }
           if (keyMap[ii + optionIME][jj] == KEY_LOWE)
           {
@@ -980,35 +982,35 @@ void loop() {
             pressed = 0;
           }
 
-          
 
-          if(keyMap[ii + option][jj] == KEY_LSFT)
+
+          if (keyMap[ii + option][jj] == KEY_LSFT)
           {
             pressed = 0;
             leftShiftPushed = false;
-            sendKey( keyMap[ii + option][jj],pressed);
+            sendKey( keyMap[ii + option][jj], pressed);
             MouseConstant = MouseLowConstant;
           }
-          if(keyMap[ii + option][jj] == KEY_RSFT)
+          if (keyMap[ii + option][jj] == KEY_RSFT)
           {
             pressed = 0;
             rightShiftPushed = false;
-            sendKey( keyMap[ii + option][jj],pressed);
+            sendKey( keyMap[ii + option][jj], pressed);
             MouseConstant = MouseLowConstant;
           }
-          if(keyMap[ii + option][jj] == KEY_LCTL)
+          if (keyMap[ii + option][jj] == KEY_LCTL)
           {
             pressed = 0;
             leftControlPushed = false;
-            sendKey( keyMap[ii + option][jj],pressed);
+            sendKey( keyMap[ii + option][jj], pressed);
           }
-          if(keyMap[ii + option][jj] == KEY_RCTL)
+          if (keyMap[ii + option][jj] == KEY_RCTL)
           {
             pressed = 0;
             rightControlPushed = false;
-            sendKey( keyMap[ii + option][jj],pressed);
+            sendKey( keyMap[ii + option][jj], pressed);
           }
-          
+
           if (keyMap[ii + option][jj] == KEY_FN)
           {
             fnKeyPushed = false;
@@ -1071,7 +1073,7 @@ void loop() {
           }
 
 
-          
+
           if (keyMap[ii + option][jj] == KEY_MUTE)
           {
             pressed = 0;
@@ -1090,7 +1092,7 @@ void loop() {
           else
           {
             pressed = 0;
-            sendKey( keyMap[ii + option][jj],pressed);
+            sendKey( keyMap[ii + option][jj], pressed);
           }
         }
         digitalWrite(led, !currentState[ii][jj]);
@@ -1155,16 +1157,16 @@ void readSerial()
   else if (receiveData == 0b10000101)
   {
     keyboardEnabled = false;
-    statusLED.setPixelColor(3,statusLED.Color(5, 0, 0));
+    statusLED.setPixelColor(3, statusLED.Color(5, 0, 0));
     statusLED.show();
     Serial.print(F("keyboardEnabled :"));
     Serial.println(keyboardEnabled);
   }
   else if (receiveData == 0b10000110)
   {
-    
+
     keyboardEnabled = true;
-    statusLED.setPixelColor(3,statusLED.Color(0, 5, 0));
+    statusLED.setPixelColor(3, statusLED.Color(0, 5, 0));
     statusLED.show();
     Serial.print(F("keyboardEnabled :"));
     Serial.println(keyboardEnabled);
@@ -1223,64 +1225,64 @@ void readSerial()
 
       if (keyMap[row1 + optionIME1][col1] == KEY_RAIS)
       {
-        if(chengeIMELowerEnabled)
-          {
-            if(keyboardEnabled)
+        if (chengeIMELowerEnabled)
+        {
+          if (keyboardEnabled)
           {
             BootKeyboard.press( KEY_LEFT_ALT );
             BootKeyboard.press( KEY_TILDE );
             BootKeyboard.release( KEY_TILDE );
             BootKeyboard.release( KEY_LEFT_ALT );
           }
-            sendChar1 = false;
-          }
-          chengeIMERaisEnabled = true;
-          pressed = 1;
+          sendChar1 = false;
+        }
+        chengeIMERaisEnabled = true;
+        pressed = 1;
       }
       else if (keyMap[row1 + optionIME1][col1] == KEY_LOWE)
       {
-        if(chengeIMERaisEnabled)
+        if (chengeIMERaisEnabled)
         {
-          if(keyboardEnabled)
+          if (keyboardEnabled)
           {
             BootKeyboard.press( KEY_LEFT_ALT );
             BootKeyboard.press( KEY_TILDE );
             BootKeyboard.release( KEY_TILDE );
             BootKeyboard.release( KEY_LEFT_ALT );
           }
-          
+
           sendChar1 = false;
         }
         chengeIMELowerEnabled = true;
         pressed = 1;
       }
-        
 
-      if(keyMap[row1 + option1][col1] == KEY_LSFT)
+
+      if (keyMap[row1 + option1][col1] == KEY_LSFT)
       {
         pressed = 1;
         leftShiftPushed = true;
-        sendKey( keyMap[row1 + option1][col1],pressed);
+        sendKey( keyMap[row1 + option1][col1], pressed);
         MouseConstant = MouseHighConstant;
       }
-      else if(keyMap[row1 + option1][col1] == KEY_RSFT)
+      else if (keyMap[row1 + option1][col1] == KEY_RSFT)
       {
         pressed = 1;
         rightShiftPushed = true;
-        sendKey( keyMap[row1 + option1][col1],pressed);
+        sendKey( keyMap[row1 + option1][col1], pressed);
         MouseConstant = MouseHighConstant;
       }
-      else if(keyMap[row1 + option1][col1] == KEY_LCTL)
+      else if (keyMap[row1 + option1][col1] == KEY_LCTL)
       {
         pressed = 1;
         leftControlPushed = true;
-        sendKey( keyMap[row1 + option1][col1],pressed);
+        sendKey( keyMap[row1 + option1][col1], pressed);
       }
-      else if(keyMap[row1 + option1][col1] == KEY_RCTL)
+      else if (keyMap[row1 + option1][col1] == KEY_RCTL)
       {
         pressed = 1;
         rightControlPushed = true;
-        sendKey( keyMap[row1 + option1][col1],pressed);
+        sendKey( keyMap[row1 + option1][col1], pressed);
       }
       else if (keyMap[row1 + option1][col1] == KEY_FN)
       {
@@ -1297,7 +1299,7 @@ void readSerial()
       else if (keyMap[row1 + option1][col1] == KEY_LOWE)
       {
         BootKeyboard.releaseAll();
-        loweKeyPushed = true; 
+        loweKeyPushed = true;
         pressed = 1;
       }
       else if (keyMap[row1 + option1][col1] == KEY_CPFL)
@@ -1327,7 +1329,7 @@ void readSerial()
       }
       else if (keyMap[row1 + option1][col1] == KEY_MAIL)
       {
-        if(keyboardEnabled)
+        if (keyboardEnabled)
         {
           BootKeyboard.print(F("shota.M.020626.S.K.F@gmail.com"));
         }
@@ -1335,7 +1337,7 @@ void readSerial()
       }
       else if (keyMap[row1 + option1][col1] == KEY_FOR)
       {
-        if(keyboardEnabled)
+        if (keyboardEnabled)
         {
           BootKeyboard.print(F("for() \n"));
           BootKeyboard.print(F("{ \n"));
@@ -1348,7 +1350,7 @@ void readSerial()
       }
       else if (keyMap[row1 + option1][col1] == KEY_IF)
       {
-        if(keyboardEnabled)
+        if (keyboardEnabled)
         {
           BootKeyboard.print(F("if() \n"));
           BootKeyboard.print(F("{ \n"));
@@ -1382,7 +1384,7 @@ void readSerial()
       }
       else if (keyMap[row1 + option1][col1] == KEY_MLCL)
       {
-        if(keyboardEnabled)
+        if (keyboardEnabled)
         {
           BootMouse.press(MOUSE_LEFT);
         }
@@ -1390,7 +1392,7 @@ void readSerial()
       }
       else if (keyMap[row1 + option1][col1] == KEY_MRCL)
       {
-        if(keyboardEnabled)
+        if (keyboardEnabled)
         {
           BootMouse.press(MOUSE_RIGHT);
         }
@@ -1398,7 +1400,7 @@ void readSerial()
       }
 
       /*if(keyMap[row1 + option1][col1] == KEY_SPC && leftControlPushed)
-      {
+        {
         Keyboard.release( KEY_LCTL );
         Keyboard.press( KEY_LALT );
         Keyboard.press( KEY_GRV );
@@ -1406,9 +1408,9 @@ void readSerial()
         Keyboard.release( KEY_LALT );
         Keyboard.press( KEY_LCTL );
         pressed = 1;
-      }
-      else if(keyMap[row1 + option1][col1] == KEY_SPC && rightControlPushed)
-      {
+        }
+        else if(keyMap[row1 + option1][col1] == KEY_SPC && rightControlPushed)
+        {
         Keyboard.release( KEY_RCTL );
         Keyboard.press( KEY_LALT );
         Keyboard.press( KEY_GRV );
@@ -1416,33 +1418,33 @@ void readSerial()
         Keyboard.release( KEY_LALT );
         Keyboard.press( KEY_RCTL );
         pressed = 1;
-      }*/
+        }*/
 
-      else if(keyMap[row1 + option1][col1] == KEY_ESCP && fnKeyPushed)
+      else if (keyMap[row1 + option1][col1] == KEY_ESCP && fnKeyPushed)
       {
-        if(backLEDOn)
+        if (backLEDOn)
         {
           offBackLED();
-          backLEDOn=false;
+          backLEDOn = false;
         }
         else
         {
           onBackLED();
-          backLEDOn=true;
+          backLEDOn = true;
         }
         pressed = 1;
       }
-      
+
       else
       {
         Serial.print(F("sendChar1 :"));
         Serial.print(sendChar1);
         Serial.print(F("keyboardEnabled :"));
         Serial.print(keyboardEnabled);
-        if(sendChar1 && keyboardEnabled)
+        if (sendChar1 && keyboardEnabled)
         {
           pressed = 1;
-          sendKey( keyMap[row1 + option1][col1],pressed);
+          sendKey( keyMap[row1 + option1][col1], pressed);
           Serial.println(keyMap[row1 + option1][col1]);
           Serial.print(F("pressed keycode "));
           Serial.println(keyMap[row1 + option1][col1]);
@@ -1463,7 +1465,7 @@ void readSerial()
         pressed = 0;
       }
 
-      
+
       if (keyMap[row1 + option1][col1] == KEY_FN)
       {
         fnKeyPushed = false;
@@ -1471,34 +1473,34 @@ void readSerial()
         //ConsumerControl.release();
       }
 
-      if(keyMap[row1 + option1][col1] == KEY_LSFT)
+      if (keyMap[row1 + option1][col1] == KEY_LSFT)
       {
         pressed = 0;
         leftShiftPushed = false;
-        sendKey( keyMap[row1 + option1][col1],pressed);
+        sendKey( keyMap[row1 + option1][col1], pressed);
         MouseConstant = MouseLowConstant;
       }
-      if(keyMap[row1 + option1][col1] == KEY_RSFT)
+      if (keyMap[row1 + option1][col1] == KEY_RSFT)
       {
         pressed = 0;
         rightShiftPushed = false;
-        sendKey( keyMap[row1 + option1][col1],pressed);
+        sendKey( keyMap[row1 + option1][col1], pressed);
         MouseConstant = MouseLowConstant;
       }
-      if(keyMap[row1 + option1][col1] == KEY_LCTL)
+      if (keyMap[row1 + option1][col1] == KEY_LCTL)
       {
         pressed = 0;
         leftControlPushed = false;
-        sendKey( keyMap[row1 + option1][col1],pressed);
+        sendKey( keyMap[row1 + option1][col1], pressed);
       }
-      if(keyMap[row1 + option1][col1] == KEY_RCTL)
+      if (keyMap[row1 + option1][col1] == KEY_RCTL)
       {
         pressed = 0;
         rightControlPushed = false;
-        sendKey( keyMap[row1 + option1][col1],pressed);
+        sendKey( keyMap[row1 + option1][col1], pressed);
       }
 
-      
+
       if (keyMap[row1 + option1][col1] == KEY_RAIS)
       {
         BootKeyboard.releaseAll();
@@ -1541,7 +1543,7 @@ void readSerial()
       }
       if (keyMap[row1 + option1][col1] == KEY_MLCL)
       {
-        if(keyboardEnabled)
+        if (keyboardEnabled)
         {
           BootMouse.release(MOUSE_LEFT);
         }
@@ -1549,7 +1551,7 @@ void readSerial()
       }
       if (keyMap[row1 + option1][col1] == KEY_MRCL)
       {
-        if(keyboardEnabled)
+        if (keyboardEnabled)
         {
           BootMouse.release(MOUSE_RIGHT);
         }
@@ -1557,7 +1559,7 @@ void readSerial()
       }
 
 
-      
+
       if (keyMap[row1 + option1][col1] == KEY_MUTE)
       {
         pressed = 0;
@@ -1576,7 +1578,7 @@ void readSerial()
       else
       {
         pressed = 0;
-        sendKey( keyMap[row1 + option1][col1],pressed);
+        sendKey( keyMap[row1 + option1][col1], pressed);
       }
     }
   }
@@ -1586,19 +1588,19 @@ void readPcSerial()
 {
   byte receivedata = Serial.read();
 
-  if(receivedata == 'G')
+  if (receivedata == 'G')
   {
     gameModeEnabled = false;
     Serial1.write(0b10000011);
     changeProfile();
   }
-  else if(receivedata == 'D')
+  else if (receivedata == 'D')
   {
     gameModeEnabled = true;
     Serial1.write(0b10000100);
     changeProfile();
   }
-  
+
 }
 void LEDTape()
 {
@@ -1639,7 +1641,7 @@ void onBackLED()
   for (int i = 0; i < numpixels; i++)
   {
     backLED.setPixelColor(i, backLED.Color(
-      backLightLEDNormal[LEDProfile][0], backLightLEDNormal[LEDProfile][1], backLightLEDNormal[LEDProfile  ][2]));
+                            backLightLEDNormal[LEDProfile][0], backLightLEDNormal[LEDProfile][1], backLightLEDNormal[LEDProfile  ][2]));
   }
   backLED.show();
   EEPROM[0x002] = backLEDOn;
@@ -1648,68 +1650,68 @@ void onBackLED()
 void capsLockLedOn()
 {
   /*uint32_t color0 = statusLED.getPixelColor(0);
-  uint8_t color0_0 = color0 >> 16 & 0b0000000011111111;
-  uint8_t color0_1 = color0 >> 8 & 0b0000000011111111;
-  uint8_t color0_2 = color0   & 0b0000000011111111;
-  Serial.print("color1 ");
-  Serial.print(color0);
-  Serial.print(" ");
-  Serial.print(color0_0);
-  Serial.print(" ");
-  Serial.print(color0_1);
-  Serial.print(" ");
-  Serial.println(color0_2);
-  uint32_t color1 = statusLED.getPixelColor(1);
-  uint8_t color1_0 = color1 >> 16 & 0b0000000011111111;
-  uint8_t color1_1 = color1 >> 8 & 0b0000000011111111;
-  uint8_t color1_2 = color1   & 0b0000000011111111;
-  Serial.print("color1");
-  Serial.print(color1);
-  Serial.print(" ");
-  Serial.print(color1_0);
-  Serial.print(" ");
-  Serial.print(color1_1);
-  Serial.print(" ");
-  Serial.println(color1_2);
-  uint32_t color3 = statusLED.getPixelColor(3);
-  uint8_t color3_0 = color3 >> 16 & 0b0000000011111111;
-  uint8_t color3_1 = color3 >> 8 & 0b0000000011111111;
-  uint8_t color3_2 = color3   & 0b0000000011111111;
-  Serial.print("color3 ");
-  Serial.print(color3);
-  Serial.print(" ");
-  Serial.print(color3_0);
-  Serial.print(" ");
-  Serial.print(color3_1);
-  Serial.print(" ");
-  Serial.println(color3_2);*/
-    
-    
+    uint8_t color0_0 = color0 >> 16 & 0b0000000011111111;
+    uint8_t color0_1 = color0 >> 8 & 0b0000000011111111;
+    uint8_t color0_2 = color0   & 0b0000000011111111;
+    Serial.print("color1 ");
+    Serial.print(color0);
+    Serial.print(" ");
+    Serial.print(color0_0);
+    Serial.print(" ");
+    Serial.print(color0_1);
+    Serial.print(" ");
+    Serial.println(color0_2);
+    uint32_t color1 = statusLED.getPixelColor(1);
+    uint8_t color1_0 = color1 >> 16 & 0b0000000011111111;
+    uint8_t color1_1 = color1 >> 8 & 0b0000000011111111;
+    uint8_t color1_2 = color1   & 0b0000000011111111;
+    Serial.print("color1");
+    Serial.print(color1);
+    Serial.print(" ");
+    Serial.print(color1_0);
+    Serial.print(" ");
+    Serial.print(color1_1);
+    Serial.print(" ");
+    Serial.println(color1_2);
+    uint32_t color3 = statusLED.getPixelColor(3);
+    uint8_t color3_0 = color3 >> 16 & 0b0000000011111111;
+    uint8_t color3_1 = color3 >> 8 & 0b0000000011111111;
+    uint8_t color3_2 = color3   & 0b0000000011111111;
+    Serial.print("color3 ");
+    Serial.print(color3);
+    Serial.print(" ");
+    Serial.print(color3_0);
+    Serial.print(" ");
+    Serial.print(color3_1);
+    Serial.print(" ");
+    Serial.println(color3_2);*/
+
+
   //statusLED.clear();
-  statusLED.setPixelColor(2,statusLED.Color(0, 5, 0)); 
+  statusLED.setPixelColor(2, statusLED.Color(0, 5, 0));
   //statusLED.setPixelColor(0,statusLED.Color(color0_0,color0_1,color0_2));
   //statusLED.setPixelColor(1,statusLED.Color(color1_0,color1_1,color1_2));
   //statusLED.setPixelColor(3,statusLED.Color(color3_0,color3_1,color3_2));
   statusLED.show();
-    
+
 }
 void capsLockLedOff()
 {
   //statusLED.clear();
-  statusLED.setPixelColor(2,statusLED.Color(0, 0, 0)); 
+  statusLED.setPixelColor(2, statusLED.Color(0, 0, 0));
   statusLED.show();
 
-  
+
 }
 
 void changeProfile()
 {
-  if(!gameModeEnabled)
+  if (!gameModeEnabled)
   {
     gameModeEnabled = true;
     Serial.println(F("gameMode Enabled"));
     //statusLED.clear();
-    statusLED.setPixelColor(0,statusLED.Color(5, 0, 0)); 
+    statusLED.setPixelColor(0, statusLED.Color(5, 0, 0));
     statusLED.show();
   }
   else
@@ -1717,7 +1719,7 @@ void changeProfile()
     gameModeEnabled = false;
     Serial.println(F("gameMode Disenabled"));
     //statusLED.clear();
-    statusLED.setPixelColor(0,statusLED.Color(0, 0, 0)); 
+    statusLED.setPixelColor(0, statusLED.Color(0, 0, 0));
     statusLED.show();
   }
   EEPROM[0x001] = gameModeEnabled;
@@ -1728,7 +1730,7 @@ void changeLightProfile()
 {
   if (LEDProfile == 6)
   {
-    LEDProfile = 0; 
+    LEDProfile = 0;
   }
   else
   {
@@ -1739,7 +1741,7 @@ void changeLightProfile()
   for (int i = 0; i < numpixels; i++)
   {
     backLED.setPixelColor(i, backLED.Color(
-      backLightLEDNormal[LEDProfile][0], backLightLEDNormal[LEDProfile][1], backLightLEDNormal[LEDProfile  ][2]));
+                            backLightLEDNormal[LEDProfile][0], backLightLEDNormal[LEDProfile][1], backLightLEDNormal[LEDProfile  ][2]));
   }
   backLED.show();
   Serial.print(F("LEDProfile "));
@@ -1751,61 +1753,61 @@ void changeLightProfile()
 }
 void startMouseMove(uint8_t directions)
 {
-  if(directions == KEY_MUP)
+  if (directions == KEY_MUP)
   {
     mouseMove_y = true;
   }
-  if(directions == KEY_MDWN)
+  if (directions == KEY_MDWN)
   {
     mouseMovey = true;
   }
-  if(directions == KEY_MRIT)
+  if (directions == KEY_MRIT)
   {
     mouseMovex = true;
   }
-  if(directions == KEY_MLFT)
+  if (directions == KEY_MLFT)
   {
     mouseMove_x = true;
   }
 }
 void stopMouseMove(uint8_t directions)
 {
-  if(directions == 0)
+  if (directions == 0)
   {
-     mouseMove_y = false;
-     mouseMovey = false;
-     mouseMovex = false;
-     mouseMove_x = false;
-     Mouse.release();
+    mouseMove_y = false;
+    mouseMovey = false;
+    mouseMovex = false;
+    mouseMove_x = false;
+    Mouse.release();
   }
   else
   {
-    if(directions == KEY_MUP)
+    if (directions == KEY_MUP)
     {
       mouseMove_y = false;
     }
-    if(directions == KEY_MDWN)
+    if (directions == KEY_MDWN)
     {
       mouseMovey = false;
     }
-    if(directions == KEY_MRIT)
+    if (directions == KEY_MRIT)
     {
       mouseMovex = false;
     }
-    if(directions == KEY_MLFT)
+    if (directions == KEY_MLFT)
     {
       mouseMove_x = false;
     }
   }
-  
+
 }
 void chengeKeyboardEnabled()
 {
-  if(!keyboardEnabled)
+  if (!keyboardEnabled)
   {
     keyboardEnabled = true;
     Serial1.write(0b10000101);
-    statusLED.setPixelColor(3,statusLED.Color(0, 5, 0));
+    statusLED.setPixelColor(3, statusLED.Color(0, 5, 0));
     statusLED.show();
     Serial.print(F("keyboardEnabled :"));
     Serial.println(keyboardEnabled);
@@ -1814,272 +1816,272 @@ void chengeKeyboardEnabled()
   {
     keyboardEnabled = false;
     Serial1.write(0b10000110);
-    statusLED.setPixelColor(3,statusLED.Color(5, 0, 0)); 
+    statusLED.setPixelColor(3, statusLED.Color(5, 0, 0));
     statusLED.show();
     Serial.print(F("keyboardEnabled :"));
     Serial.println(keyboardEnabled);
   }
-  
+
 }
 
-void sendKey(byte keycode,bool pressed)
+void sendKey(byte keycode, bool pressed)
 {
-  if(pressed)
+  if (pressed)
   {
-    if(keycode == KEY_A)      BootKeyboard.press(KEY_A);
-    else if(keycode == KEY_B) BootKeyboard.press(KEY_B);
-    else if(keycode == KEY_C) BootKeyboard.press(KEY_C);
-    else if(keycode == KEY_D) BootKeyboard.press(KEY_D);
-    else if(keycode == KEY_E) BootKeyboard.press(KEY_E);
-    else if(keycode == KEY_F) BootKeyboard.press(KEY_F);
-    else if(keycode == KEY_G) BootKeyboard.press(KEY_G);
-    else if(keycode == KEY_H) BootKeyboard.press(KEY_H);
-    else if(keycode == KEY_I) BootKeyboard.press(KEY_I);
-    else if(keycode == KEY_J) BootKeyboard.press(KEY_J);
-    else if(keycode == KEY_K) BootKeyboard.press(KEY_K);
-    else if(keycode == KEY_L) BootKeyboard.press(KEY_L);
-    else if(keycode == KEY_M) BootKeyboard.press(KEY_M);
-    else if(keycode == KEY_N) BootKeyboard.press(KEY_N);
-    else if(keycode == KEY_O) BootKeyboard.press(KEY_O);
-    else if(keycode == KEY_P) BootKeyboard.press(KEY_P);
-    else if(keycode == KEY_Q) BootKeyboard.press(KEY_Q);
-    else if(keycode == KEY_R) BootKeyboard.press(KEY_R);
-    else if(keycode == KEY_S) BootKeyboard.press(KEY_S);
-    else if(keycode == KEY_T) BootKeyboard.press(KEY_T);
-    else if(keycode == KEY_U) BootKeyboard.press(KEY_U);
-    else if(keycode == KEY_V) BootKeyboard.press(KEY_V);
-    else if(keycode == KEY_W) BootKeyboard.press(KEY_W);
-    else if(keycode == KEY_X) BootKeyboard.press(KEY_X);
-    else if(keycode == KEY_Y) BootKeyboard.press(KEY_Y);
-    else if(keycode == KEY_Z) BootKeyboard.press(KEY_Z);
+    if (keycode == KEY_A)      BootKeyboard.press(KEY_A);
+    else if (keycode == KEY_B) BootKeyboard.press(KEY_B);
+    else if (keycode == KEY_C) BootKeyboard.press(KEY_C);
+    else if (keycode == KEY_D) BootKeyboard.press(KEY_D);
+    else if (keycode == KEY_E) BootKeyboard.press(KEY_E);
+    else if (keycode == KEY_F) BootKeyboard.press(KEY_F);
+    else if (keycode == KEY_G) BootKeyboard.press(KEY_G);
+    else if (keycode == KEY_H) BootKeyboard.press(KEY_H);
+    else if (keycode == KEY_I) BootKeyboard.press(KEY_I);
+    else if (keycode == KEY_J) BootKeyboard.press(KEY_J);
+    else if (keycode == KEY_K) BootKeyboard.press(KEY_K);
+    else if (keycode == KEY_L) BootKeyboard.press(KEY_L);
+    else if (keycode == KEY_M) BootKeyboard.press(KEY_M);
+    else if (keycode == KEY_N) BootKeyboard.press(KEY_N);
+    else if (keycode == KEY_O) BootKeyboard.press(KEY_O);
+    else if (keycode == KEY_P) BootKeyboard.press(KEY_P);
+    else if (keycode == KEY_Q) BootKeyboard.press(KEY_Q);
+    else if (keycode == KEY_R) BootKeyboard.press(KEY_R);
+    else if (keycode == KEY_S) BootKeyboard.press(KEY_S);
+    else if (keycode == KEY_T) BootKeyboard.press(KEY_T);
+    else if (keycode == KEY_U) BootKeyboard.press(KEY_U);
+    else if (keycode == KEY_V) BootKeyboard.press(KEY_V);
+    else if (keycode == KEY_W) BootKeyboard.press(KEY_W);
+    else if (keycode == KEY_X) BootKeyboard.press(KEY_X);
+    else if (keycode == KEY_Y) BootKeyboard.press(KEY_Y);
+    else if (keycode == KEY_Z) BootKeyboard.press(KEY_Z);
 
-    else if(keycode == KEY_KEYPAD_0) BootKeyboard.press(KEYPAD_0);
-    else if(keycode == KEY_KEYPAD_1) BootKeyboard.press(KEYPAD_1);
-    else if(keycode == KEY_KEYPAD_2) BootKeyboard.press(KEYPAD_2);
-    else if(keycode == KEY_KEYPAD_3) BootKeyboard.press(KEYPAD_3);
-    else if(keycode == KEY_KEYPAD_4) BootKeyboard.press(KEYPAD_4);
-    else if(keycode == KEY_KEYPAD_5) BootKeyboard.press(KEYPAD_5);
-    else if(keycode == KEY_KEYPAD_6) BootKeyboard.press(KEYPAD_6);
-    else if(keycode == KEY_KEYPAD_7) BootKeyboard.press(KEYPAD_7);
-    else if(keycode == KEY_KEYPAD_8) BootKeyboard.press(KEYPAD_8);
-    else if(keycode == KEY_KEYPAD_9) BootKeyboard.press(KEYPAD_9);
-    else if(keycode == KEY_KEYPAD_DECIMAL)  BootKeyboard.press(KEYPAD_DOT);
-    else if(keycode == KEY_KEYPAD_ENTER)    BootKeyboard.press(KEYPAD_ENTER);
-    else if(keycode == KEY_KEYPAD_PLUS)     BootKeyboard.press(KEYPAD_ADD);
-    else if(keycode == KEY_KEYPAD_MINUS)    BootKeyboard.press(KEYPAD_SUBTRACT);
-    else if(keycode == KEY_KEYPAD_MULTIPLY) BootKeyboard.press(KEYPAD_MULTIPLY);
-    else if(keycode == KEY_KEYPAD_DIVIDE)   BootKeyboard.press(KEYPAD_DIVIDE);
-    else if(keycode == KEY_KEYPAD_NUMLOCK)  BootKeyboard.press(KEY_NUM_LOCK);
+    else if (keycode == KEY_KEYPAD_0) BootKeyboard.press(KEYPAD_0);
+    else if (keycode == KEY_KEYPAD_1) BootKeyboard.press(KEYPAD_1);
+    else if (keycode == KEY_KEYPAD_2) BootKeyboard.press(KEYPAD_2);
+    else if (keycode == KEY_KEYPAD_3) BootKeyboard.press(KEYPAD_3);
+    else if (keycode == KEY_KEYPAD_4) BootKeyboard.press(KEYPAD_4);
+    else if (keycode == KEY_KEYPAD_5) BootKeyboard.press(KEYPAD_5);
+    else if (keycode == KEY_KEYPAD_6) BootKeyboard.press(KEYPAD_6);
+    else if (keycode == KEY_KEYPAD_7) BootKeyboard.press(KEYPAD_7);
+    else if (keycode == KEY_KEYPAD_8) BootKeyboard.press(KEYPAD_8);
+    else if (keycode == KEY_KEYPAD_9) BootKeyboard.press(KEYPAD_9);
+    else if (keycode == KEY_KEYPAD_DECIMAL)  BootKeyboard.press(KEYPAD_DOT);
+    else if (keycode == KEY_KEYPAD_ENTER)    BootKeyboard.press(KEYPAD_ENTER);
+    else if (keycode == KEY_KEYPAD_PLUS)     BootKeyboard.press(KEYPAD_ADD);
+    else if (keycode == KEY_KEYPAD_MINUS)    BootKeyboard.press(KEYPAD_SUBTRACT);
+    else if (keycode == KEY_KEYPAD_MULTIPLY) BootKeyboard.press(KEYPAD_MULTIPLY);
+    else if (keycode == KEY_KEYPAD_DIVIDE)   BootKeyboard.press(KEYPAD_DIVIDE);
+    else if (keycode == KEY_KEYPAD_NUMLOCK)  BootKeyboard.press(KEY_NUM_LOCK);
 
-    
-    else if(keycode == KEY_ENT)  BootKeyboard.press(KEY_ENTER);
-    else if(keycode == KEY_ESCP)  BootKeyboard.press(KEY_ESC);
-    else if(keycode == KEY_BSPC) BootKeyboard.press(KEY_BACKSPACE);
-    else if(keycode == KEY_DEL)  BootKeyboard.press(KEY_DELETE);
-    else if(keycode == KEY_TB)  BootKeyboard.press(KEY_TAB);
-    else if(keycode == KEY_CAPS) BootKeyboard.press(KEY_CAPS_LOCK);
-    else if(keycode == KEY_LCTL) BootKeyboard.press(KEY_LEFT_CTRL);
-    else if(keycode == KEY_LSFT) BootKeyboard.press(KEY_LEFT_SHIFT);
-    else if(keycode == KEY_LALT) BootKeyboard.press(KEY_LEFT_ALT);
-    else if(keycode == KEY_LGUI) BootKeyboard.press(KEY_LEFT_GUI);
-    else if(keycode == KEY_RCTL) BootKeyboard.press(KEY_RIGHT_CTRL);
-    else if(keycode == KEY_RSFT) BootKeyboard.press(KEY_RIGHT_SHIFT);
-    else if(keycode == KEY_RALT) BootKeyboard.press(KEY_RIGHT_ALT);
-    else if(keycode == KEY_RGUI) BootKeyboard.press(KEY_RIGHT_GUI);
 
-    
-    else if(keycode == KEY_PGUP) BootKeyboard.press(KEY_PAGE_UP);
-    else if(keycode == KEY_PGDN) BootKeyboard.press(KEY_PAGE_DOWN);
-    else if(keycode == KEY_HOM) BootKeyboard.press(KEY_HOME);
-    else if(keycode == KEY_EN)  BootKeyboard.press(KEY_END);
-    else if(keycode == KEY_LEFT) BootKeyboard.press(KEY_LEFT_ARROW);
-    else if(keycode == KEY_RGHT) BootKeyboard.press(KEY_RIGHT_ARROW);
-    else if(keycode == KEY_UP)   BootKeyboard.press(KEY_UP_ARROW);
-    else if(keycode == KEY_DOWN) BootKeyboard.press(KEY_DOWN_ARROW);
-    
-    else if(keycode == KEY_0) BootKeyboard.press(KEY_0);
-    else if(keycode == KEY_1) BootKeyboard.press(KEY_1);
-    else if(keycode == KEY_2) BootKeyboard.press(KEY_2);
-    else if(keycode == KEY_3) BootKeyboard.press(KEY_3);
-    else if(keycode == KEY_4) BootKeyboard.press(KEY_4);
-    else if(keycode == KEY_5) BootKeyboard.press(KEY_5);
-    else if(keycode == KEY_6) BootKeyboard.press(KEY_6);
-    else if(keycode == KEY_7) BootKeyboard.press(KEY_7);
-    else if(keycode == KEY_8) BootKeyboard.press(KEY_8);
-    else if(keycode == KEY_9) BootKeyboard.press(KEY_9);
-    
-    else if(keycode == KEY_EXLM) BootKeyboard.press(KEY_EXLM);
-    else if(keycode == KEY_AT)   BootKeyboard.press(KEY_AT);
-    else if(keycode == KEY_HASH) BootKeyboard.press(KEY_HASH);
-    else if(keycode == KEY_DLR)  BootKeyboard.press(KEY_DLR);
-    else if(keycode == KEY_PERC) BootKeyboard.press(KEY_PERC);
-    else if(keycode == KEY_CIRC) BootKeyboard.press(KEY_CIRC);
-    else if(keycode == KEY_AMPR) BootKeyboard.press(KEY_AMPR);
-    else if(keycode == KEY_ASTR) BootKeyboard.press(KEY_ASTR);
-    else if(keycode == KEY_LPRN) BootKeyboard.press(KEY_LPRN);
-    else if(keycode == KEY_RPRN) BootKeyboard.press(KEY_RPRN);
-    
-    else if(keycode == KEY_MINS) BootKeyboard.press(KEY_MINUS);
-    else if(keycode == KEY_EQL)  BootKeyboard.press(KEY_EQUAL);
-    else if(keycode == KEY_SPC)  BootKeyboard.press(KEY_SPACE);
-    else if(keycode == KEY_LBRC) BootKeyboard.press(KEY_LEFT_BRACE);
-    else if(keycode == KEY_RBRC) BootKeyboard.press(KEY_RIGHT_BRACE);
-    else if(keycode == KEY_LCBR) BootKeyboard.press(KEY_LCBR);
-    else if(keycode == KEY_RCBR) BootKeyboard.press(KEY_RCBR);
-    else if(keycode == KEY_BSLS) BootKeyboard.press(KEY_BACKSLASH);
-    else if(keycode == KEY_SCLN) BootKeyboard.press(KEY_SEMICOLON);
-    else if(keycode == KEY_QUOT) BootKeyboard.press(KEY_QUOTE);
-    else if(keycode == KEY_GRV)  BootKeyboard.press(KEY_TILDE);
-    else if(keycode == KEY_COMM) BootKeyboard.press(KEY_COMMA);
-    else if(keycode == KEY_DOT)  BootKeyboard.press(KEY_PERIOD);
-    else if(keycode == KEY_SLSH) BootKeyboard.press(KEY_SLASH);
+    else if (keycode == KEY_ENT)  BootKeyboard.press(KEY_ENTER);
+    else if (keycode == KEY_ESCP)  BootKeyboard.press(KEY_ESC);
+    else if (keycode == KEY_BSPC) BootKeyboard.press(KEY_BACKSPACE);
+    else if (keycode == KEY_DEL)  BootKeyboard.press(KEY_DELETE);
+    else if (keycode == KEY_TB)  BootKeyboard.press(KEY_TAB);
+    else if (keycode == KEY_CAPS) BootKeyboard.press(KEY_CAPS_LOCK);
+    else if (keycode == KEY_LCTL) BootKeyboard.press(KEY_LEFT_CTRL);
+    else if (keycode == KEY_LSFT) BootKeyboard.press(KEY_LEFT_SHIFT);
+    else if (keycode == KEY_LALT) BootKeyboard.press(KEY_LEFT_ALT);
+    else if (keycode == KEY_LGUI) BootKeyboard.press(KEY_LEFT_GUI);
+    else if (keycode == KEY_RCTL) BootKeyboard.press(KEY_RIGHT_CTRL);
+    else if (keycode == KEY_RSFT) BootKeyboard.press(KEY_RIGHT_SHIFT);
+    else if (keycode == KEY_RALT) BootKeyboard.press(KEY_RIGHT_ALT);
+    else if (keycode == KEY_RGUI) BootKeyboard.press(KEY_RIGHT_GUI);
 
-    
-    else if(keycode == KEY_FU1)  BootKeyboard.press(KEY_F1);
-    else if(keycode == KEY_FU2)  BootKeyboard.press(KEY_F2);
-    else if(keycode == KEY_FU3)  BootKeyboard.press(KEY_F3);
-    else if(keycode == KEY_FU4)  BootKeyboard.press(KEY_F4);
-    else if(keycode == KEY_FU5)  BootKeyboard.press(KEY_F5);
-    else if(keycode == KEY_FU6)  BootKeyboard.press(KEY_F6);
-    else if(keycode == KEY_FU7)  BootKeyboard.press(KEY_F7);
-    else if(keycode == KEY_FU8)  BootKeyboard.press(KEY_F8);
-    else if(keycode == KEY_FU9)  BootKeyboard.press(KEY_F9);
-    else if(keycode == KEY_FU10) BootKeyboard.press(KEY_F10);
-    else if(keycode == KEY_FU11) BootKeyboard.press(KEY_F11);
-    else if(keycode == KEY_FU12) BootKeyboard.press(KEY_F12);
 
-    else if(keycode == KEY_PSCR) BootKeyboard.press(KEY_PRINTSCREEN);
-    else if(keycode == KEY_SLCK) BootKeyboard.press(KEY_SCROLL_LOCK);
-    else if(keycode == KEY_PAUS) BootKeyboard.press(KEY_PAUSE);
-    else if(keycode == KEY_INS) BootKeyboard.press(KEY_INSERT);
+    else if (keycode == KEY_PGUP) BootKeyboard.press(KEY_PAGE_UP);
+    else if (keycode == KEY_PGDN) BootKeyboard.press(KEY_PAGE_DOWN);
+    else if (keycode == KEY_HOM) BootKeyboard.press(KEY_HOME);
+    else if (keycode == KEY_EN)  BootKeyboard.press(KEY_END);
+    else if (keycode == KEY_LEFT) BootKeyboard.press(KEY_LEFT_ARROW);
+    else if (keycode == KEY_RGHT) BootKeyboard.press(KEY_RIGHT_ARROW);
+    else if (keycode == KEY_UP)   BootKeyboard.press(KEY_UP_ARROW);
+    else if (keycode == KEY_DOWN) BootKeyboard.press(KEY_DOWN_ARROW);
+
+    else if (keycode == KEY_0) BootKeyboard.press(KEY_0);
+    else if (keycode == KEY_1) BootKeyboard.press(KEY_1);
+    else if (keycode == KEY_2) BootKeyboard.press(KEY_2);
+    else if (keycode == KEY_3) BootKeyboard.press(KEY_3);
+    else if (keycode == KEY_4) BootKeyboard.press(KEY_4);
+    else if (keycode == KEY_5) BootKeyboard.press(KEY_5);
+    else if (keycode == KEY_6) BootKeyboard.press(KEY_6);
+    else if (keycode == KEY_7) BootKeyboard.press(KEY_7);
+    else if (keycode == KEY_8) BootKeyboard.press(KEY_8);
+    else if (keycode == KEY_9) BootKeyboard.press(KEY_9);
+
+    else if (keycode == KEY_EXLM) BootKeyboard.press(KEY_EXLM);
+    else if (keycode == KEY_AT)   BootKeyboard.press(KEY_AT);
+    else if (keycode == KEY_HASH) BootKeyboard.press(KEY_HASH);
+    else if (keycode == KEY_DLR)  BootKeyboard.press(KEY_DLR);
+    else if (keycode == KEY_PERC) BootKeyboard.press(KEY_PERC);
+    else if (keycode == KEY_CIRC) BootKeyboard.press(KEY_CIRC);
+    else if (keycode == KEY_AMPR) BootKeyboard.press(KEY_AMPR);
+    else if (keycode == KEY_ASTR) BootKeyboard.press(KEY_ASTR);
+    else if (keycode == KEY_LPRN) BootKeyboard.press(KEY_LPRN);
+    else if (keycode == KEY_RPRN) BootKeyboard.press(KEY_RPRN);
+
+    else if (keycode == KEY_MINS) BootKeyboard.press(KEY_MINUS);
+    else if (keycode == KEY_EQL)  BootKeyboard.press(KEY_EQUAL);
+    else if (keycode == KEY_SPC)  BootKeyboard.press(KEY_SPACE);
+    else if (keycode == KEY_LBRC) BootKeyboard.press(KEY_LEFT_BRACE);
+    else if (keycode == KEY_RBRC) BootKeyboard.press(KEY_RIGHT_BRACE);
+    else if (keycode == KEY_LCBR) BootKeyboard.press(KEY_LCBR);
+    else if (keycode == KEY_RCBR) BootKeyboard.press(KEY_RCBR);
+    else if (keycode == KEY_BSLS) BootKeyboard.press(KEY_BACKSLASH);
+    else if (keycode == KEY_SCLN) BootKeyboard.press(KEY_SEMICOLON);
+    else if (keycode == KEY_QUOT) BootKeyboard.press(KEY_QUOTE);
+    else if (keycode == KEY_GRV)  BootKeyboard.press(KEY_TILDE);
+    else if (keycode == KEY_COMM) BootKeyboard.press(KEY_COMMA);
+    else if (keycode == KEY_DOT)  BootKeyboard.press(KEY_PERIOD);
+    else if (keycode == KEY_SLSH) BootKeyboard.press(KEY_SLASH);
+
+
+    else if (keycode == KEY_FU1)  BootKeyboard.press(KEY_F1);
+    else if (keycode == KEY_FU2)  BootKeyboard.press(KEY_F2);
+    else if (keycode == KEY_FU3)  BootKeyboard.press(KEY_F3);
+    else if (keycode == KEY_FU4)  BootKeyboard.press(KEY_F4);
+    else if (keycode == KEY_FU5)  BootKeyboard.press(KEY_F5);
+    else if (keycode == KEY_FU6)  BootKeyboard.press(KEY_F6);
+    else if (keycode == KEY_FU7)  BootKeyboard.press(KEY_F7);
+    else if (keycode == KEY_FU8)  BootKeyboard.press(KEY_F8);
+    else if (keycode == KEY_FU9)  BootKeyboard.press(KEY_F9);
+    else if (keycode == KEY_FU10) BootKeyboard.press(KEY_F10);
+    else if (keycode == KEY_FU11) BootKeyboard.press(KEY_F11);
+    else if (keycode == KEY_FU12) BootKeyboard.press(KEY_F12);
+
+    else if (keycode == KEY_PSCR) BootKeyboard.press(KEY_PRINTSCREEN);
+    else if (keycode == KEY_SLCK) BootKeyboard.press(KEY_SCROLL_LOCK);
+    else if (keycode == KEY_PAUS) BootKeyboard.press(KEY_PAUSE);
+    else if (keycode == KEY_INS) BootKeyboard.press(KEY_INSERT);
   }
   else
   {
-    if(keycode == KEY_A)      BootKeyboard.release(KEY_A);
-    else if(keycode == KEY_B) BootKeyboard.release(KEY_B);
-    else if(keycode == KEY_C) BootKeyboard.release(KEY_C);
-    else if(keycode == KEY_D) BootKeyboard.release(KEY_D);
-    else if(keycode == KEY_E) BootKeyboard.release(KEY_E);
-    else if(keycode == KEY_F) BootKeyboard.release(KEY_F);
-    else if(keycode == KEY_G) BootKeyboard.release(KEY_G);
-    else if(keycode == KEY_H) BootKeyboard.release(KEY_H);
-    else if(keycode == KEY_I) BootKeyboard.release(KEY_I);
-    else if(keycode == KEY_J) BootKeyboard.release(KEY_J);
-    else if(keycode == KEY_K) BootKeyboard.release(KEY_K);
-    else if(keycode == KEY_L) BootKeyboard.release(KEY_L);
-    else if(keycode == KEY_M) BootKeyboard.release(KEY_M);
-    else if(keycode == KEY_N) BootKeyboard.release(KEY_N);
-    else if(keycode == KEY_O) BootKeyboard.release(KEY_O);
-    else if(keycode == KEY_P) BootKeyboard.release(KEY_P);
-    else if(keycode == KEY_Q) BootKeyboard.release(KEY_Q);
-    else if(keycode == KEY_R) BootKeyboard.release(KEY_R);
-    else if(keycode == KEY_S) BootKeyboard.release(KEY_S);
-    else if(keycode == KEY_T) BootKeyboard.release(KEY_T);
-    else if(keycode == KEY_U) BootKeyboard.release(KEY_U);
-    else if(keycode == KEY_V) BootKeyboard.release(KEY_V);
-    else if(keycode == KEY_W) BootKeyboard.release(KEY_W);
-    else if(keycode == KEY_X) BootKeyboard.release(KEY_X);
-    else if(keycode == KEY_Y) BootKeyboard.release(KEY_Y);
-    else if(keycode == KEY_Z) BootKeyboard.release(KEY_Z);
+    if (keycode == KEY_A)      BootKeyboard.release(KEY_A);
+    else if (keycode == KEY_B) BootKeyboard.release(KEY_B);
+    else if (keycode == KEY_C) BootKeyboard.release(KEY_C);
+    else if (keycode == KEY_D) BootKeyboard.release(KEY_D);
+    else if (keycode == KEY_E) BootKeyboard.release(KEY_E);
+    else if (keycode == KEY_F) BootKeyboard.release(KEY_F);
+    else if (keycode == KEY_G) BootKeyboard.release(KEY_G);
+    else if (keycode == KEY_H) BootKeyboard.release(KEY_H);
+    else if (keycode == KEY_I) BootKeyboard.release(KEY_I);
+    else if (keycode == KEY_J) BootKeyboard.release(KEY_J);
+    else if (keycode == KEY_K) BootKeyboard.release(KEY_K);
+    else if (keycode == KEY_L) BootKeyboard.release(KEY_L);
+    else if (keycode == KEY_M) BootKeyboard.release(KEY_M);
+    else if (keycode == KEY_N) BootKeyboard.release(KEY_N);
+    else if (keycode == KEY_O) BootKeyboard.release(KEY_O);
+    else if (keycode == KEY_P) BootKeyboard.release(KEY_P);
+    else if (keycode == KEY_Q) BootKeyboard.release(KEY_Q);
+    else if (keycode == KEY_R) BootKeyboard.release(KEY_R);
+    else if (keycode == KEY_S) BootKeyboard.release(KEY_S);
+    else if (keycode == KEY_T) BootKeyboard.release(KEY_T);
+    else if (keycode == KEY_U) BootKeyboard.release(KEY_U);
+    else if (keycode == KEY_V) BootKeyboard.release(KEY_V);
+    else if (keycode == KEY_W) BootKeyboard.release(KEY_W);
+    else if (keycode == KEY_X) BootKeyboard.release(KEY_X);
+    else if (keycode == KEY_Y) BootKeyboard.release(KEY_Y);
+    else if (keycode == KEY_Z) BootKeyboard.release(KEY_Z);
 
-    else if(keycode == KEY_KEYPAD_0) BootKeyboard.release(KEYPAD_0);
-    else if(keycode == KEY_KEYPAD_1) BootKeyboard.release(KEYPAD_1);
-    else if(keycode == KEY_KEYPAD_2) BootKeyboard.release(KEYPAD_2);
-    else if(keycode == KEY_KEYPAD_3) BootKeyboard.release(KEYPAD_3);
-    else if(keycode == KEY_KEYPAD_4) BootKeyboard.release(KEYPAD_4);
-    else if(keycode == KEY_KEYPAD_5) BootKeyboard.release(KEYPAD_5);
-    else if(keycode == KEY_KEYPAD_6) BootKeyboard.release(KEYPAD_6);
-    else if(keycode == KEY_KEYPAD_7) BootKeyboard.release(KEYPAD_7);
-    else if(keycode == KEY_KEYPAD_8) BootKeyboard.release(KEYPAD_8);
-    else if(keycode == KEY_KEYPAD_9) BootKeyboard.release(KEYPAD_9);
-    else if(keycode == KEY_KEYPAD_DECIMAL)  BootKeyboard.release(KEYPAD_DOT);
-    else if(keycode == KEY_KEYPAD_ENTER)    BootKeyboard.release(KEYPAD_ENTER);
-    else if(keycode == KEY_KEYPAD_PLUS)     BootKeyboard.release(KEYPAD_ADD);
-    else if(keycode == KEY_KEYPAD_MINUS)    BootKeyboard.release(KEYPAD_SUBTRACT);
-    else if(keycode == KEY_KEYPAD_MULTIPLY) BootKeyboard.release(KEYPAD_MULTIPLY);
-    else if(keycode == KEY_KEYPAD_DIVIDE)   BootKeyboard.release(KEYPAD_DIVIDE);
-    else if(keycode == KEY_KEYPAD_NUMLOCK)  BootKeyboard.release(KEY_NUM_LOCK);
+    else if (keycode == KEY_KEYPAD_0) BootKeyboard.release(KEYPAD_0);
+    else if (keycode == KEY_KEYPAD_1) BootKeyboard.release(KEYPAD_1);
+    else if (keycode == KEY_KEYPAD_2) BootKeyboard.release(KEYPAD_2);
+    else if (keycode == KEY_KEYPAD_3) BootKeyboard.release(KEYPAD_3);
+    else if (keycode == KEY_KEYPAD_4) BootKeyboard.release(KEYPAD_4);
+    else if (keycode == KEY_KEYPAD_5) BootKeyboard.release(KEYPAD_5);
+    else if (keycode == KEY_KEYPAD_6) BootKeyboard.release(KEYPAD_6);
+    else if (keycode == KEY_KEYPAD_7) BootKeyboard.release(KEYPAD_7);
+    else if (keycode == KEY_KEYPAD_8) BootKeyboard.release(KEYPAD_8);
+    else if (keycode == KEY_KEYPAD_9) BootKeyboard.release(KEYPAD_9);
+    else if (keycode == KEY_KEYPAD_DECIMAL)  BootKeyboard.release(KEYPAD_DOT);
+    else if (keycode == KEY_KEYPAD_ENTER)    BootKeyboard.release(KEYPAD_ENTER);
+    else if (keycode == KEY_KEYPAD_PLUS)     BootKeyboard.release(KEYPAD_ADD);
+    else if (keycode == KEY_KEYPAD_MINUS)    BootKeyboard.release(KEYPAD_SUBTRACT);
+    else if (keycode == KEY_KEYPAD_MULTIPLY) BootKeyboard.release(KEYPAD_MULTIPLY);
+    else if (keycode == KEY_KEYPAD_DIVIDE)   BootKeyboard.release(KEYPAD_DIVIDE);
+    else if (keycode == KEY_KEYPAD_NUMLOCK)  BootKeyboard.release(KEY_NUM_LOCK);
 
-    
-    else if(keycode == KEY_ENT)  BootKeyboard.release(KEY_ENTER);
-    else if(keycode == KEY_ESCP)  BootKeyboard.release(KEY_ESC);
-    else if(keycode == KEY_BSPC) BootKeyboard.release(KEY_BACKSPACE);
-    else if(keycode == KEY_DEL)  BootKeyboard.release(KEY_DELETE);
-    else if(keycode == KEY_TB)  BootKeyboard.release(KEY_TAB);
-    else if(keycode == KEY_CAPS) BootKeyboard.release(KEY_CAPS_LOCK);
-    else if(keycode == KEY_LCTL) BootKeyboard.release(KEY_LEFT_CTRL);
-    else if(keycode == KEY_LSFT) BootKeyboard.release(KEY_LEFT_SHIFT);
-    else if(keycode == KEY_LALT) BootKeyboard.release(KEY_LEFT_ALT);
-    else if(keycode == KEY_LGUI) BootKeyboard.release(KEY_LEFT_GUI);
-    else if(keycode == KEY_RCTL) BootKeyboard.release(KEY_RIGHT_CTRL);
-    else if(keycode == KEY_RSFT) BootKeyboard.release(KEY_RIGHT_SHIFT);
-    else if(keycode == KEY_RALT) BootKeyboard.release(KEY_RIGHT_ALT);
-    else if(keycode == KEY_RGUI) BootKeyboard.release(KEY_RIGHT_GUI);
 
-    
-    else if(keycode == KEY_PGUP) BootKeyboard.release(KEY_PAGE_UP);
-    else if(keycode == KEY_PGDN) BootKeyboard.release(KEY_PAGE_DOWN);
-    else if(keycode == KEY_HOM) BootKeyboard.release(KEY_HOME);
-    else if(keycode == KEY_EN)  BootKeyboard.release(KEY_END);
-    else if(keycode == KEY_LEFT) BootKeyboard.release(KEY_LEFT_ARROW);
-    else if(keycode == KEY_RGHT) BootKeyboard.release(KEY_RIGHT_ARROW);
-    else if(keycode == KEY_UP)   BootKeyboard.release(KEY_UP_ARROW);
-    else if(keycode == KEY_DOWN) BootKeyboard.release(KEY_DOWN_ARROW);
-    
-    else if(keycode == KEY_0) BootKeyboard.release(KEY_0);
-    else if(keycode == KEY_1) BootKeyboard.release(KEY_1);
-    else if(keycode == KEY_2) BootKeyboard.release(KEY_2);
-    else if(keycode == KEY_3) BootKeyboard.release(KEY_3);
-    else if(keycode == KEY_4) BootKeyboard.release(KEY_4);
-    else if(keycode == KEY_5) BootKeyboard.release(KEY_5);
-    else if(keycode == KEY_6) BootKeyboard.release(KEY_6);
-    else if(keycode == KEY_7) BootKeyboard.release(KEY_7);
-    else if(keycode == KEY_8) BootKeyboard.release(KEY_8);
-    else if(keycode == KEY_9) BootKeyboard.release(KEY_9);
-    
-    else if(keycode == KEY_EXLM) BootKeyboard.release(KEY_EXLM);
-    else if(keycode == KEY_AT)   BootKeyboard.release(KEY_AT);
-    else if(keycode == KEY_HASH) BootKeyboard.release(KEY_HASH);
-    else if(keycode == KEY_DLR)  BootKeyboard.release(KEY_DLR);
-    else if(keycode == KEY_PERC) BootKeyboard.release(KEY_PERC);
-    else if(keycode == KEY_CIRC) BootKeyboard.release(KEY_CIRC);
-    else if(keycode == KEY_AMPR) BootKeyboard.release(KEY_AMPR);
-    else if(keycode == KEY_ASTR) BootKeyboard.release(KEY_ASTR);
-    else if(keycode == KEY_LPRN) BootKeyboard.release(KEY_LPRN);
-    else if(keycode == KEY_RPRN) BootKeyboard.release(KEY_RPRN);
-    
-    else if(keycode == KEY_MINS) BootKeyboard.release(KEY_MINUS);
-    else if(keycode == KEY_EQL)  BootKeyboard.release(KEY_EQUAL);
-    else if(keycode == KEY_SPC)  BootKeyboard.release(KEY_SPACE);
-    else if(keycode == KEY_LBRC) BootKeyboard.release(KEY_LEFT_BRACE);
-    else if(keycode == KEY_RBRC) BootKeyboard.release(KEY_RIGHT_BRACE);
-    else if(keycode == KEY_LCBR) BootKeyboard.release(KEY_LCBR);
-    else if(keycode == KEY_RCBR) BootKeyboard.release(KEY_RCBR);
-    else if(keycode == KEY_BSLS) BootKeyboard.release(KEY_BACKSLASH);
-    else if(keycode == KEY_SCLN) BootKeyboard.release(KEY_SEMICOLON);
-    else if(keycode == KEY_QUOT) BootKeyboard.release(KEY_QUOTE);
-    else if(keycode == KEY_GRV)  BootKeyboard.release(KEY_TILDE);
-    else if(keycode == KEY_COMM) BootKeyboard.release(KEY_COMMA);
-    else if(keycode == KEY_DOT)  BootKeyboard.release(KEY_PERIOD);
-    else if(keycode == KEY_SLSH) BootKeyboard.release(KEY_SLASH);
+    else if (keycode == KEY_ENT)  BootKeyboard.release(KEY_ENTER);
+    else if (keycode == KEY_ESCP)  BootKeyboard.release(KEY_ESC);
+    else if (keycode == KEY_BSPC) BootKeyboard.release(KEY_BACKSPACE);
+    else if (keycode == KEY_DEL)  BootKeyboard.release(KEY_DELETE);
+    else if (keycode == KEY_TB)  BootKeyboard.release(KEY_TAB);
+    else if (keycode == KEY_CAPS) BootKeyboard.release(KEY_CAPS_LOCK);
+    else if (keycode == KEY_LCTL) BootKeyboard.release(KEY_LEFT_CTRL);
+    else if (keycode == KEY_LSFT) BootKeyboard.release(KEY_LEFT_SHIFT);
+    else if (keycode == KEY_LALT) BootKeyboard.release(KEY_LEFT_ALT);
+    else if (keycode == KEY_LGUI) BootKeyboard.release(KEY_LEFT_GUI);
+    else if (keycode == KEY_RCTL) BootKeyboard.release(KEY_RIGHT_CTRL);
+    else if (keycode == KEY_RSFT) BootKeyboard.release(KEY_RIGHT_SHIFT);
+    else if (keycode == KEY_RALT) BootKeyboard.release(KEY_RIGHT_ALT);
+    else if (keycode == KEY_RGUI) BootKeyboard.release(KEY_RIGHT_GUI);
 
-    
-    else if(keycode == KEY_FU1)  BootKeyboard.release(KEY_F1);
-    else if(keycode == KEY_FU2)  BootKeyboard.release(KEY_F2);
-    else if(keycode == KEY_FU3)  BootKeyboard.release(KEY_F3);
-    else if(keycode == KEY_FU4)  BootKeyboard.release(KEY_F4);
-    else if(keycode == KEY_FU5)  BootKeyboard.release(KEY_F5);
-    else if(keycode == KEY_FU6)  BootKeyboard.release(KEY_F6);
-    else if(keycode == KEY_FU7)  BootKeyboard.release(KEY_F7);
-    else if(keycode == KEY_FU8)  BootKeyboard.release(KEY_F8);
-    else if(keycode == KEY_FU9)  BootKeyboard.release(KEY_F9);
-    else if(keycode == KEY_FU10) BootKeyboard.release(KEY_F10);
-    else if(keycode == KEY_FU11) BootKeyboard.release(KEY_F11);
-    else if(keycode == KEY_FU12) BootKeyboard.release(KEY_F12);
 
-    else if(keycode == KEY_PSCR) BootKeyboard.release(KEY_PRINTSCREEN);
-    else if(keycode == KEY_SLCK) BootKeyboard.release(KEY_SCROLL_LOCK);
-    else if(keycode == KEY_PAUS) BootKeyboard.release(KEY_PAUSE);
-    else if(keycode == KEY_INS) BootKeyboard.release(KEY_INSERT);
+    else if (keycode == KEY_PGUP) BootKeyboard.release(KEY_PAGE_UP);
+    else if (keycode == KEY_PGDN) BootKeyboard.release(KEY_PAGE_DOWN);
+    else if (keycode == KEY_HOM) BootKeyboard.release(KEY_HOME);
+    else if (keycode == KEY_EN)  BootKeyboard.release(KEY_END);
+    else if (keycode == KEY_LEFT) BootKeyboard.release(KEY_LEFT_ARROW);
+    else if (keycode == KEY_RGHT) BootKeyboard.release(KEY_RIGHT_ARROW);
+    else if (keycode == KEY_UP)   BootKeyboard.release(KEY_UP_ARROW);
+    else if (keycode == KEY_DOWN) BootKeyboard.release(KEY_DOWN_ARROW);
+
+    else if (keycode == KEY_0) BootKeyboard.release(KEY_0);
+    else if (keycode == KEY_1) BootKeyboard.release(KEY_1);
+    else if (keycode == KEY_2) BootKeyboard.release(KEY_2);
+    else if (keycode == KEY_3) BootKeyboard.release(KEY_3);
+    else if (keycode == KEY_4) BootKeyboard.release(KEY_4);
+    else if (keycode == KEY_5) BootKeyboard.release(KEY_5);
+    else if (keycode == KEY_6) BootKeyboard.release(KEY_6);
+    else if (keycode == KEY_7) BootKeyboard.release(KEY_7);
+    else if (keycode == KEY_8) BootKeyboard.release(KEY_8);
+    else if (keycode == KEY_9) BootKeyboard.release(KEY_9);
+
+    else if (keycode == KEY_EXLM) BootKeyboard.release(KEY_EXLM);
+    else if (keycode == KEY_AT)   BootKeyboard.release(KEY_AT);
+    else if (keycode == KEY_HASH) BootKeyboard.release(KEY_HASH);
+    else if (keycode == KEY_DLR)  BootKeyboard.release(KEY_DLR);
+    else if (keycode == KEY_PERC) BootKeyboard.release(KEY_PERC);
+    else if (keycode == KEY_CIRC) BootKeyboard.release(KEY_CIRC);
+    else if (keycode == KEY_AMPR) BootKeyboard.release(KEY_AMPR);
+    else if (keycode == KEY_ASTR) BootKeyboard.release(KEY_ASTR);
+    else if (keycode == KEY_LPRN) BootKeyboard.release(KEY_LPRN);
+    else if (keycode == KEY_RPRN) BootKeyboard.release(KEY_RPRN);
+
+    else if (keycode == KEY_MINS) BootKeyboard.release(KEY_MINUS);
+    else if (keycode == KEY_EQL)  BootKeyboard.release(KEY_EQUAL);
+    else if (keycode == KEY_SPC)  BootKeyboard.release(KEY_SPACE);
+    else if (keycode == KEY_LBRC) BootKeyboard.release(KEY_LEFT_BRACE);
+    else if (keycode == KEY_RBRC) BootKeyboard.release(KEY_RIGHT_BRACE);
+    else if (keycode == KEY_LCBR) BootKeyboard.release(KEY_LCBR);
+    else if (keycode == KEY_RCBR) BootKeyboard.release(KEY_RCBR);
+    else if (keycode == KEY_BSLS) BootKeyboard.release(KEY_BACKSLASH);
+    else if (keycode == KEY_SCLN) BootKeyboard.release(KEY_SEMICOLON);
+    else if (keycode == KEY_QUOT) BootKeyboard.release(KEY_QUOTE);
+    else if (keycode == KEY_GRV)  BootKeyboard.release(KEY_TILDE);
+    else if (keycode == KEY_COMM) BootKeyboard.release(KEY_COMMA);
+    else if (keycode == KEY_DOT)  BootKeyboard.release(KEY_PERIOD);
+    else if (keycode == KEY_SLSH) BootKeyboard.release(KEY_SLASH);
+
+
+    else if (keycode == KEY_FU1)  BootKeyboard.release(KEY_F1);
+    else if (keycode == KEY_FU2)  BootKeyboard.release(KEY_F2);
+    else if (keycode == KEY_FU3)  BootKeyboard.release(KEY_F3);
+    else if (keycode == KEY_FU4)  BootKeyboard.release(KEY_F4);
+    else if (keycode == KEY_FU5)  BootKeyboard.release(KEY_F5);
+    else if (keycode == KEY_FU6)  BootKeyboard.release(KEY_F6);
+    else if (keycode == KEY_FU7)  BootKeyboard.release(KEY_F7);
+    else if (keycode == KEY_FU8)  BootKeyboard.release(KEY_F8);
+    else if (keycode == KEY_FU9)  BootKeyboard.release(KEY_F9);
+    else if (keycode == KEY_FU10) BootKeyboard.release(KEY_F10);
+    else if (keycode == KEY_FU11) BootKeyboard.release(KEY_F11);
+    else if (keycode == KEY_FU12) BootKeyboard.release(KEY_F12);
+
+    else if (keycode == KEY_PSCR) BootKeyboard.release(KEY_PRINTSCREEN);
+    else if (keycode == KEY_SLCK) BootKeyboard.release(KEY_SCROLL_LOCK);
+    else if (keycode == KEY_PAUS) BootKeyboard.release(KEY_PAUSE);
+    else if (keycode == KEY_INS) BootKeyboard.release(KEY_INSERT);
   }
 }
