@@ -657,9 +657,9 @@ void loop() {
     }
   }
 
-  
-  
-    
+
+
+
 
   if (mouseMovey && keyboardEnabled)
   {
@@ -823,7 +823,11 @@ void loop() {
           }
           else if (keyMap[ii + option][jj] == KEY_CLPF)
           {
-            changeLightProfile();
+            if (backLEDOn)
+            {
+
+              changeLightProfile();
+            }
             pressed = 1;
           }
           else if (keyMap[ii + option][jj] == KEY_MUTE)
@@ -1309,7 +1313,11 @@ void readSerial()
       }
       else if (keyMap[row1 + option1][col1] == KEY_CLPF)
       {
-        changeLightProfile();
+        if (backLEDOn)
+        {
+
+          changeLightProfile();
+        }
         pressed = 1;
       }
       else if (keyMap[row1 + option1][col1] == KEY_MUTE)
