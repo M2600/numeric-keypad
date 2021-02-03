@@ -125,6 +125,8 @@ namespace Keyboard_configuration_software
             form2.Left = this.Location.X + 20;
             form2.Top = this.Location.Y + 20;
 
+            this.ShowInTaskbar = true;
+
             //ユーザーがサイズを変更できないようにする
             //最大化、最小化はできる
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
