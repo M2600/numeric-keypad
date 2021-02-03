@@ -256,7 +256,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_TB,   KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_FU1,  NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_FU2,  NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_FU3,  NONE     },
-  {KEY_LCTL, ____,     KEY_LALT, KEY_FN,   KEY_C,    KEY_FU4,  KEY_FU5,  KEY_FU6   },
+  {KEY_LCTL, ____,     KEY_FN,   KEY_LALT, KEY_C,    KEY_FU4,  KEY_FU5,  KEY_FU6   },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
   //leftGameFn
@@ -265,7 +265,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_CLPF, KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,          KEY_FU1,      NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,          KEY_FU2,      NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,          KEY_FU3,      NONE     },
-  {KEY_LCTL, ____,     KEY_LALT, KEY_FN,   KEY_C,    KEY_FU4,        KEY_FU5,      KEY_FU6   },
+  {KEY_LCTL, ____,     KEY_FN,   KEY_LALT, KEY_C,    KEY_FU4,        KEY_FU5,      KEY_FU6   },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,           KEY_KLCK,     NONE     },
 
   //leftGameRAIS
@@ -274,7 +274,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_TB,   KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_FU1,  NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_FU2,  NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_FU3,  NONE     },
-  {KEY_LCTL, ____,     KEY_LALT, KEY_FN,   KEY_C,    KEY_FU4,  KEY_FU5,  KEY_FU6   },
+  {KEY_LCTL, ____,     KEY_FN,   KEY_LALT, KEY_C,    KEY_FU4,  KEY_FU5,  KEY_FU6   },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
   //leftGameLower
@@ -283,7 +283,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_TB,   KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_FU1,  NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_FU2,  NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_FU3,  NONE     },
-  {KEY_LCTL, ____,     KEY_LALT, KEY_FN,   KEY_C,    KEY_FU4,  KEY_FU5,  KEY_FU6   },
+  {KEY_LCTL, ____,     KEY_FN,   KEY_LALT, KEY_C,    KEY_FU4,  KEY_FU5,  KEY_FU6   },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
 
