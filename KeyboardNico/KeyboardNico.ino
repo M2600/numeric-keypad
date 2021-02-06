@@ -612,7 +612,7 @@ void setup() {
 //============================loop==================================
 void loop() {
   //AntiChattering
-  int delayTime = 8;
+  int delayTime = 10;
   int gameDelayTime = 5;
   if (gameModeEnabled)
   {
