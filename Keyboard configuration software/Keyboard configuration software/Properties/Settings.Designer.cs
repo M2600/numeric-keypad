@@ -37,7 +37,7 @@ namespace Keyboard_configuration_software.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("COM9")]
+        [global::System.Configuration.DefaultSettingValueAttribute("COM20")]
         public string SerialPort {
             get {
                 return ((string)(this["SerialPort"]));
@@ -296,6 +296,486 @@ namespace Keyboard_configuration_software.Properties {
             }
             set {
                 this["Codinglists10"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Gamelists11 {
+            get {
+                return ((string)(this["Gamelists11"]));
+            }
+            set {
+                this["Gamelists11"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Gamelists12 {
+            get {
+                return ((string)(this["Gamelists12"]));
+            }
+            set {
+                this["Gamelists12"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Gamelists13 {
+            get {
+                return ((string)(this["Gamelists13"]));
+            }
+            set {
+                this["Gamelists13"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Gamelists14 {
+            get {
+                return ((string)(this["Gamelists14"]));
+            }
+            set {
+                this["Gamelists14"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Gamelists15 {
+            get {
+                return ((string)(this["Gamelists15"]));
+            }
+            set {
+                this["Gamelists15"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Gamelists16 {
+            get {
+                return ((string)(this["Gamelists16"]));
+            }
+            set {
+                this["Gamelists16"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("...")]
+        public string Gamelists17 {
+            get {
+                return ((string)(this["Gamelists17"]));
+            }
+            set {
+                this["Gamelists17"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Gamelists18 {
+            get {
+                return ((string)(this["Gamelists18"]));
+            }
+            set {
+                this["Gamelists18"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Gamelists19 {
+            get {
+                return ((string)(this["Gamelists19"]));
+            }
+            set {
+                this["Gamelists19"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Gamelists20 {
+            get {
+                return ((string)(this["Gamelists20"]));
+            }
+            set {
+                this["Gamelists20"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Gamelists21 {
+            get {
+                return ((string)(this["Gamelists21"]));
+            }
+            set {
+                this["Gamelists21"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Gamelists22 {
+            get {
+                return ((string)(this["Gamelists22"]));
+            }
+            set {
+                this["Gamelists22"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Gamelists23 {
+            get {
+                return ((string)(this["Gamelists23"]));
+            }
+            set {
+                this["Gamelists23"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Gamelists24 {
+            get {
+                return ((string)(this["Gamelists24"]));
+            }
+            set {
+                this["Gamelists24"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Gamelists25 {
+            get {
+                return ((string)(this["Gamelists25"]));
+            }
+            set {
+                this["Gamelists25"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Gamelists26 {
+            get {
+                return ((string)(this["Gamelists26"]));
+            }
+            set {
+                this["Gamelists26"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Gamelists27 {
+            get {
+                return ((string)(this["Gamelists27"]));
+            }
+            set {
+                this["Gamelists27"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Gamelists28 {
+            get {
+                return ((string)(this["Gamelists28"]));
+            }
+            set {
+                this["Gamelists28"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Gamelists29 {
+            get {
+                return ((string)(this["Gamelists29"]));
+            }
+            set {
+                this["Gamelists29"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Gamelists30 {
+            get {
+                return ((string)(this["Gamelists30"]));
+            }
+            set {
+                this["Gamelists30"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Codinglists11 {
+            get {
+                return ((string)(this["Codinglists11"]));
+            }
+            set {
+                this["Codinglists11"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Codinglists12 {
+            get {
+                return ((string)(this["Codinglists12"]));
+            }
+            set {
+                this["Codinglists12"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Codinglists13 {
+            get {
+                return ((string)(this["Codinglists13"]));
+            }
+            set {
+                this["Codinglists13"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Codinglists14 {
+            get {
+                return ((string)(this["Codinglists14"]));
+            }
+            set {
+                this["Codinglists14"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Codinglists15 {
+            get {
+                return ((string)(this["Codinglists15"]));
+            }
+            set {
+                this["Codinglists15"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Codinglists16 {
+            get {
+                return ((string)(this["Codinglists16"]));
+            }
+            set {
+                this["Codinglists16"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Codinglists17 {
+            get {
+                return ((string)(this["Codinglists17"]));
+            }
+            set {
+                this["Codinglists17"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Codinglists18 {
+            get {
+                return ((string)(this["Codinglists18"]));
+            }
+            set {
+                this["Codinglists18"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Codinglists19 {
+            get {
+                return ((string)(this["Codinglists19"]));
+            }
+            set {
+                this["Codinglists19"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Codinglists20 {
+            get {
+                return ((string)(this["Codinglists20"]));
+            }
+            set {
+                this["Codinglists20"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Codinglists21 {
+            get {
+                return ((string)(this["Codinglists21"]));
+            }
+            set {
+                this["Codinglists21"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Codinglists22 {
+            get {
+                return ((string)(this["Codinglists22"]));
+            }
+            set {
+                this["Codinglists22"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Codinglists23 {
+            get {
+                return ((string)(this["Codinglists23"]));
+            }
+            set {
+                this["Codinglists23"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Codinglists24 {
+            get {
+                return ((string)(this["Codinglists24"]));
+            }
+            set {
+                this["Codinglists24"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Codinglists25 {
+            get {
+                return ((string)(this["Codinglists25"]));
+            }
+            set {
+                this["Codinglists25"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Codinglists26 {
+            get {
+                return ((string)(this["Codinglists26"]));
+            }
+            set {
+                this["Codinglists26"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Codinglists27 {
+            get {
+                return ((string)(this["Codinglists27"]));
+            }
+            set {
+                this["Codinglists27"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Codinglists28 {
+            get {
+                return ((string)(this["Codinglists28"]));
+            }
+            set {
+                this["Codinglists28"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Codinglists29 {
+            get {
+                return ((string)(this["Codinglists29"]));
+            }
+            set {
+                this["Codinglists29"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..")]
+        public string Codinglists30 {
+            get {
+                return ((string)(this["Codinglists30"]));
+            }
+            set {
+                this["Codinglists30"] = value;
             }
         }
     }

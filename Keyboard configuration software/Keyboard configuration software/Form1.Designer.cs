@@ -178,6 +178,7 @@ namespace Keyboard_configuration_software
             // serialPort1
             // 
             this.serialPort1.DtrEnable = true;
+            this.serialPort1.PortName = "COM20";
             this.serialPort1.DataReceived += new System.IO.Ports.SerialDataReceivedEventHandler(this.serialPort1_DataReceived);
             // 
             // Form1

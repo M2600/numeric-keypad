@@ -6,7 +6,7 @@
       <Value Profile="(Default)">Apex</Value>
     </Setting>
     <Setting Name="SerialPort" Type="System.String" Scope="User">
-      <Value Profile="(Default)">COM9</Value>
+      <Value Profile="(Default)">COM20</Value>
     </Setting>
     <Setting Name="Gamelists1" Type="System.String" Scope="User">
       <Value Profile="(Default)">theHunter</Value>
@@ -69,6 +69,126 @@
       <Value Profile="(Default)">..</Value>
     </Setting>
     <Setting Name="Codinglists10" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Gamelists11" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Gamelists12" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Gamelists13" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Gamelists14" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Gamelists15" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Gamelists16" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Gamelists17" Type="System.String" Scope="User">
+      <Value Profile="(Default)">...</Value>
+    </Setting>
+    <Setting Name="Gamelists18" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Gamelists19" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Gamelists20" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Gamelists21" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Gamelists22" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Gamelists23" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Gamelists24" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Gamelists25" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Gamelists26" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Gamelists27" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Gamelists28" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Gamelists29" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Gamelists30" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Codinglists11" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Codinglists12" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Codinglists13" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Codinglists14" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Codinglists15" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Codinglists16" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Codinglists17" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Codinglists18" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Codinglists19" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Codinglists20" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Codinglists21" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Codinglists22" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Codinglists23" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Codinglists24" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Codinglists25" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Codinglists26" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Codinglists27" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Codinglists28" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Codinglists29" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..</Value>
+    </Setting>
+    <Setting Name="Codinglists30" Type="System.String" Scope="User">
       <Value Profile="(Default)">..</Value>
     </Setting>
   </Settings>

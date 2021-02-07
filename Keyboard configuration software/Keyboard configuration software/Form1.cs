@@ -38,8 +38,12 @@ namespace Keyboard_configuration_software
 
         private System.Timers.Timer _timer;
         private string appname = "a" ;
-        public List<string> Gamelists = new List<string> (10){"Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends" };
-        public List<string> Codinglists = new List<string>(10) { "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino" };
+        public List<string> Gamelists = new List<string> (31){"Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends",  "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends", "Apex Legends",  "Apex Legends" };
+
+        public List<string> Codinglists = new List<string>(31) { "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino",
+                                                                 "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino",
+                                                                 "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino", "Arduino",
+                                                                 "Arduino"};
 
         private string sendmessage = "0";
         public bool serialPortOpen = true;
@@ -157,6 +161,27 @@ namespace Keyboard_configuration_software
             Gamelists[7] = Properties.Settings.Default.Gamelists7;
             Gamelists[8] = Properties.Settings.Default.Gamelists8;
             Gamelists[9] = Properties.Settings.Default.Gamelists9;
+            Gamelists[10] = Properties.Settings.Default.Gamelists10;
+            Gamelists[11] = Properties.Settings.Default.Gamelists11;
+            Gamelists[12] = Properties.Settings.Default.Gamelists12;
+            Gamelists[13] = Properties.Settings.Default.Gamelists13;
+            Gamelists[14] = Properties.Settings.Default.Gamelists14;
+            Gamelists[15] = Properties.Settings.Default.Gamelists15;
+            Gamelists[16] = Properties.Settings.Default.Gamelists16;
+            Gamelists[17] = Properties.Settings.Default.Gamelists17;
+            Gamelists[18] = Properties.Settings.Default.Gamelists18;
+            Gamelists[19] = Properties.Settings.Default.Gamelists19;
+            Gamelists[20] = Properties.Settings.Default.Gamelists20;
+            Gamelists[21] = Properties.Settings.Default.Gamelists21;
+            Gamelists[22] = Properties.Settings.Default.Gamelists22;
+            Gamelists[23] = Properties.Settings.Default.Gamelists23;
+            Gamelists[24] = Properties.Settings.Default.Gamelists24;
+            Gamelists[25] = Properties.Settings.Default.Gamelists25;
+            Gamelists[26] = Properties.Settings.Default.Gamelists26;
+            Gamelists[27] = Properties.Settings.Default.Gamelists27;
+            Gamelists[28] = Properties.Settings.Default.Gamelists28;
+            Gamelists[29] = Properties.Settings.Default.Gamelists29;
+            Gamelists[30] = Properties.Settings.Default.Gamelists30;
             //Gamelists[10] = Properties.Settings.Default.Gamelists10;
             Codinglists[0] = Properties.Settings.Default.Codinglists0;
             Codinglists[1] = Properties.Settings.Default.Codinglists1;
@@ -168,6 +193,27 @@ namespace Keyboard_configuration_software
             Codinglists[7] = Properties.Settings.Default.Codinglists7;
             Codinglists[8] = Properties.Settings.Default.Codinglists8;
             Codinglists[9] = Properties.Settings.Default.Codinglists9;
+            Codinglists[10] = Properties.Settings.Default.Codinglists10;
+            Codinglists[11] = Properties.Settings.Default.Codinglists11;
+            Codinglists[12] = Properties.Settings.Default.Codinglists12;
+            Codinglists[13] = Properties.Settings.Default.Codinglists13;
+            Codinglists[14] = Properties.Settings.Default.Codinglists14;
+            Codinglists[15] = Properties.Settings.Default.Codinglists15;
+            Codinglists[16] = Properties.Settings.Default.Codinglists16;
+            Codinglists[17] = Properties.Settings.Default.Codinglists17;
+            Codinglists[18] = Properties.Settings.Default.Codinglists18;
+            Codinglists[19] = Properties.Settings.Default.Codinglists19;
+            Codinglists[20] = Properties.Settings.Default.Codinglists20;
+            Codinglists[21] = Properties.Settings.Default.Codinglists21;
+            Codinglists[22] = Properties.Settings.Default.Codinglists22;
+            Codinglists[23] = Properties.Settings.Default.Codinglists23;
+            Codinglists[24] = Properties.Settings.Default.Codinglists24;
+            Codinglists[25] = Properties.Settings.Default.Codinglists25;
+            Codinglists[26] = Properties.Settings.Default.Codinglists26;
+            Codinglists[27] = Properties.Settings.Default.Codinglists27;
+            Codinglists[28] = Properties.Settings.Default.Codinglists28;
+            Codinglists[29] = Properties.Settings.Default.Codinglists29;
+            Codinglists[30] = Properties.Settings.Default.Codinglists30;
             //Gamelists[10] = Properties.Settings.Default.Codinglists10;
 
 
@@ -355,6 +401,27 @@ namespace Keyboard_configuration_software
             Properties.Settings.Default.Gamelists7 = Gamelists[7];
             Properties.Settings.Default.Gamelists8 = Gamelists[8];
             Properties.Settings.Default.Gamelists9 = Gamelists[9];
+            Properties.Settings.Default.Gamelists10 = Gamelists[10];
+            Properties.Settings.Default.Gamelists11 = Gamelists[11];
+            Properties.Settings.Default.Gamelists12 = Gamelists[12];
+            Properties.Settings.Default.Gamelists13 = Gamelists[13];
+            Properties.Settings.Default.Gamelists14 = Gamelists[14];
+            Properties.Settings.Default.Gamelists15 = Gamelists[15];
+            Properties.Settings.Default.Gamelists16 = Gamelists[16];
+            Properties.Settings.Default.Gamelists17 = Gamelists[17];
+            Properties.Settings.Default.Gamelists18 = Gamelists[18];
+            Properties.Settings.Default.Gamelists19 = Gamelists[19];
+            Properties.Settings.Default.Gamelists20 = Gamelists[20];
+            Properties.Settings.Default.Gamelists21 = Gamelists[21];
+            Properties.Settings.Default.Gamelists22 = Gamelists[22];
+            Properties.Settings.Default.Gamelists23 = Gamelists[23];
+            Properties.Settings.Default.Gamelists24 = Gamelists[24];
+            Properties.Settings.Default.Gamelists25 = Gamelists[25];
+            Properties.Settings.Default.Gamelists26 = Gamelists[26];
+            Properties.Settings.Default.Gamelists27 = Gamelists[27];
+            Properties.Settings.Default.Gamelists28 = Gamelists[28];
+            Properties.Settings.Default.Gamelists29 = Gamelists[29];
+            Properties.Settings.Default.Gamelists30 = Gamelists[30];
             Properties.Settings.Default.Save();
         }
 
@@ -364,16 +431,37 @@ namespace Keyboard_configuration_software
             {
                 Codinglists[i]=(textBox3.Lines[i]);
             }
-            Properties.Settings.Default.Codinglists0 = Gamelists[0];
-            Properties.Settings.Default.Codinglists1 = Gamelists[1];
-            Properties.Settings.Default.Codinglists2 = Gamelists[2];
-            Properties.Settings.Default.Codinglists3 = Gamelists[3];
-            Properties.Settings.Default.Codinglists4 = Gamelists[4];
-            Properties.Settings.Default.Codinglists5 = Gamelists[5];
-            Properties.Settings.Default.Codinglists6 = Gamelists[6];
-            Properties.Settings.Default.Codinglists7 = Gamelists[7];
-            Properties.Settings.Default.Codinglists8 = Gamelists[8];
-            Properties.Settings.Default.Codinglists9 = Gamelists[9];
+            Properties.Settings.Default.Codinglists0 = Codinglists[0];
+            Properties.Settings.Default.Codinglists1 = Codinglists[1];
+            Properties.Settings.Default.Codinglists2 = Codinglists[2];
+            Properties.Settings.Default.Codinglists3 = Codinglists[3];
+            Properties.Settings.Default.Codinglists4 = Codinglists[4];
+            Properties.Settings.Default.Codinglists5 = Codinglists[5];
+            Properties.Settings.Default.Codinglists6 = Codinglists[6];
+            Properties.Settings.Default.Codinglists7 = Codinglists[7];
+            Properties.Settings.Default.Codinglists8 = Codinglists[8];
+            Properties.Settings.Default.Codinglists9 = Codinglists[9];
+            Properties.Settings.Default.Codinglists10 = Codinglists[10];
+            Properties.Settings.Default.Codinglists11 = Codinglists[11];
+            Properties.Settings.Default.Codinglists12 = Codinglists[12];
+            Properties.Settings.Default.Codinglists13 = Codinglists[13];
+            Properties.Settings.Default.Codinglists14 = Codinglists[14];
+            Properties.Settings.Default.Codinglists15 = Codinglists[15];
+            Properties.Settings.Default.Codinglists16 = Codinglists[16];
+            Properties.Settings.Default.Codinglists17 = Codinglists[17];
+            Properties.Settings.Default.Codinglists18 = Codinglists[18];
+            Properties.Settings.Default.Codinglists19 = Codinglists[19];
+            Properties.Settings.Default.Codinglists20 = Codinglists[20];
+            Properties.Settings.Default.Codinglists21 = Codinglists[21];
+            Properties.Settings.Default.Codinglists22 = Codinglists[22];
+            Properties.Settings.Default.Codinglists23 = Codinglists[23];
+            Properties.Settings.Default.Codinglists24 = Codinglists[24];
+            Properties.Settings.Default.Codinglists25 = Codinglists[25];
+            Properties.Settings.Default.Codinglists26 = Codinglists[26];
+            Properties.Settings.Default.Codinglists27 = Codinglists[27];
+            Properties.Settings.Default.Codinglists28 = Codinglists[28];
+            Properties.Settings.Default.Codinglists29 = Codinglists[29];
+            Properties.Settings.Default.Codinglists30 = Codinglists[30];
             Properties.Settings.Default.Save();
         }
 
