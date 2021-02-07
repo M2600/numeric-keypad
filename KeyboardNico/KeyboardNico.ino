@@ -1029,6 +1029,7 @@ void loop() {
             raisKeyPushed = false;
             pressed = 0;
             BootKeyboard.releaseAll();
+            Consumer.releaseAll();
           }
           if (keyMap[ii + option][jj] == KEY_LOWE)
           {
@@ -1036,6 +1037,7 @@ void loop() {
             pressed = 0;
             stopMouseMove(0);
             BootKeyboard.releaseAll();
+            Consumer.releaseAll();
           }
           if (keyMap[ii + option][jj] == KEY_CPFL)
           {
@@ -1514,11 +1516,13 @@ void readSerial()
       if (keyMap[row1 + option1][col1] == KEY_RAIS)
       {
         BootKeyboard.releaseAll();
+        Consumer.releaseAll();
         raisKeyPushed = false;
       }
       if (keyMap[row1 + option1][col1] == KEY_LOWE)
       {
         BootKeyboard.releaseAll();
+        Consumer.releaseAll();
         stopMouseMove(0);
         loweKeyPushed = false;
       }
