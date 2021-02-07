@@ -1020,6 +1020,7 @@ void loop() {
             fnKeyPushed = false;
             pressed = 0;
             BootKeyboard.releaseAll();
+            Consumer.releaseAll();
             //ConsumerControl.release();
             Serial.println(F("FNKeyreleased!"));
           }
@@ -1478,6 +1479,7 @@ void readSerial()
       {
         fnKeyPushed = false;
         BootKeyboard.releaseAll();
+        Consumer.releaseAll();
         //ConsumerControl.release();
       }
 
