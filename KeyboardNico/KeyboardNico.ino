@@ -245,8 +245,8 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_TB,   KEY_Q,    KEY_W,    KEY_MUP,  KEY_R,    KEY_T,    KEY_LPRN, NONE     },
   {KEY_CAPS, KEY_A,    KEY_MLFT, KEY_MDWN, KEY_MRIT, KEY_G,    KEY_LCBR, NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_FOR,  NONE     },
-  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_MLCL, KEY_DEL,  ____     },
-  {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_MRCL,  NONE     },
+  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_MLCL, KEY_MHUP, KEY_MHDW },
+  {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_MRCL, NONE     },
 
 
 
@@ -404,12 +404,15 @@ bool mouseMovex = false;
 bool mouseMove_x = false;
 bool mouseMovey = false;
 bool mouseMove_y = false;
+bool mouseMoveh = false;
+bool mouseMove_h = false;
 
 bool keyboardEnabled = true;
 
 float MouseConstant = 3.0;
 float MouseLowConstant = 3.0;
 float MouseHighConstant = 6.0;
+float MouseHConstant = 1.0;
 
 
 
@@ -669,12 +672,22 @@ void loop() {
   if (mouseMove_y && keyboardEnabled)
   {
     BootMouse.move(0, -MouseConstant);
-  } if (mouseMovex && keyboardEnabled)
+  }
+  if (mouseMovex && keyboardEnabled)
   {
     BootMouse.move(MouseConstant, 0);
-  } if (mouseMove_x && keyboardEnabled)
+  }
+  if (mouseMove_x && keyboardEnabled)
   {
     BootMouse.move(-MouseConstant, 0);
+  }
+  if (mouseMoveh && keyboardEnabled)
+  {
+    BootMouse.move(0 , 0 , MouseHConstant);
+  }
+  if (mouseMove_h && keyboardEnabled)
+  {
+    BootMouse.move(0 , 0 , -MouseHConstant);
   }
 
 
@@ -901,6 +914,16 @@ void loop() {
             startMouseMove(KEY_MLFT);
             pressed = 1;
           }
+          else if (keyMap[ii + option][jj] == KEY_MHUP)
+          {
+            startMouseMove(KEY_MHUP);
+            pressed = 1;
+          }
+          else if (keyMap[ii + option][jj] == KEY_MHDW)
+          {
+            startMouseMove(KEY_MHDW);
+            pressed = 1;
+          }
           else if (keyMap[ii + option][jj] == KEY_MLCL)
           {
             if (keyboardEnabled)
@@ -917,6 +940,7 @@ void loop() {
             }
             pressed = 1;
           }
+
 
 
 
@@ -1066,6 +1090,16 @@ void loop() {
           if (keyMap[ii + option][jj] == KEY_MLFT)
           {
             stopMouseMove(KEY_MLFT);
+            pressed = 0;
+          }
+          if (keyMap[ii + option][jj] == KEY_MHUP)
+          {
+            stopMouseMove(KEY_MHUP);
+            pressed = 0;
+          }
+          if (keyMap[ii + option][jj] == KEY_MHDW)
+          {
+            stopMouseMove(KEY_MHDW);
             pressed = 0;
           }
           if (keyMap[ii + option][jj] == KEY_MLCL)
@@ -1393,6 +1427,16 @@ void readSerial()
         startMouseMove(KEY_MLFT);
         pressed = 1;
       }
+      else if (keyMap[row1 + option1][col1] == KEY_MHUP)
+      {
+        startMouseMove(KEY_MHUP);
+        pressed = 1;
+      }
+      else if (keyMap[row1 + option1][col1] == KEY_MHDW)
+      {
+        startMouseMove(KEY_MHDW);
+        pressed = 1;
+      }
       else if (keyMap[row1 + option1][col1] == KEY_MLCL)
       {
         if (keyboardEnabled)
@@ -1553,6 +1597,16 @@ void readSerial()
       if (keyMap[row1 + option1][col1] == KEY_MLFT)
       {
         stopMouseMove(KEY_MLFT);
+        pressed = 0;
+      }
+      if (keyMap[row1 + option1][col1] == KEY_MHUP)
+      {
+        stopMouseMove(KEY_MHUP);
+        pressed = 0;
+      }
+      if (keyMap[row1 + option1][col1] == KEY_MHDW)
+      {
+        stopMouseMove(KEY_MHDW);
         pressed = 0;
       }
       if (keyMap[row1 + option1][col1] == KEY_MLCL)
@@ -1783,6 +1837,14 @@ void startMouseMove(uint8_t directions)
   {
     mouseMove_x = true;
   }
+  if (directions == KEY_MHUP)
+  {
+    mouseMoveh = true;
+  }
+  if (directions == KEY_MHDW)
+  {
+    mouseMove_h = true;
+  }
 }
 void stopMouseMove(uint8_t directions)
 {
@@ -1792,6 +1854,8 @@ void stopMouseMove(uint8_t directions)
     mouseMovey = false;
     mouseMovex = false;
     mouseMove_x = false;
+    mouseMoveh = false;
+    mouseMove_h = false;
     Mouse.release();
   }
   else
@@ -1811,6 +1875,14 @@ void stopMouseMove(uint8_t directions)
     if (directions == KEY_MLFT)
     {
       mouseMove_x = false;
+    }
+    if (directions == KEY_MHUP)
+    {
+      mouseMoveh = false;
+    }
+    if (directions == KEY_MHDW)
+    {
+      mouseMove_h = false;
     }
   }
 
