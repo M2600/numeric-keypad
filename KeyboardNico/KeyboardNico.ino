@@ -525,7 +525,8 @@ void setup() {
 
 
   LEDProfile = EEPROM[0x000];
-  gameModeEnabled = EEPROM[0x001];
+  //gameModeEnabled = EEPROM[0x001];
+  gameModeEnabled = false;
   backLEDOn = EEPROM[0x002];
 
 
@@ -574,10 +575,10 @@ void setup() {
   changeProfile();
 
 
-  Serial.print(F("EEPROM[0x000] "));
-  Serial.println(EEPROM[0x000]);
-  Serial.print(F("EEPROM[0x001] "));
-  Serial.println(EEPROM[0x001]);
+  //Serial.print(F("EEPROM[0x000] "));
+  //Serial.println(EEPROM[0x000]);
+  //Serial.print(F("EEPROM[0x001] "));
+  //Serial.println(EEPROM[0x001]);
 
 
   //起動時にNumLock On
@@ -1793,9 +1794,9 @@ void changeProfile()
     statusLED.setPixelColor(0, statusLED.Color(0, 0, 0));
     statusLED.show();
   }
-  EEPROM[0x001] = gameModeEnabled;
-  Serial.print(F("EEPROM[0x001] "));
-  Serial.println(EEPROM[0x001]);
+  //EEPROM[0x001] = gameModeEnabled;
+  //Serial.print(F("EEPROM[0x001] "));
+  //Serial.println(EEPROM[0x001]);
 }
 void changeLightProfile()
 {
