@@ -315,6 +315,16 @@ namespace Keyboard_configuration_software
                 }));
                 for(int i=0;i< Math.Max(Gamelists.Count, Codinglists.Count); i++)
                 {
+                    if (sb.ToString().Contains(Codinglists[i]))
+                    {
+                        Invoke((MethodInvoker)(() =>    // 受信用スレッドから切り替えてデータを書き込む
+                        {
+                            textBox1.AppendText("code" + "\r\n");
+                            sendSerialCommunication("C");
+                            send = true;
+                        }));
+                        break;
+                    }
                     if (sb.ToString().Contains(Gamelists[i]))
                     {
                         Invoke((MethodInvoker)(() =>    // 受信用スレッドから切り替えてデータを書き込む
@@ -324,16 +334,9 @@ namespace Keyboard_configuration_software
                             send = true;
                         }));
                     }
-                    else if (sb.ToString().Contains(Codinglists[i]))
-                    {
-                        Invoke((MethodInvoker)(() =>    // 受信用スレッドから切り替えてデータを書き込む
-                        {
-                            textBox1.AppendText("code" + "\r\n");
-                            sendSerialCommunication("C");
-                            send = true;
-                        }));
-                    }
                     
+                    
+
                 }
                 if(!send)
                 {
