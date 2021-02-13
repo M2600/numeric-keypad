@@ -94,7 +94,7 @@ namespace Keyboard_configuration_software
         {
             notifyIcon = new NotifyIcon();
             // アイコンの設定
-            notifyIcon.Icon = new Icon(@"E:\M260\Documents\GitHub\numeric-keypad\Keyboard configuration software\Keyboard configuration software\colorKeyboardicon.ico");
+            notifyIcon.Icon = new Icon("ColorKeyboardicon.ico");
             // アイコンを表示する
             notifyIcon.Visible = true;
             // アイコンにマウスポインタを合わせたときのテキスト
