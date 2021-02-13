@@ -634,8 +634,10 @@ void loop() {
 
 
   //capslockSetting
-  if (BootKeyboard.getLeds() & LED_CAPS_LOCK && !capsLocked)
+  if (BootKeyboard.getLeds() & LED_CAPS_LOCK)
   {
+    if(!capsLocked)
+    {
     capsLockLedOn();
     sendData = 0b10000001;
     Serial1.write(sendData);
@@ -644,6 +646,7 @@ void loop() {
     Serial.print(F(" "));
     Serial.println(sendData);
     capsLocked = true;
+    }
   }
   else
   {
