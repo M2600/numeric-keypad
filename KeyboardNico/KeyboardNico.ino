@@ -1666,7 +1666,7 @@ void readPcSerial()
     Serial1.write(0b10000011);
     changeProfile();
   }
-  else if (receivedata == 'D')
+  else if (receivedata == 'D' || receivedata == 'C')
   {
     gameModeEnabled = true;
     Serial1.write(0b10000100);
