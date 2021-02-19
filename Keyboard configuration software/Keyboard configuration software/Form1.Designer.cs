@@ -144,9 +144,9 @@ namespace Keyboard_configuration_software
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(213, 7);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 12);
+            this.label2.Size = new System.Drawing.Size(79, 12);
             this.label2.TabIndex = 3;
-            this.label2.Text = "Coding";
+            this.label2.Text = "Forced default";
             // 
             // label1
             // 
