@@ -1800,7 +1800,7 @@ void changeProfile()
 }
 void changeLightProfile()
 {
-  if (LEDProfile == 6)
+  if (LEDProfile <= 6)
   {
     LEDProfile = 0;
   }
