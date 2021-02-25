@@ -218,7 +218,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_TB,   KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_LPRN, NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_LCBR, NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_FOR,  NONE     },
-  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT, KEY_DEL,  ____     },
+  {KEY_LCTL, KEY_LGUI, KEY_FN,   KEY_LALT, KEY_RAIS, KEY_RSFT, KEY_DEL,  ____     },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
   //leftFn
@@ -227,7 +227,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_CLPF, KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,          KEY_LPRN,     NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,          KEY_LCBR,     NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,          KEY_FOR,      NONE     },
-  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT,       KEY_DEL,      ____     },
+  {KEY_LCTL, KEY_LGUI, KEY_FN,   KEY_LALT, KEY_RAIS, KEY_RSFT,       KEY_DEL,      ____     },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,           KEY_KLCK,     NONE     },
 
   //leftRais
@@ -236,7 +236,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_TB,   KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,    KEY_LPRN, NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,    KEY_LCBR, NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_FOR,  NONE     },
-  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_RSFT, KEY_DEL,  ____     },
+  {KEY_LCTL, KEY_LGUI, KEY_FN,   KEY_LALT, KEY_RAIS, KEY_RSFT, KEY_DEL,  ____     },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_SPC,  NONE     },
 
   //leftLower
@@ -245,7 +245,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   {KEY_TB,   KEY_Q,    KEY_W,    KEY_MUP,  KEY_R,    KEY_T,    KEY_LPRN, NONE     },
   {KEY_CAPS, KEY_A,    KEY_MLFT, KEY_MDWN, KEY_MRIT, KEY_G,    KEY_LCBR, NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,    KEY_FOR,  NONE     },
-  {KEY_LCTL, KEY_LGUI, KEY_LALT, KEY_FN,   KEY_RAIS, KEY_MLCL, KEY_MHUP, KEY_MHDW },
+  {KEY_LCTL, KEY_LGUI, KEY_FN,   KEY_LALT, KEY_RAIS, KEY_MLCL, KEY_MHUP, KEY_MHDW },
   {NONE,     NONE,     NONE,     NONE,     NONE,     NONE,     KEY_MRCL, NONE     },
 
 
