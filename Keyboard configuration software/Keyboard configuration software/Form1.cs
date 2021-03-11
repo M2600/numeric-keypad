@@ -390,7 +390,7 @@ namespace Keyboard_configuration_software
 
         private void button2_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < Math.Min(textBox2.Lines.Length, 10); i++)
+            for (int i = 0; i < Math.Min(textBox2.Lines.Length, 30); i++)
             {
                 Gamelists[i]=(textBox2.Lines[i]);
             }
@@ -430,7 +430,7 @@ namespace Keyboard_configuration_software
 
         private void button3_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < Math.Min(textBox3.Lines.Length,10); i++)
+            for (int i = 0; i < Math.Min(textBox3.Lines.Length,30); i++)
             {
                 Codinglists[i]=(textBox3.Lines[i]);
             }

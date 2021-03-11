@@ -43,6 +43,8 @@ bool leftSide;
 
 #define KEY_KLCK 0x14
 
+#define KEY_ARLS 0x15 //all release
+
 #define KEY_ENT  0xB0 //Enter
 #define KEY_ESCP 0xB1 //Escape 
 #define KEY_BSPC 0xB2 //Backspace
@@ -224,7 +226,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   //leftFn
   {KEY_ESCP, KEY_FU1,  KEY_FU2,  KEY_FU3,  KEY_MUTE, KEY_VOLUMEDOWN, KEY_VOLUMEUP, NONE     },
   {KEY_CPFL, KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,          KEY_6,        NONE     },
-  {KEY_CLPF, KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,          KEY_LPRN,     NONE     },
+  {KEY_CLPF, KEY_Q,    KEY_W,    KEY_E,    KEY_ARLS, KEY_T,          KEY_LPRN,     NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,          KEY_LCBR,     NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,          KEY_FOR,      NONE     },
   {KEY_LCTL, KEY_LGUI, KEY_FN,   KEY_LALT, KEY_RAIS, KEY_RSFT,       KEY_DEL,      ____     },
@@ -262,7 +264,7 @@ const byte keyMap[sizeof(row) / 2 * 16][sizeof(col) / 2] = {
   //leftGameFn
   {KEY_ESCP, KEY_FU1,  KEY_FU2,  KEY_FU3,  KEY_MUTE, KEY_VOLUMEDOWN, KEY_VOLUMEUP, NONE     },
   {KEY_CPFL, KEY_1,    KEY_2,    KEY_3,    KEY_4,    KEY_5,          KEY_6,        NONE     },
-  {KEY_CLPF, KEY_Q,    KEY_W,    KEY_E,    KEY_R,    KEY_T,          KEY_FU1,      NONE     },
+  {KEY_CLPF, KEY_Q,    KEY_W,    KEY_E,    KEY_ARLS, KEY_T,          KEY_FU1,      NONE     },
   {KEY_CAPS, KEY_A,    KEY_S,    KEY_D,    KEY_F,    KEY_G,          KEY_FU2,      NONE     },
   {KEY_LSFT, KEY_Z,    KEY_X,    KEY_C,    KEY_V,    KEY_B,          KEY_FU3,      NONE     },
   {KEY_LCTL, ____,     KEY_FN,   KEY_LALT, KEY_C,    KEY_FU4,        KEY_FU5,      KEY_FU6   },
@@ -870,6 +872,14 @@ void loop() {
             }
             pressed = 1;
           }
+          else if (keyMap[ii + option][jj] == KEY_ARLS)
+          {
+            if (keyboardEnabled)
+            {
+              BootKeyboard.releaseAll();
+              pressed = 1;
+            }
+          }
           else if (keyMap[ii + option][jj] == KEY_FOR)
           {
             if (keyboardEnabled)
@@ -1117,7 +1127,10 @@ void loop() {
             pressed = 0;
           }
 
-
+          if (keyMap[ii + option][jj] == KEY_ARLS)
+          {
+            pressed = 0;
+          }
 
           if (keyMap[ii + option][jj] == KEY_MUTE)
           {
@@ -1384,6 +1397,14 @@ void readSerial()
         }
         pressed = 1;
       }
+      else if (keyMap[row1 + option1][col1] == KEY_ARLS)
+      {
+        if (keyboardEnabled)
+        {
+          BootKeyboard.releaseAll();
+          pressed = 1;
+        }
+      }
       else if (keyMap[row1 + option1][col1] == KEY_FOR)
       {
         if (keyboardEnabled)
@@ -1647,6 +1668,10 @@ void readSerial()
         pressed = 0;
         Consumer.release(MEDIA_VOLUME_DOWN);
       }
+      if (keyMap[row1 + option1][col1] == KEY_ARLS)
+      {
+        pressed = 0;
+      }      
       else
       {
         pressed = 0;
